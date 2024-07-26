@@ -1,0 +1,15 @@
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { RoutesPage } from './routes';
+
+const App: React.FC = () => {
+  return (
+    <>
+      <BrowserRouter>
+        <RoutesPage />
+      </BrowserRouter>
+    </>
+  );
+}
+
+export { App };
