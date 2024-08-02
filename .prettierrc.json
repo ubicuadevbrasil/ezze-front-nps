@@ -1,0 +1,20 @@
+{
+	"arrowParens": "always",
+	"bracketSpacing": true,
+	"jsxBracketSameLine": false,
+	"jsxSingleQuote": false,
+	"singleQuote": true,
+	"semi": false,
+	"printWidth": 300,
+	"useTabs": true,
+	"tabWidth": 3,
+	"trailingComma": "es5",
+	"paeser": "typescript",
+	"backet-spacing": true,
+	" ": true,
+	"jsx-single-quote": true,
+	"require-pragma": false,
+	"quoteProps": "consistent",
+	"bracketSameLine": true,
+	"proseWrap": "never"
+}
