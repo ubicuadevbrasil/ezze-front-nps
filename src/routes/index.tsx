@@ -1,21 +1,17 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import { AuthenticationLayout } from '../pages/layouts/Authentication';
-import { Login } from '../pages/authentication/Login';
-import { RecoverPassword } from '../pages/authentication/RecoverPassword';
-import { NewPassword } from '../pages/authentication/NewPassoword';
-
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import { routeObjects } from './routes' // Import the converted routes
 
 const RoutesPage: React.FC = () => {
-  return (
-    <Routes>
-        <Route path='/' element={<AuthenticationLayout />}>
-            <Route path='/' element={<Login />} />
-            <Route path='/recover-password' element={<RecoverPassword />} />
-            <Route path='/new-password' element={<NewPassword />} />
-        </Route>
-    </Routes>
-  );
+	return (
+		<Routes>
+			{routeObjects.map((route, index) => (
+				<Route key={index} path={route.path} element={route.element}>
+					{route.children?.map((childRoute, childIndex) => <Route key={childIndex} path={childRoute.path} element={childRoute.element} />)}
+				</Route>
+			))}
+		</Routes>
+	)
 }
 
-export { RoutesPage };
+export default RoutesPage
