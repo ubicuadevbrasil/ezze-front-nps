@@ -1,25 +1,41 @@
-import { CaretUp, PaperPlaneRight, PaperPlaneTilt, X } from '@phosphor-icons/react'
+import { RootState } from '@/app/store'
+import { selectCurrentChat, selectIsChatOpen, selectMessagesByPhone } from '@/features/chat/chatSelectors'
+import { closeChat, addMessage, openChat } from '@/features/chat/chatSlice'
+import { CaretUp, PaperPlaneRight, X } from '@phosphor-icons/react'
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 const MiniChat: React.FC = () => {
-	const [isOpen, setIsOpen] = useState(false)
+	const currentChat = useSelector((state: RootState) => selectCurrentChat(state))
+	const messages = useSelector((state: RootState) => selectMessagesByPhone(currentChat?.telefone || 0)(state))
+	const isOpen = useSelector(selectIsChatOpen)
+	const dispatch = useDispatch()
 	const [showBar, setShowBar] = useState(true)
+	const [message, setMessage] = useState('')
 
 	const toggleChat = () => {
 		if (isOpen) {
-			setIsOpen(false)
-			setTimeout(() => setShowBar(true), 300) // Duração da animação em milissegundos
+			dispatch(closeChat())
 		} else {
 			setShowBar(false)
-			setTimeout(() => setIsOpen(true), 50) // Pequeno atraso para garantir que a barra desapareça antes da animação
+			dispatch(openChat())
 		}
 	}
 
 	useEffect(() => {
 		if (!isOpen) {
 			setShowBar(true)
+		} else {
+			setShowBar(false)
 		}
 	}, [isOpen])
+
+	const handleSendMessage = () => {
+		if (currentChat && message.trim()) {
+			dispatch(addMessage({ telefone: currentChat.telefone, message }))
+			setMessage('')
+		}
+	}
 
 	return (
 		<div className={`fixed bottom-0 right-5 w-80 ${isOpen ? 'h-96' : 'h-10'} transition-all duration-300 ease-in-out`}>
@@ -37,12 +53,11 @@ const MiniChat: React.FC = () => {
 					</button>
 				</div>
 				<div className="p-3 h-64 overflow-y-auto">
-					<p>Welcome to our support chat!</p>
-					{/* Add more chat content here */}
+					<p>{currentChat?.telefone}</p>
 				</div>
 				<div className="p-3 flex">
-					<input type="text" placeholder="Type a message..." className="flex-1 p-2 border border-gray-300 rounded-l-lg focus:outline-none" />
-					<button className="bg-slate-100 text-slate-950 p-2 rounded-r-lg">
+					<input type="text" placeholder="Type a message..." className="flex-1 p-2 border border-gray-300 rounded-l-lg focus:outline-none" value={message} onChange={(e) => setMessage(e.target.value)} />
+					<button className="bg-slate-100 text-slate-950 p-2 rounded-r-lg" onClick={handleSendMessage}>
 						<PaperPlaneRight size={20} />
 					</button>
 				</div>
@@ -50,6 +65,5 @@ const MiniChat: React.FC = () => {
 		</div>
 	)
 }
-
 
 export default MiniChat

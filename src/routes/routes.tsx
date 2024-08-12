@@ -4,6 +4,7 @@ import { RecoverPassword } from '@/pages/authentication/RecoverPassword'
 import { NewPassword } from '@/pages/authentication/NewPassoword'
 import PendingSearch from '@/pages/PendingSearch'
 import { RouteObject } from 'react-router-dom'
+import ClientDetails from '@/pages/ClientDetails'
 
 export type CustomRoute = {
 	path: string
@@ -40,6 +41,12 @@ export const routes: CustomRoute[] = [
 		],
 		isShowed: true,
 	},
+	{
+		path: '/clientDetails/',
+		label:'',
+		element: <ClientDetails/>,
+		isShowed: false
+	}
 ]
 
 const convertToRouteObject = (customRoute: CustomRoute): RouteObject => {
