@@ -5,6 +5,8 @@ import { NewPassword } from '@/pages/authentication/NewPassoword'
 import PendingSearch from '@/pages/PendingSearch'
 import { RouteObject } from 'react-router-dom'
 import ClientDetails from '@/pages/ClientDetails'
+import CloseTheLoop from '@/pages/CloseTheLoop'
+import UserAlerts from '@/pages/UserAlert'
 
 export type CustomRoute = {
 	path: string
@@ -16,7 +18,7 @@ export type CustomRoute = {
 
 export const routes: CustomRoute[] = [
 	{
-		path: '/au',
+		path: '/auth',
 		element: <AuthenticationLayout />,
 		label: 'Authentication',
 		children: [
@@ -29,7 +31,7 @@ export const routes: CustomRoute[] = [
 	{
 		path: '/',
 		element: <PendingSearch />,
-		label: 'Home',
+		label: 'Pesquisas pendentes',
 		isShowed: true,
 	},
 	{
@@ -45,6 +47,17 @@ export const routes: CustomRoute[] = [
 		path: '/clientDetails/',
 		label:'',
 		element: <ClientDetails/>,
+		isShowed: false
+	},
+	{
+		path: '/closetheloop',
+		label: 'Close the loop',
+		element: <CloseTheLoop />,
+		isShowed: true
+	},
+	{
+		path: '/userAlerts/',
+		element: <UserAlerts/>,
 		isShowed: false
 	}
 ]

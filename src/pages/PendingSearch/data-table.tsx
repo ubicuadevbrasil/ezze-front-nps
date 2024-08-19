@@ -46,9 +46,6 @@ export function DataTable<TData extends IPedingSearch>({ columns, data }: DataTa
 		dispatch(setCurrentChat(dataFone))
 	}
 
-	const handlePageChange = (page: number) => {
-		setCurrentPage(Math.max(1, Math.min(page, totalPages)))
-	}
 
 	return (
 		<div>

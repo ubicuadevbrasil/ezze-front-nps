@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { PendingSearchTemplate } from '../layouts/PendingSearchTemplate'
+import { BaseTemplate } from '../layouts/BaseTemplate'
 import { IPedingSearch, columns } from './columns'
 import { DataTable } from './data-table'
+import FilterSearchBar from '@/components/ui/FilterSearchBarPendingSearch'
 
 async function getData(): Promise<IPedingSearch[]> {
 	const pendingSearchData: IPedingSearch[] = [
@@ -138,11 +139,12 @@ const Index: React.FC = () => {
 	}
 
 	return (
-		<PendingSearchTemplate>
-			<div className=' m-10'>
-			<DataTable columns={columns} data={data}  />
+		<BaseTemplate>
+			<FilterSearchBar/>
+			<div className=" m-10">
+				<DataTable columns={columns} data={data} />
 			</div>
-		</PendingSearchTemplate>
+		</BaseTemplate>
 	)
 }
 
