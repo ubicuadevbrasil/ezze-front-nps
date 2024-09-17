@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { BaseTemplate } from '../layouts/BaseTemplate'
 import { IPedingSearch, columns } from './columns'
 import { DataTable } from './data-table'
+import MiniChat from '@/components/ui/MiniChat'
 import FilterSearchBar from '@/components/ui/FilterSearchBarPendingSearch'
 
 async function getData(): Promise<IPedingSearch[]> {
@@ -140,10 +141,11 @@ const Index: React.FC = () => {
 
 	return (
 		<BaseTemplate>
-			<FilterSearchBar/>
+			<FilterSearchBar />
 			<div className=" m-10">
 				<DataTable columns={columns} data={data} />
 			</div>
+			<MiniChat />
 		</BaseTemplate>
 	)
 }

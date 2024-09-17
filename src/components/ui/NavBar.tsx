@@ -6,7 +6,7 @@ import { CaretDown, SignOut } from '@phosphor-icons/react'
 
 const Navbar: React.FC = () => {
 	return (
-		<nav className="bg-slate-100 w-full h-16 flex items-center ">
+		<nav className="bg-white w-auto h-16 flex items-center ">
 			<a href="#" className="h-full max-h-full max-w-xs bg-[#104b94]">
 				<img src={Logo} className="h-full max-h-full max-w-xs bg-[#104b94]" alt="Logo resolve assist" />
 			</a>

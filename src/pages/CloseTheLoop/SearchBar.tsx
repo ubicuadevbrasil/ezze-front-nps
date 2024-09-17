@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command'
 import { Check } from '@phosphor-icons/react'
-import { cn } from '@/lib/utils'
+import * as utils from '@/lib/utils'
 import { ChevronsUpDown } from 'lucide-react'
 import { Checkbox } from '@/components/ui/checkbox'
 

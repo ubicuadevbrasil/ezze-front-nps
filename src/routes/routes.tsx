@@ -7,6 +7,7 @@ import { RouteObject } from 'react-router-dom'
 import ClientDetails from '@/pages/ClientDetails'
 import CloseTheLoop from '@/pages/CloseTheLoop'
 import UserAlerts from '@/pages/UserAlert'
+import Dashboard from '@/pages/Dashboard'
 
 export type CustomRoute = {
 	path: string
@@ -41,7 +42,7 @@ export const routes: CustomRoute[] = [
 			{ path: 'service1', element: <div />, label: 'Service 1' },
 			{ path: 'service2', element: <div />, label: 'Service 2' },
 		],
-		isShowed: true,
+		isShowed: false,
 	},
 	{
 		path: '/clientDetails/',
@@ -53,6 +54,12 @@ export const routes: CustomRoute[] = [
 		path: '/closetheloop',
 		label: 'Close the loop',
 		element: <CloseTheLoop />,
+		isShowed: true
+	},
+	{
+		path: '/dashboard/',
+		label: 'Dashboard',
+		element: <Dashboard />,
 		isShowed: true
 	},
 	{
