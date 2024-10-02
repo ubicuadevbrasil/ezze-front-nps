@@ -8,6 +8,8 @@ import ClientDetails from '@/pages/ClientDetails'
 import CloseTheLoop from '@/pages/CloseTheLoop'
 import UserAlerts from '@/pages/UserAlert'
 import Dashboard from '@/pages/Dashboard'
+import SummaryServices from '@/pages/Administrative/SummaryServices'
+import Attandants from "@/pages/Administrative/Attendants"
 
 export type CustomRoute = {
 	path: string
@@ -36,37 +38,45 @@ export const routes: CustomRoute[] = [
 		isShowed: true,
 	},
 	{
-		path: '/services',
-		label: 'Services',
-		children: [
-			{ path: 'service1', element: <div />, label: 'Service 1' },
-			{ path: 'service2', element: <div />, label: 'Service 2' },
-		],
-		isShowed: false,
-	},
-	{
 		path: '/clientDetails/',
-		label:'',
-		element: <ClientDetails/>,
-		isShowed: false
+		label: '',
+		element: <ClientDetails />,
+		isShowed: false,
 	},
 	{
 		path: '/closetheloop',
 		label: 'Close the loop',
 		element: <CloseTheLoop />,
-		isShowed: true
+		isShowed: true,
 	},
 	{
 		path: '/dashboard/',
 		label: 'Dashboard',
 		element: <Dashboard />,
-		isShowed: true
+		isShowed: true,
 	},
 	{
 		path: '/userAlerts/',
-		element: <UserAlerts/>,
-		isShowed: false
-	}
+		element: <UserAlerts />,
+		isShowed: false,
+	},
+	{
+		path: '/',
+		label: 'Administrativo',
+		children: [
+			{ path: 'summaryServices', element: <SummaryServices />, label: 'Resumo de atendimentos', isShowed: true },
+
+			{ path: 'attendants', element: <Attandants/>, label: 'Atendentes', isShowed: true },
+
+			{ path: 'tabs', element: <div>Placeholder para Tabulação</div>, label: 'Tabulação', isShowed: true },
+
+			{ path: 'tabs', element: <div />, label: 'Tabulação', isShowed: true },
+
+			{ path: 'openCalls', element: <div />, label: 'Atendimentos em aberto', isShowed: true },
+			{ path: 'serviceAnalyticalReport', element: <div />, label: 'Relatório analítico de atendimento', isShowed: true },
+		],
+		isShowed: true,
+	},
 ]
 
 const convertToRouteObject = (customRoute: CustomRoute): RouteObject => {

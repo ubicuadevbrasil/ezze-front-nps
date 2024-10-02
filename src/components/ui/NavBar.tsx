@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import React from 'react'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import Logo from '@/assets/Logo.svg'
@@ -7,7 +8,7 @@ import { CaretDown, SignOut } from '@phosphor-icons/react'
 const Navbar: React.FC = () => {
 	return (
 		<nav className="bg-white w-auto h-16 flex items-center ">
-			<a href="#" className="h-full max-h-full max-w-xs bg-[#104b94]">
+			<a href="/" className="h-full max-h-full max-w-xs bg-[#104b94]">
 				<img src={Logo} className="h-full max-h-full max-w-xs bg-[#104b94]" alt="Logo resolve assist" />
 			</a>
 			<div className="w-full px-10 flex flex-wrap items-center justify-between">
@@ -30,15 +31,18 @@ const Navbar: React.FC = () => {
 }
 
 interface ButtonType {
-	route: string,
+	route: string
 	label: string
 }
 
-const Button: React.FC<ButtonType> = ({route = '#', label = 'Default link'}) => {
+const Button: React.FC<ButtonType> = ({ route = '#', label = 'Default link' }) => {
 	return (
 		<>
 			<li>
-				<a href={route} className="relative inline-block text-gray-800 hover:text-blue-600 transition duration-300 ease-in-out after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-0.5 after:bg-transparent hover:after:bg-blue-600 after:transition-all after:duration-300 after:ease-in-out" aria-current="page">
+				<a
+					href={route}
+					className="relative inline-block text-gray-800 hover:text-blue-600 transition duration-300 ease-in-out after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-0.5 after:bg-transparent hover:after:bg-blue-600 after:transition-all after:duration-300 after:ease-in-out"
+					aria-current="page">
 					{label}
 				</a>
 			</li>
@@ -47,12 +51,11 @@ const Button: React.FC<ButtonType> = ({route = '#', label = 'Default link'}) => 
 }
 
 interface DropdownType {
-	labelGroup: string,
+	labelGroup: string
 	routesGroup: CustomRoute[]
-
 }
 
-const Dropdown: React.FC<DropdownType> = ({labelGroup, routesGroup}) => {
+const Dropdown: React.FC<DropdownType> = ({ labelGroup, routesGroup }) => {
 	return (
 		<>
 			<li>

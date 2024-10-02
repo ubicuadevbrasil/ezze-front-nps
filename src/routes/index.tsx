@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import { routeObjects } from './routes' // Import the converted routes
 
 const RoutesPage: React.FC = () => {
+	console.log('Routes are rendering')
 	return (
 		<Routes>
 			{routeObjects.map((route, index) => (
@@ -13,5 +14,6 @@ const RoutesPage: React.FC = () => {
 		</Routes>
 	)
 }
+
 
 export default RoutesPage
