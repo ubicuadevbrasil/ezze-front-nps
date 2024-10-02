@@ -70,8 +70,6 @@ export const routes: CustomRoute[] = [
 
 			{ path: 'tabs', element: <div>Placeholder para Tabulação</div>, label: 'Tabulação', isShowed: true },
 
-			{ path: 'tabs', element: <div />, label: 'Tabulação', isShowed: true },
-
 			{ path: 'openCalls', element: <div />, label: 'Atendimentos em aberto', isShowed: true },
 			{ path: 'serviceAnalyticalReport', element: <div />, label: 'Relatório analítico de atendimento', isShowed: true },
 		],
