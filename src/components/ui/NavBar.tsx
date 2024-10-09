@@ -7,20 +7,20 @@ import { CaretDown, SignOut } from '@phosphor-icons/react'
 
 const Navbar: React.FC = () => {
 	return (
-		<nav className="bg-white w-auto h-16 flex items-center ">
+		<nav className="bg-white w-auto h-14 flex items-center ">
 			<a href="/" className="h-full max-h-full max-w-xs bg-[#104b94]">
 				<img src={Logo} className="h-full max-h-full max-w-xs bg-[#104b94]" alt="Logo resolve assist" />
 			</a>
-			<div className="w-full px-10 flex flex-wrap items-center justify-between">
-				<div className="hidden md:block w-full md:w-auto" id="mobile-menu">
-					<ul className="flex-col md:flex-row flex md:space-x-8 mt-4 md:mt-0 md:text-sm md:font-medium">
+			<div className="w-full h-full flex flex-wrap items-center justify-between">
+				<div className="hidden h-full md:block w-full md:w-auto" id="mobile-menu">
+					<ul className="flex-col md:h-full md:flex-row flex  mt-4 md:mt-0 md:text-sm">
 						{routes.map((route, index) => {
 							return route.isShowed ? route.children ? <Dropdown labelGroup={route.label} routesGroup={route.children} /> : <Button key={index} label={route.label} route={route.path} /> : <></>
 						})}
 					</ul>
 				</div>
-				<div className="flex items-center ml-auto">
-					<button className="flex flex-row justify-center items-center gap-x-1">
+				<div className="flex items-center ml-auto ">
+					<button className="flex flex-row h-full px-7 py-4 justify-center items-center gap-x-1">
 						Logout
 						<SignOut size={20} />
 					</button>
@@ -41,7 +41,7 @@ const Button: React.FC<ButtonType> = ({ route = '#', label = 'Default link' }) =
 			<li>
 				<a
 					href={route}
-					className="relative inline-block text-gray-800 hover:text-blue-600 transition duration-300 ease-in-out after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-0.5 after:bg-transparent hover:after:bg-blue-600 after:transition-all after:duration-300 after:ease-in-out"
+					className="relative flex w-full h-full p-4 items-center justify-center text-gray-800 hover:text-blue-600 transition duration-300 ease-in-out after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-0.5 after:bg-transparent hover:after:bg-blue-600 after:transition-all after:duration-300 after:ease-in-out"
 					aria-current="page">
 					{label}
 				</a>
@@ -60,11 +60,11 @@ const Dropdown: React.FC<DropdownType> = ({ labelGroup, routesGroup }) => {
 		<>
 			<li>
 				<DropdownMenu>
-					<DropdownMenuTrigger className="flex flex-row justify-center items-center gap-x-1 hover:text-blue-600 transition duration-300 ease-in-out after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-0.5 after:bg-transparent hover:after:bg-blue-600 after:transition-all after:duration-300 after:ease-in-out">
-						<p className="relative inline-block text-gray-800 hover:text-blue-600 transition duration-300 ease-in-out after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-0.5 after:bg-transparent hover:after:bg-blue-600 after:transition-all after:duration-300 after:ease-in-out">
+					<DropdownMenuTrigger className="flex flex-row justify-center h-full  items-center outline-none hover:text-blue-600 transition duration-300 ease-in-out after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-0.5 after:bg-transparent hover:after:bg-blue-600 after:transition-all after:duration-300 after:ease-in-out">
+						<p className="relative flex items-center gap-1 w-full text-gray-800 h-full p-4 hover:text-blue-600 transition duration-300 ease-in-out after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-0.5 after:bg-transparent hover:after:bg-blue-600 after:transition-all after:duration-300 after:ease-in-out">
 							{labelGroup}
+							<CaretDown size={14} />
 						</p>
-						<CaretDown size={20} />
 					</DropdownMenuTrigger>
 					<DropdownMenuContent>
 						{routesGroup.map((route, index) => {

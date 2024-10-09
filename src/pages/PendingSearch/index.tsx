@@ -142,7 +142,7 @@ const Index: React.FC = () => {
 	return (
 		<BaseTemplate>
 			<FilterSearchBar />
-			<div className=" m-10">
+			<div className="px-5 pt-2 pb-10 bg-white">
 				<DataTable columns={columns} data={data} />
 			</div>
 			<MiniChat />

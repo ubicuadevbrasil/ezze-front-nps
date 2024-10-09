@@ -49,7 +49,7 @@ export function DataTable<TData extends IPedingSearch>({ columns, data }: DataTa
 
 	return (
 		<div>
-			<div className="border rounded-2xl border-slate-400">
+			<div className="border rounded-md border-slate-400">
 			<Table>
 				<TableHeader>
 					{table.getHeaderGroups().map((headerGroup) => (
@@ -68,15 +68,15 @@ export function DataTable<TData extends IPedingSearch>({ columns, data }: DataTa
 									const cellValue = cell.getValue()
 
 									return (
-										<TableCell key={cell.id} className={index % 2 ? 'bg-slate-300' : ''}>
+										<TableCell key={cell.id} className={index % 2 ? '' : 'bg-[#F1f3fE]'}>
 											{cell.column.id === 'dataPrimeroDisparo' && cellValue instanceof Date ? (
 												cellValue.toLocaleDateString()
 											) : cell.column.id === 'conversa' ? (
-												<Button className="bg-[#104b94] border-0" variant={'outline'} onClick={() => handleOpenChat(row.original)}>
+												<Button className="bg-[#104b94] border-0 w-full px-5 py-1" variant={'outline'} onClick={() => handleOpenChat(row.original)}>
 													<Chat color="#f1f1f1" size={20} />
 												</Button>
 											) : cell.column.id === 'tentativaContato' ? (
-												<Button className="bg-[#a2b7d5] border border-[#104b94]" variant={'outline'} onClick={() => handleButtonClick(row.original)}>
+												<Button className="bg-[#a2b7d5] border border-[#104b94] rounded py-1 px-4 text-xs justify-center w-full" variant={'outline'} onClick={() => handleButtonClick(row.original)}>
 													Mais Detalhes
 												</Button>
 											) : (

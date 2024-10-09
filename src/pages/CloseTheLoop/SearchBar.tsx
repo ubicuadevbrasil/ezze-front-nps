@@ -1,12 +1,8 @@
 import React, { useState } from 'react'
 import { DatePickerWithRange } from '@/components/ui/DatePickerWithRange'
-import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command'
-import { Check } from '@phosphor-icons/react'
-import * as utils from '@/lib/utils'
-import { ChevronsUpDown } from 'lucide-react'
+import { CaretDown } from '@phosphor-icons/react'
 import { Checkbox } from '@/components/ui/checkbox'
 
 const statusList = [
@@ -57,20 +53,39 @@ const SearchBar: React.FC = () => {
 	const [alertaValue, setAlertaValue] = React.useState('')
 
 	return (
-		<div className="px-5 w-full h-16 g flex flex-row items-center justify-between">
-			<div className="flex flex-row gap-5">
+		<div className="px-5 py-3 flex items-center justify-between">
+			<div className="">
 				<DatePickerWithRange className="border-slate-400" />
-				<Input className="w-36 border-slate-400" placeholder="Atribuição" value={IdAssistencia} onChange={(e) => setIdAssistencia(e.target.value)} />
-				<Input className="w-36 border-slate-400" placeholder="Id da assistencia" value={IdAssistencia} onChange={(e) => setIdAssistencia(e.target.value)} />
-				<Input className="w-36 border-slate-400" placeholder="CIA Cliente" value={CiaCliente} onChange={(e) => setCiaCliente(e.target.value)} />
-				<Input className="w-36 border-slate-400" placeholder="Nome do cliente" value={NomeCliente} onChange={(e) => setNomeCliente(e.target.value)} />
+				<div className="flex flex-col w-32 text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md bg-white">
+					<label htmlFor="assignment" className=''>Atribuição</label>
+					<input id='assignment' className="w-full outline-none" placeholder="---" value={IdAssistencia} onChange={(e) => setIdAssistencia(e.target.value)} />
+				</div>
+				<div className="flex flex-col w-32 text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md bg-white">
+					<label htmlFor="assistance" className=''>Id da assistência</label>
+					<input id='assistance' className="w-full outline-none" placeholder="---" value={IdAssistencia} onChange={(e) => setIdAssistencia(e.target.value)} />
+				</div>
+				<div className="flex flex-col w-32 text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md bg-white">
+					<label htmlFor="client_company" className=''>CIA Cliente</label>
+					<input id='client_company' className="w-full outline-none" placeholder="---" value={CiaCliente} onChange={(e) => setCiaCliente(e.target.value)} />
+				</div>
+				<div className="flex flex-col w-32 text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md bg-white">
+					<label htmlFor="client_name" className=''>Nome do cliente</label>
+					<input id='client_name' className="w-full outline-none" placeholder="---" value={NomeCliente} onChange={(e) => setNomeCliente(e.target.value)} />
+				</div>
 				{/* Status */}
 				<Popover open={statusOpen} onOpenChange={setStatusOpen}>
 					<PopoverTrigger asChild className="border border-slate-400">
-						<Button variant="outline" role="combobox" aria-expanded={open} className="w-[200px] justify-between text-gray-500 font-normal">
+						<div className='flex w-32 h-10 items-center px-3 border border-slate-400 rounded-md bg-white'>
+							<div className="flex flex-col w-full text-[10px] leading-3  justify-center ">
+								<span className="text-[10px] leading-3">Status</span>
+								<div className="">{statusValue ? statusList.find((status) => status.value === statusValue)?.label : '---'}</div>
+							</div>
+							<CaretDown size={24} />
+						</div>
+						{/* <Button variant="outline" role="combobox" className=" justify-between text-gray-500 font-normal">
 							{statusValue ? statusList.find((status) => status.value === statusValue)?.label : 'Status'}
 							<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-						</Button>
+						</Button> */}
 					</PopoverTrigger>
 					<PopoverContent className="w-[200px] p-0 border border-slate-400 flex gap-5 flex-col p-3">
 						{statusList.map((status) => (
@@ -79,7 +94,7 @@ const SearchBar: React.FC = () => {
 									className="border-gray-400"
 									id={status.value}
 									onSelect={(currentValue) => {
-										setStatusValue(currentValue === statusValue ? '' : currentValue)
+										setStatusValue(String(currentValue) === statusValue ? '' : String(currentValue))
 										setStatusOpen(false)
 									}}
 								/>
@@ -94,10 +109,17 @@ const SearchBar: React.FC = () => {
 				{/* Alerta */}
 				<Popover open={alertaOpen} onOpenChange={setAlertaOpen}>
 					<PopoverTrigger asChild className="border border-slate-400">
-						<Button variant="outline" role="combobox" aria-expanded={statusOpen} className="w-[200px] justify-between text-gray-500 font-normal">
+						<div className='flex w-32 h-10 items-center px-3 border border-slate-400 rounded-md bg-white'>
+							<div className="flex flex-col w-full text-[10px] leading-3  justify-center ">
+								<span className="text-[10px] leading-3">Alerta</span>
+								<div className="">{alertaValue ? alertaList.find((alerta) => alerta.value === alertaValue)?.label : '---'}</div>
+							</div>
+							<CaretDown size={24} />
+						</div>
+						{/* <Button variant="outline" role="combobox" aria-expanded={statusOpen} className="w-[200px] justify-between text-gray-500 font-normal">
 							{alertaValue ? alertaList.find((alerta) => alerta.value === alertaValue)?.label : 'Alerta'}
 							<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-						</Button>
+						</Button> */}
 					</PopoverTrigger>
 					<PopoverContent className="w-[200px] p-0 border border-slate-400  flex gap-5 flex-col p-3">
 						{alertaList.map((alerta) => (
@@ -106,7 +128,7 @@ const SearchBar: React.FC = () => {
 									className="border-gray-400"
 									id={alerta.value}
 									onSelect={(currentValue) => {
-										setStatusValue(currentValue === alertaValue ? '' : currentValue)
+										setStatusValue(String(currentValue) === alertaValue ? '' : String(currentValue))
 										setStatusOpen(false)
 									}}
 								/>
@@ -118,7 +140,7 @@ const SearchBar: React.FC = () => {
 					</PopoverContent>
 				</Popover>
 			</div>
-			<Button className="text-lg bg-[#104b94]">Buscar</Button>
+			<Button className="text-lg bg-[#104b94] h-10 px-3">Buscar</Button>
 		</div>
 	)
 }

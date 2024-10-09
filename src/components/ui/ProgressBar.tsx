@@ -12,8 +12,8 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ percentage}) => {
 	}
 
 	return (
-		<div className="w-full rounded-lg h-8 flex items-center flex-col gap-3">
-			<div className={`h-full text-white flex self-start items-center justify-end pr-3 font-bold text-xl ${getBackgroundColor()}`} style={{ width: `${percentage}%` }}>
+		<div className="w-full rounded-lg h-[18px] flex items-center flex-col gap-3 bg-[#D9DDE5]">
+			<div className={`h-full text-white flex self-start items-center justify-end pr-3 font-bold text-sm ${getBackgroundColor()}`} style={{ width: `${percentage}%` }}>
 				{percentage*0.1}
 			</div>
 		</div>
