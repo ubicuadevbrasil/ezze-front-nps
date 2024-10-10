@@ -1,17 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import NavBar from '@/components/ui/NavBar'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { Pencil, Trash, Lock, MagnifyingGlass, User, UsersThree, Users, WarningCircle, Check } from '@phosphor-icons/react'
+import { Pencil, Trash, Lock, MagnifyingGlass, User, UsersThree, Users, WarningCircle } from '@phosphor-icons/react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from '@/components/ui/dialog'
-import { Label } from '@/components/ui/label'
-import { cn } from '@/lib/utils'
 import { Separator } from '@/components/ui/separator'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { ChevronsUpDown, Command } from 'lucide-react'
-import { CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command'
-
+import toast, { Toaster } from 'react-hot-toast'
+import { AlertModal } from '@/components/ui/AlertModal'
 
 export default function Index() {
 	const invoices = [
@@ -26,9 +22,26 @@ export default function Index() {
 		// Adicione mais registros se necessário
 	]
 
+	const [isOpen, setIsOpen] = useState(false) // Estado que controla o modal
+	const [formSubmitted, setFormSubmitted] = useState(false) // Estado que controla o envio do formulário
+
+	// Efeito que dispara o toast após o modal ser fechado e o formulário ser submetido
+	useEffect(() => {
+		if (!isOpen && formSubmitted) {
+			toast.success('Formulário enviado com sucesso!')
+			setFormSubmitted(false) // Reseta o estado após exibir o toast
+		}
+	}, [isOpen, formSubmitted])
+
+	const handleFormSubmit = () => {
+		setFormSubmitted(true) // Marca que o formulário foi submetido
+		setIsOpen(false) // Fecha o modal
+	}
+
 	return (
 		<div className="flex flex-col min-h-screen bg-slate-300">
 			<NavBar />
+			<Toaster />
 			<nav className="flex text-[#333946] bg-white h-20 items-center justify-between pl-8 pr-3">
 				<div className="flex gap-3 font-medium text-lg items-center">
 					<UsersThree size={32} />
@@ -36,14 +49,14 @@ export default function Index() {
 				</div>
 				<div className="flex gap-5">
 					<div className="flex w-full max-w-sm items-center space-x-2 border-2 rounded-lg border-[#b6afaf]">
-						<Input type="search" placeholder="Pesquisa" className="border-none focus:outline-none focus:ring-0 focus:border-transparent focus:shadow-none" style={{ border: 'none', outline: 'none', boxShadow: 'none' }} />
+						<Input type="search" placeholder="Pesquisa" className="border-none focus:outline-none focus:ring-0 focus:border-transparent focus:shadow-none" />
 						<Button variant="ghost" type="submit">
 							<MagnifyingGlass size={25} />
 						</Button>
 					</div>
 
 					{/* Botão Novo agora abre o Dialog */}
-					<Dialog>
+					<Dialog open={isOpen} onOpenChange={setIsOpen}>
 						<DialogTrigger asChild>
 							<Button className="bg-[#365da5] text-lg flex gap-4">
 								<User size={25} />
@@ -59,18 +72,20 @@ export default function Index() {
 								</DialogDescription>
 								<ToggleButtons onSelect={null} />
 
-								<Separator className='bg-black '/>
+								<Separator className="bg-black " />
 							</DialogHeader>
-							<ProfileForm />
+							<ProfileForm onSubmit={handleFormSubmit} />
 						</DialogContent>
 					</Dialog>
 				</div>
 			</nav>
 
-			<main className="flex flex-col items-center gap-10 m-5 py-10 flex-grow">
-				<table className="bg-[#203863] rounded-t-xl w-full">
-					<h1 className="p-4 text-white ">Atendentes online</h1>
-					<Table className="rounded-b-xl">
+			<main className="flex flex-col items-center gap-10 m-5 flex-grow">
+				<div className="bg-white pb-3 w-full border rounded-2xl border-slate-400">
+					<div className="bg-[#203863] w-full rounded-t-2xl border-slate-400">
+						<h1 className="p-4 text-white ">Atendentes online</h1>
+					</div>
+					<Table className="rounded-b-xl pb-3">
 						<TableHeader>
 							<TableRow className="bg-white">
 								<TableHead>#</TableHead>
@@ -83,7 +98,7 @@ export default function Index() {
 								<TableHead>Deletar</TableHead>
 							</TableRow>
 						</TableHeader>
-						<TableBody className="rounded-b-xl bg-white">
+						<TableBody className="rounded-b-xl bg-white rounded-2xl">
 							{invoices.map((invoice) => (
 								<TableRow key={invoice.invoice}>
 									<TableCell className="font-medium">{invoice.invoice}</TableCell>
@@ -102,32 +117,40 @@ export default function Index() {
 										</Button>
 									</TableCell>
 									<TableCell>
-										<Button variant="ghost">
-											<Trash size={32} />
-										</Button>
+										<AlertModal title="Aviso" description="Confirma a ação de deletar esse usuário?">
+											<Button variant="ghost">
+												<Trash size={32} />
+											</Button>
+										</AlertModal>
 									</TableCell>
 								</TableRow>
 							))}
 						</TableBody>
 					</Table>
-				</table>
+				</div>
 			</main>
 			<footer className="flex w-full justify-center py-2 bg-[#D9DDE5] mt-auto text-[10px]">{new Date().getFullYear()} - Powered by Ubicua ©</footer>
 		</div>
 	)
 }
 
-function ProfileForm({ className }: React.ComponentProps<'form'>) {
+function ProfileForm({ onSubmit }: { onSubmit: () => void }) {
 	const jobOptions = ['Administrador', 'Supervisor', 'Operador', 'Gerente', 'Coordenador']
+
+	const handleSave = (event: React.FormEvent) => {
+		event.preventDefault()
+		onSubmit()
+	}
+
 	return (
-		<form className={cn('grid items-start gap-4 ', className)}>
+		<form className="grid items-start gap-4" onSubmit={handleSave}>
 			<div className="flex items-center gap-2">
 				<WarningCircle size={20} />
-				<Input type="text" id="username" className="border-gray-300 rounded-md focus:border-blue-500 focus:ring focus:ring-blue-200" placeholder="Nome de Usuário" style={{ outline: 'none', boxShadow: 'none' }} />
+				<Input type="text" id="username" placeholder="Nome de Usuário" />
 			</div>
 			<div className="flex items-center gap-2">
 				<User size={20} />
-				<Input type="email" id="email" className="border-gray-300 rounded-md focus:border-blue-500 focus:ring focus:ring-blue-200" placeholder="Login" style={{ outline: 'none', boxShadow: 'none' }} />
+				<Input type="email" id="email" placeholder="Login" />
 			</div>
 			<div className="flex items-center gap-2">
 				<User size={20} />
@@ -135,16 +158,14 @@ function ProfileForm({ className }: React.ComponentProps<'form'>) {
 			</div>
 			<div className="flex items-center gap-2">
 				<Lock size={20} />
-				<Input type="text" id="password" className="border-gray-300 rounded-md focus:border-blue-500 focus:ring focus:ring-blue-200" placeholder="Senha" style={{ outline: 'none', boxShadow: 'none' }} />
+				<Input type="text" id="password" placeholder="Senha" />
 			</div>
 			<div className="flex items-center gap-2">
 				<Lock size={20} />
-				<Input type="text" id="confirmpassword" className="border-gray-300 rounded-md focus:border-blue-500 focus:ring focus:ring-blue-200" placeholder="Confirmar senha" style={{ outline: 'none', boxShadow: 'none' }} />
+				<Input type="text" id="confirmpassword" placeholder="Confirmar senha" />
 			</div>
-			<div className="w-full flex gap-4 justify-end ">
-				<Button type="reset" variant={'outline'}>
-					Cancelar
-				</Button>
+			<div className="w-full flex gap-4 justify-end">
+				<Button variant="outline">Cancelar</Button>
 				<Button type="submit">Salvar</Button>
 			</div>
 		</form>
@@ -168,7 +189,6 @@ const ToggleButtons: React.FC<ToggleButtonsProps> = ({ onSelect }) => {
 			<Button variant={selected === 'supervisor' ? '' : 'secondary'} onClick={() => handleClick('supervisor')}>
 				Supervisor
 			</Button>
-
 			<Button variant={selected === 'atendente' ? '' : 'secondary'} onClick={() => handleClick('atendente')}>
 				Atendente
 			</Button>
@@ -184,15 +204,16 @@ interface ComboboxProps {
 const Combobox: React.FC<ComboboxProps> = ({ options, label }) => {
 	const [selectedOption, setSelectedOption] = useState<string | null>(null)
 
-	const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+	const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		setSelectedOption(event.target.value)
 	}
 
 	return (
-		<>
-			<select id="combobox" style={{ outline: 'none', boxShadow: 'none' }} value={selectedOption || ''} onChange={handleSelect} className="block w-full p-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring focus:ring-blue-200">
-				<option value="" disabled>z
-					Selecione um cargo
+		<div className="w-full grid gap-2">
+			<div className="border rounded-2xl border-slate-400"></div>
+			<select value={selectedOption || ''} onChange={handleSelectChange} className="p-2 rounded-md border first-letter: bg-transparent border-slate-400">
+				<option value="" disabled hidden>
+					Selecione uma opção
 				</option>
 				{options.map((option) => (
 					<option key={option} value={option}>
@@ -200,6 +221,6 @@ const Combobox: React.FC<ComboboxProps> = ({ options, label }) => {
 					</option>
 				))}
 			</select>
-		</>
+		</div>
 	)
 }

@@ -3,13 +3,16 @@ import { Login } from '@/pages/authentication/Login'
 import { RecoverPassword } from '@/pages/authentication/RecoverPassword'
 import { NewPassword } from '@/pages/authentication/NewPassoword'
 import PendingSearch from '@/pages/PendingSearch'
-import { RouteObject } from 'react-router-dom'
+import { Navigate, RouteObject } from 'react-router-dom'
 import ClientDetails from '@/pages/ClientDetails'
 import CloseTheLoop from '@/pages/CloseTheLoop'
 import UserAlerts from '@/pages/UserAlert'
 import Dashboard from '@/pages/Dashboard'
 import SummaryServices from '@/pages/Administrative/SummaryServices'
 import Attandants from "@/pages/Administrative/Attendants"
+import Tab from '@/pages/Administrative/Tab'
+import OpenCalls from '@/pages/Administrative/OpenCalls'
+import ServiceAnalyticalReport from '@/pages/Administrative/ServiceAnalyticalReport'
 
 export type CustomRoute = {
 	path: string
@@ -20,6 +23,11 @@ export type CustomRoute = {
 }
 
 export const routes: CustomRoute[] = [
+	{
+		path: '/',
+		element: <Navigate to="/pendingSearch" replace />, // Redireciona automaticamente de "/" para "/pendingSearch"
+		isShowed: false, // Não mostramos no menu
+	},
 	{
 		path: '/auth',
 		element: <AuthenticationLayout />,
@@ -32,11 +40,21 @@ export const routes: CustomRoute[] = [
 		isShowed: false,
 	},
 	{
-		path: '/',
+		path: '/pendingSearch',
 		element: <PendingSearch />,
 		label: 'Pesquisas pendentes',
 		isShowed: true,
 	},
+	/* {
+		path: '/pendingSearch',
+		element: (
+			<ProtectedRoute>
+				<PendingSearch />
+			</ProtectedRoute>
+		),
+		label: 'Pending Search',
+		isShowed: true,
+	}, */
 	{
 		path: '/clientDetails/',
 		label: '',
@@ -66,12 +84,12 @@ export const routes: CustomRoute[] = [
 		children: [
 			{ path: 'summaryServices', element: <SummaryServices />, label: 'Resumo de atendimentos', isShowed: true },
 
-			{ path: 'attendants', element: <Attandants/>, label: 'Atendentes', isShowed: true },
+			{ path: 'attendants', element: <Attandants />, label: 'Atendentes', isShowed: true },
 
-			{ path: 'tabs', element: <div>Placeholder para Tabulação</div>, label: 'Tabulação', isShowed: true },
+			{ path: 'tabs', element: <Tab/>, label: 'Tabulação', isShowed: true },
 
-			{ path: 'openCalls', element: <div />, label: 'Atendimentos em aberto', isShowed: true },
-			{ path: 'serviceAnalyticalReport', element: <div />, label: 'Relatório analítico de atendimento', isShowed: true },
+			{ path: 'openCalls', element: <OpenCalls />, label: 'Atendimentos em aberto', isShowed: true },
+			{ path: 'serviceAnalyticalReport', element: <ServiceAnalyticalReport />, label: 'Relatório analítico de atendimento', isShowed: true },
 		],
 		isShowed: true,
 	},

@@ -57,13 +57,13 @@ const SearchBar: React.FC = () => {
 	const [alertaValue, setAlertaValue] = React.useState('')
 
 	return (
-		<div className="px-5 w-full h-16 g flex flex-row items-center justify-between">
+		<div className="px-5 w-screen py-3 gap-5 flex flex-row items-center justify-between  bg-[#cbd5e1]">
 			<div className="flex flex-row gap-5">
 				<DatePickerWithRange className="border-slate-400" />
-				<Input className="w-36 border-slate-400" placeholder="Atribuição" value={IdAssistencia} onChange={(e) => setIdAssistencia(e.target.value)} />
-				<Input className="w-36 border-slate-400" placeholder="Id da assistencia" value={IdAssistencia} onChange={(e) => setIdAssistencia(e.target.value)} />
-				<Input className="w-36 border-slate-400" placeholder="CIA Cliente" value={CiaCliente} onChange={(e) => setCiaCliente(e.target.value)} />
-				<Input className="w-36 border-slate-400" placeholder="Nome do cliente" value={NomeCliente} onChange={(e) => setNomeCliente(e.target.value)} />
+				<Input className="border-slate-400" placeholder="Atribuição" value={IdAssistencia} onChange={(e) => setIdAssistencia(e.target.value)} />
+				<Input className="border-slate-400" placeholder="Id da assistencia" value={IdAssistencia} onChange={(e) => setIdAssistencia(e.target.value)} />
+				<Input className="border-slate-400" placeholder="CIA Cliente" value={CiaCliente} onChange={(e) => setCiaCliente(e.target.value)} />
+				<Input className="border-slate-400" placeholder="Nome do cliente" value={NomeCliente} onChange={(e) => setNomeCliente(e.target.value)} />
 				{/* Status */}
 				<Popover open={statusOpen} onOpenChange={setStatusOpen}>
 					<PopoverTrigger asChild className="border border-slate-400">

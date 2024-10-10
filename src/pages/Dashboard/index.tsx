@@ -71,7 +71,7 @@ export default function Index() {
 					</div>
 				</div>
 				<div className="w-full flex flex-col gap-5 max-w-7xl bg-white rounded-xl p-4">
-					<p>Tabela de negocioss:</p>
+					<p>Tabela de negócios:</p>
 					<AlertsTable />
 				</div>
 				<div className="w-full flex flex-col gap-5 max-w-7xl bg-white rounded-xl p-4">
@@ -93,7 +93,7 @@ export default function Index() {
 					</div>
 				</div>
 				<div className="w-full flex flex-col gap-5 max-w-7xl bg-white rounded-xl p-4">
-					<p>Procedência de negocioss:</p>
+					<p>Procedência de negócios:</p>
 					<AlertProcedureTable />
 				</div>
 				<div className="w-full flex flex-col gap-5 max-w-7xl bg-white rounded-xl p-4">
