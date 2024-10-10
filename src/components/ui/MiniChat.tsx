@@ -38,7 +38,7 @@ const MiniChat: React.FC = () => {
 	}
 
 	return (
-		<div className={`fixed bottom-0 right-5 w-80 ${isOpen ? 'h-96' : 'h-10'} transition-all duration-300 ease-in-out`}>
+		<div className={`fixed z-10 bottom-0 right-5 w-80 ${isOpen ? 'h-96' : 'h-10'} transition-all duration-300 ease-in-out`}>
 			{showBar && (
 				<div className="bg-slate-100 border-slate-400 border text-slate-950 px-3 py-2 cursor-pointer rounded-t-2xl flex flex-row justify-between items-center" onClick={toggleChat}>
 					Conversas abertas
