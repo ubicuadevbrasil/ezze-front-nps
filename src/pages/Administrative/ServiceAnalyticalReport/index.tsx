@@ -59,7 +59,7 @@ export default function Index() {
 	}
 
 	return (
-		<div className="flex flex-col min-h-screen bg-slate-300">
+		<div className="flex flex-col min-h-screen bg-[#f1f3fe]">
 			<NavBar />
 			<Toaster />
 			<nav className="flex text-[#333946] bg-white h-20 items-center pl-8 pr-3">
@@ -68,18 +68,29 @@ export default function Index() {
 					<p>Relatório analítico de atendimento</p>
 				</div>
 			</nav>
-			<div className="px-5 w-full py-2 gap-5 flex flex-row items-center justify-end">
-				<DatePickerWithRange className="border-slate-400" />
-				<Input className="border-slate-400" placeholder="Id da assistencia" value={IdAssistencia} onChange={(e) => setIdAssistencia(e.target.value)} />
-				<Input className="border-slate-400" placeholder="Nome do cliente" value={NomeCliente} onChange={(e) => setNomeCliente(e.target.value)} />
-				<Input className="border-slate-400" placeholder="CIA Cliente" value={CiaCliente} onChange={(e) => setCiaCliente(e.target.value)} />
-				<Input className="border-slate-400" placeholder="CIA Cliente" value={CiaCliente} onChange={(e) => setCiaCliente(e.target.value)} />
-				<Input className="border-slate-400" placeholder="CIA Cliente" value={CiaCliente} onChange={(e) => setCiaCliente(e.target.value)} />
-				<Button className="text-lg bg-[#104b94]">Buscar</Button>
+			<div className="flex ">
+				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 px-5 w-full py-2 items-center">
+					<DatePickerWithRange className="border-slate-400" />
+					<Input className="border-slate-400" placeholder="Id da assistencia" value={IdAssistencia} onChange={(e) => setIdAssistencia(e.target.value)} />
+					<Input className="border-slate-400" placeholder="Nome do cliente" value={NomeCliente} onChange={(e) => setNomeCliente(e.target.value)} />
+					<Input className="border-slate-400" placeholder="CIA Cliente" value={CiaCliente} onChange={(e) => setCiaCliente(e.target.value)} />
+					<Input className="border-slate-400" placeholder="CIA Cliente" value={CiaCliente} onChange={(e) => setCiaCliente(e.target.value)} />
+					<Input className="border-slate-400" placeholder="CIA Cliente" value={CiaCliente} onChange={(e) => setCiaCliente(e.target.value)} />
+					<Input className="border-slate-400" placeholder="CIA Cliente" value={CiaCliente} onChange={(e) => setCiaCliente(e.target.value)} />
+					<Input className="border-slate-400" placeholder="CIA Cliente" value={CiaCliente} onChange={(e) => setCiaCliente(e.target.value)} />
+				</div>
+				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 px-5 w-full py-2 items-center">
+					<Button className="bg-[#d9dde5] border border-[#c0c7d4]">
+						Bloqueios
+					</Button>
+					<Button className="bg-[#d9dde5] border border-[#c0c7d4]">Logins</Button>
+					<Button>Exportar</Button>
+					<Button>Buscar</Button>
+				</div>
 			</div>
 
 			<main className="flex flex-col items-center gap-10 m-5 flex-grow">
-				<div className='w-full'>
+				<div className="w-full">
 					<div className="bg-white pb-3 w-full border rounded-2xl border-slate-400">
 						<div className="bg-[#365da5] w-full rounded-t-2xl border-slate-400">
 							<h1 className="p-4 text-white">Resultados</h1>
