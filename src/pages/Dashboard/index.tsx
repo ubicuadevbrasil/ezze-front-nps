@@ -14,6 +14,8 @@ import { AlertProcedureTable } from '@/components/ui/AlertProcedureTable'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { ChevronsUpDown } from 'lucide-react'
 import { Checkbox } from '@/components/ui/checkbox'
+import { BaseTemplate } from '../layouts/BaseTemplate'
+import { CaretDown } from '@phosphor-icons/react'
 
 export default function Index() {
 	const data = {
@@ -28,7 +30,7 @@ export default function Index() {
 			],
 			config: {
 				alertas: {
-					label: 'Negocioss',
+					label: 'Negocios',
 					color: '#0c8ce9',
 				},
 			},
@@ -56,38 +58,37 @@ export default function Index() {
 	}
 
 	return (
-		<div className="flex flex-col min-h-screen bg-slate-300">
-			<NavBar />
+		<BaseTemplate>
 			<FilterSearchBar />
-			<main className="flex flex-col items-center gap-10 m-5 py-10 w-full flex-grow">
-				<div className="flex flex-row justify-center gap-5 max-w-7xl w-full">
-					<div className="w-full md:w-1/2 bg-white flex flex-col justify-between rounded-xl p-4">
+			<main className="flex flex-col items-center gap-4 mt-2 mb-6 w-full p-4">
+				<div className="flex flex-row gap-4 max-w-7xl w-full">
+					<div className="w-full md:w-1/2 bg-white flex flex-col rounded-[8px] p-4">
 						<p>% de negocioss fechados em 48 horas:</p>
 						<RadialChart value={10} />
 					</div>
-					<div className="w-full md:w-1/2 bg-white flex flex-col justify-between rounded-xl p-4">
+					<div className="w-full md:w-1/2 bg-white flex flex-col rounded-[8px] p-4">
 						<p>% de negocioss fechados em 48 horas ao longo do tempo:</p>
 						<LineChartComponent data={data.lineChart.data} config={data.lineChart.config} />
 					</div>
 				</div>
-				<div className="w-full flex flex-col gap-5 max-w-7xl bg-white rounded-xl p-4">
-					<p>Tabela de negócios:</p>
+				<div className="w-full flex flex-col gap-5 max-w-7xl bg-white rounded-[8px] p-4">
+					<p>Tabela de negocioss:</p>
 					<AlertsTable />
 				</div>
-				<div className="w-full flex flex-col gap-5 max-w-7xl bg-white rounded-xl p-4">
+				<div className="w-full flex flex-col gap-5 max-w-7xl bg-white rounded-[8px] p-4">
 					<p>Performance por gerente de qualidade:</p>
 					<PerformanceTable />
 				</div>
-				<div className="w-full flex flex-col gap-5 max-w-7xl bg-white rounded-xl p-4">
+				<div className="w-full flex flex-col gap-5 max-w-7xl bg-white rounded-[8px] p-4">
 					<p>Acompanhamento dos motivos:</p>
 					<ReasonsTable />
 				</div>
 				<div className="flex flex-row justify-center gap-5 max-w-7xl w-full">
-					<div className="w-full md:w-1/2 bg-white flex flex-col justify-start rounded-xl p-4">
+					<div className="w-full md:w-1/2 bg-white flex flex-col justify-start rounded-[8px] p-4">
 						<p>Indicador por área macro e micro:</p>
 						<MacroMicroTable />
 					</div>
-					<div className="w-full md:w-1/2 bg-white flex flex-col justify-start rounded-xl p-4">
+					<div className="w-full md:w-1/2 bg-white flex flex-col justify-start rounded-[8px] p-4">
 						<p>Indicador por solução oferecida:</p>
 						<SolutionsTable />
 					</div>
@@ -101,8 +102,7 @@ export default function Index() {
 					<DualBarChart data={data.dualBarChart.data} />
 				</div>
 			</main>
-			<footer className="flex w-full justify-center py-2 bg-[#D9DDE5] mt-auto text-[10px]">{new Date().getFullYear()} - Powered by Ubicua ©</footer>
-		</div>
+		</BaseTemplate>
 	)
 }
 
@@ -157,16 +157,18 @@ const FilterSearchBar: React.FC = () => {
 	const [motivosValue, setMotivosValue] = useState('')
 
 	return (
-		<div className="px-5 w-full h-16 flex flex-row items-center justify-end gap-5">
-			<div className="flex flex-row gap-5">
+		<div className="px-5 py-3 w-full gap-2 flex flex-row items-center justify-end">
 				<DatePickerWithRange className="border-slate-400" />
 				{/* Cia */}
 				<Popover open={ciaOpen} onOpenChange={setCiaOpen}>
 					<PopoverTrigger asChild>
-						<Button variant="outline" role="combobox" aria-expanded={ciaOpen} className="w-[200px] justify-between text-gray-500 font-normal">
-							{ciaValue ? ciaList.find((cia) => cia.value === ciaValue)?.label : 'Cia'}
-							<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-						</Button>
+						<div className='flex w-32 h-10 items-center px-3 border border-slate-400 rounded-md bg-white'>
+							<div className="flex flex-col w-full text-[10px] leading-3  justify-center ">
+								<span className="text-[10px] leading-3">Cia</span>
+								<div className="">{ciaValue ? ciaList.find((cia) => cia.value === ciaValue)?.label : '---'}</div>
+							</div>
+							<CaretDown size={24} />
+						</div>
 					</PopoverTrigger>
 					<PopoverContent className="w-[200px] flex gap-5 flex-col p-3">
 						{ciaList.map((cia) => (
@@ -193,10 +195,13 @@ const FilterSearchBar: React.FC = () => {
 				{/* Negocios */}
 				<Popover open={negociosOpen} onOpenChange={setNegociosOpen}>
 					<PopoverTrigger asChild>
-						<Button variant="outline" role="combobox" aria-expanded={negociosOpen} className="w-[200px] justify-between text-gray-500 font-normal">
-							{negociosValue ? negociosList.find((negocios) => negocios.value === negociosValue)?.label : 'Negocios'}
-							<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-						</Button>
+						<div className='flex w-32 h-10 items-center px-3 border border-slate-400 rounded-md bg-white'>
+							<div className="flex flex-col w-full text-[10px] leading-3  justify-center ">
+								<span className="text-[10px] leading-3">Área de negócios</span>
+								<div className="">{negociosValue ? negociosList.find((negocios) => negocios.value === negociosValue)?.label : '---'}</div>
+							</div>
+							<CaretDown size={24} />
+						</div>
 					</PopoverTrigger>
 					<PopoverContent className="w-[200px] flex gap-5 flex-col p-3">
 						{negociosList.map((negocios) => (
@@ -223,10 +228,14 @@ const FilterSearchBar: React.FC = () => {
 				{/* Motivos */}
 				<Popover open={motivosOpen} onOpenChange={setMotivosOpen}>
 					<PopoverTrigger asChild>
-						<Button variant="outline" role="combobox" aria-expanded={motivosOpen} className="w-[200px] justify-between text-gray-500 font-normal">
-							{motivosValue ? motivosList.find((motivos) => motivos.value === motivosValue)?.label : 'Motivos'}
-							<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-						</Button>
+						<div className='flex w-32 h-10 items-center px-3 border border-slate-400 rounded-md bg-white'>
+							<div className="flex flex-col w-full text-[10px] leading-3  justify-center ">
+								<span className="text-[10px] leading-3">Motivos</span>
+								<div className="">{motivosValue ? motivosList.find((motivos) => motivos.value === motivosValue)?.label : '---'}</div>
+							</div>
+							<CaretDown size={24} />
+						</div>
+
 					</PopoverTrigger>
 					<PopoverContent className="w-[200px] p-3 flex gap-5 flex-col">
 						{motivosList.map((motivos) => (
@@ -249,9 +258,7 @@ const FilterSearchBar: React.FC = () => {
 						))}
 					</PopoverContent>
 				</Popover>
-			</div>
-
-			<Button className="text-lg bg-[#104b94]">Buscar</Button>
+			<Button className="text-lg bg-[#104b94] h-10 px-3">Buscar</Button>
 		</div>
 	)
 }

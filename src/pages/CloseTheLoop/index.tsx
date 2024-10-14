@@ -120,7 +120,7 @@ const index: React.FC = () => {
 	return (
 		<BaseTemplate>
 			<SearchBar />
-			<div className="mx-5 mt-3 bg">
+			<div className="px-5 pt-2 pb-10 bg-white">
 				<DataTable columns={columns} data={data} />
 			</div>
 		</BaseTemplate>

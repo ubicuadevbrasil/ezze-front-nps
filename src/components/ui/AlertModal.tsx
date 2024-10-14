@@ -21,10 +21,10 @@ export function AlertModal({ children, description, title }: AlertModalProps) {
 				</DialogHeader>
 				<DialogFooter>
 					<div className="w-full flex gap-4 justify-center">
-						<Button variant="outline" className="w-full">
+						<Button variant="outline" className="w-full p-2">
 							Não
 						</Button>
-						<Button variant="destructive" className="w-full">
+						<Button variant="destructive" className="w-full p-2">
 							Sim
 						</Button>
 					</div>

@@ -48,16 +48,16 @@ export default function Index() {
 				<div className="flex gap-5">
 					<div className="flex w-full max-w-sm items-center space-x-2 border rounded-lg border-[#b6afaf]">
 						<Input type="search" placeholder="Pesquisa" className="border-none focus:outline-none focus:ring-0 focus:border-transparent focus:shadow-none" />
-						<Button variant="ghost" type="submit">
-							<MagnifyingGlass size={25} />
+						<Button className='pr-3' variant="ghost" type="submit">
+							<MagnifyingGlass size={25}/>
 						</Button>
 					</div>
 
 					{/* Botão Novo agora abre o Dialog */}
 					<Dialog open={isOpen} onOpenChange={setIsOpen}>
 						<DialogTrigger asChild>
-							<Button className="bg-[#365da5] text-lg flex gap-4">
-								<Plus size={25} />
+							<Button className="bg-[#203863] px-3 text-lg flex gap-4">
+								<Plus size={25}  />
 								<p className="px-5">Novo</p>
 							</Button>
 						</DialogTrigger>
@@ -78,8 +78,8 @@ export default function Index() {
 			</nav>
 
 			<main className="flex flex-col items-center gap-10 m-5  flex-grow">
-				<div className="bg-white pb-3 w-full border rounded-2xl border-slate-400">
-					<div className="bg-[#365da5] w-full rounded-t-2xl border-slate-400">
+				<div className="bg-white pb-4 w-full border rounded-3xl border-slate-400">
+					<div className="bg-[#203863] w-full rounded-t-2xl border-slate-400">
 						<h1 className="p-4 text-white ">Status</h1>
 					</div>
 					<Table className="rounded-b-xl pb-3">
@@ -149,12 +149,10 @@ function ProfileForm({ onSubmit, onCancel }: { onSubmit: () => void; onCancel: (
 			</div>
 
 			<div className="w-full flex gap-4 justify-end">
-				<Button variant="outline" type="button" onClick={onCancel}>
-					{' '}
-					{/* Fechar o modal no cancelar */}
+				<Button className="p-2" variant="outline" type="button" onClick={onCancel}>
 					Cancelar
 				</Button>
-				<Button type="submit" className="bg-[#365da5]">
+				<Button type="submit" className="bg-[#203863] p-2">
 					Salvar
 				</Button>
 			</div>

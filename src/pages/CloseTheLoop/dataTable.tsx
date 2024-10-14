@@ -39,7 +39,7 @@ export function DataTable<TData extends ICloseTheLoop>({ columns, data }: DataTa
 
 	return (
 		<div>
-			<div className="border rounded-2xl border-slate-400">
+			<div className="border rounded-md border-slate-400">
 				<Table>
 					<TableHeader>
 						{table.getHeaderGroups().map((headerGroup) => (
@@ -58,15 +58,15 @@ export function DataTable<TData extends ICloseTheLoop>({ columns, data }: DataTa
 										const cellValue = cell.getValue()
 
 										return (
-											<TableCell key={cell.id} className={index % 2 ? 'bg-slate-300' : ''}>
+											<TableCell key={cell.id} className={index % 2 ? '' : 'bg-[#F1f3fE]'}>
 												{cell.column.id === 'dataPrimeroDisparo' && cellValue instanceof Date ? (
 													cellValue.toLocaleDateString()
 												) : cell.column.id === 'contato' ? (
-													<Button className="bg-[#104b94] border-0" variant={'outline'}>
-														<Chat color="#f1f1f1" size={20} />
-													</Button>
+														<Button className="bg-[#104b94] border-0 w-full px-5 py-1" variant={'outline'}>
+															<Chat color="#f1f1f1" size={14} />
+														</Button>
 												) : cell.column.id === 'status' || cell.column.id === 'alerta' ? (
-													<div onClick={() => navigate('/userAlerts', { state: cell.row.original })} className="cursor-pointer">
+													<div onClick={() => navigate('/userAlerts', { state: cell.row.original })} className="cursor-pointer py-1">
 														<Status data={cellValue} />
 													</div>
 												) : (
@@ -79,7 +79,7 @@ export function DataTable<TData extends ICloseTheLoop>({ columns, data }: DataTa
 							))
 						) : (
 							<TableRow>
-								<TableCell colSpan={columns.length} className="h-24 text-center">
+								<TableCell colSpan={columns.length} className="text-center text-xs">
 									No results.
 								</TableCell>
 							</TableRow>
@@ -87,8 +87,8 @@ export function DataTable<TData extends ICloseTheLoop>({ columns, data }: DataTa
 					</TableBody>
 				</Table>
 			</div>
-			<div className="flex justify-around items-center p-4">
-				<div className="text-sm text-gray-600">Total de alertas: {data.length}</div>
+			<div className="flex items-center mt-4 mx-1">
+				<div className="text-xs w-full text-gray-600">Total de alertas: {data.length}</div>
 				<Pagination currentPage={safeCurrentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
 			</div>
 		</div>
@@ -98,31 +98,31 @@ export function DataTable<TData extends ICloseTheLoop>({ columns, data }: DataTa
 function Status({ data }: { data: string }) {
 	if (data === 'Concluido' || data === 'Promotor') {
 		return (
-			<Badge className="border justify-center w-full border-green-600 bg-green-100 rounded-md py-1 px-5" variant={'outline'}>
+			<Badge className="text-xs border justify-center w-full border-green-600 bg-green-100 rounded py-1 px-4" variant={'outline'}>
 				{data}
 			</Badge>
 		)
 	} else if (data === 'Novo' || data === 'Neutro') {
 		return (
-			<Badge className="border justify-center w-full border-yellow-600 bg-yellow-100 rounded-md py-1 px-5" variant={'outline'}>
+			<Badge className="text-xs border justify-center w-full border-yellow-600 bg-yellow-100 rounded py-1 px-4" variant={'outline'}>
 				{data}
 			</Badge>
 		)
 	} else if (data === 'Atrasado' || data === 'Detrator') {
 		return (
-			<Badge className="border justify-center w-full border-red-600 bg-red-100 rounded-md py-1 px-5" variant={'outline'}>
+			<Badge className="text-xs border justify-center w-full border-red-600 bg-red-100 rounded py-1 px-4" variant={'outline'}>
 				{data}
 			</Badge>
 		)
 	} else if (data === 'Andamento') {
 		return (
-			<Badge className="border justify-center w-full border-orange-600 bg-orange-100 rounded-md py-1 px-5" variant={'outline'}>
+			<Badge className="text-xs border justify-center w-full border-orange-600 bg-orange-100 rounded py-1 px-4" variant={'outline'}>
 				{data}
 			</Badge>
 		)
 	} else {
 		return (
-			<Badge className="border justify-center w-full border-blue-600 bg-blue-100 rounded-md py-1 px-5" variant={'outline'}>
+			<Badge className="text-xs border justify-center w-full border-blue-600 bg-blue-100 rounded py-1 px-4" variant={'outline'}>
 				{data}
 			</Badge>
 		)

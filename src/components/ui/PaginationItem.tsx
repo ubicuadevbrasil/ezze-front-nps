@@ -8,7 +8,7 @@ export default function index() {
 					<PaginationPrevious href="#" />
 				</PaginationItem>
 				<PaginationItem>
-					<PaginationLink className="bg-[#1b335e] text-white rounded-lg" href="#">
+					<PaginationLink className="bg-[#1b335e] text-white rounded px-4 py-2 text-sm" href="#">
 						1
 					</PaginationLink>
 				</PaginationItem>

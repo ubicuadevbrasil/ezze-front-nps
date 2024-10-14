@@ -48,7 +48,7 @@ export default function Index() {
 					<p>Atendentes</p>
 				</div>
 				<div className="flex gap-5">
-					<div className="flex w-full max-w-sm items-center space-x-2 border-2 rounded-lg border-[#b6afaf]">
+					<div className="flex w-full  max-w-sm items-center space-x-2 border-2 rounded-lg border-[#b6afaf]">
 						<Input type="search" placeholder="Pesquisa" className="border-none focus:outline-none focus:ring-0 focus:border-transparent focus:shadow-none" />
 						<Button variant="ghost" type="submit">
 							<MagnifyingGlass size={25} />
@@ -58,7 +58,7 @@ export default function Index() {
 					{/* Botão Novo agora abre o Dialog */}
 					<Dialog open={isOpen} onOpenChange={setIsOpen}>
 						<DialogTrigger asChild>
-							<Button className="bg-[#365da5] text-lg flex gap-4">
+							<Button className="bg-[#203863] px-5 text-lg flex gap-4">
 								<User size={25} />
 								<p className="px-5">Novo</p>
 							</Button>
@@ -81,7 +81,7 @@ export default function Index() {
 			</nav>
 
 			<main className="flex flex-col items-center gap-10 m-5 flex-grow">
-				<div className="bg-white pb-3 w-full border rounded-2xl border-slate-400">
+				<div className="bg-white pb-4 w-full border rounded-3xl border-slate-400">
 					<div className="bg-[#203863] w-full rounded-t-2xl border-slate-400">
 						<h1 className="p-4 text-white ">Atendentes online</h1>
 					</div>
@@ -165,8 +165,12 @@ function ProfileForm({ onSubmit }: { onSubmit: () => void }) {
 				<Input type="text" id="confirmpassword" placeholder="Confirmar senha" />
 			</div>
 			<div className="w-full flex gap-4 justify-end">
-				<Button variant="outline">Cancelar</Button>
-				<Button type="submit">Salvar</Button>
+				<Button className="p-2" variant="outline">
+					Cancelar
+				</Button>
+				<Button className="p-2" type="submit">
+					Salvar
+				</Button>
 			</div>
 		</form>
 	)
@@ -186,10 +190,10 @@ const ToggleButtons: React.FC<ToggleButtonsProps> = ({ onSelect }) => {
 
 	return (
 		<div className="flex gap-4">
-			<Button variant={selected === 'supervisor' ? '' : 'secondary'} onClick={() => handleClick('supervisor')}>
+			<Button className='p-2' variant={selected === 'supervisor' ? '' : 'secondary'} onClick={() => handleClick('supervisor')}>
 				Supervisor
 			</Button>
-			<Button variant={selected === 'atendente' ? '' : 'secondary'} onClick={() => handleClick('atendente')}>
+			<Button className='p-2' variant={selected === 'atendente' ? '' : 'secondary'} onClick={() => handleClick('atendente')}>
 				Atendente
 			</Button>
 		</div>

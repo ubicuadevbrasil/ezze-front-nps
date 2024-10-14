@@ -59,7 +59,7 @@ export default function Index() {
 					<ChartBar size={32} />
 					<p>Resumo de atendimentos</p>
 				</div>
-				<Button className="bg-[#365da5] text-lg">Forçar atualização</Button>
+				<Button className="bg-[#203863] text-lg px-4 py-2">Forçar atualização</Button>
 			</nav>
 
 			<main className="flex flex-col items-center gap-10 m-5 py-10 flex-grow">
@@ -154,9 +154,11 @@ export default function Index() {
 					</Card>
 				</div>
 
-				<table className="bg-[#203863] rounded-t-xl w-full">
-					<h1 className="p-4 text-white ">Atendentes online</h1>
-					<Table className="rounded-b-xl">
+				<div className="bg-white pb-4 w-full border rounded-3xl border-slate-400">
+					<div className="bg-[#203863] w-full rounded-t-2xl border-slate-400">
+						<h1 className="p-4 text-white ">Atendentes online</h1>
+					</div>
+					<Table className="rounded-b-xl pb-3">
 						<TableHeader>
 							<TableRow className="bg-white">
 								<TableHead className="w-[100px]">#</TableHead>
@@ -168,7 +170,7 @@ export default function Index() {
 								<TableHead className="text-right">Deslogar </TableHead>
 							</TableRow>
 						</TableHeader>
-						<TableBody className="rounded-b-xl bg-white">
+						<TableBody className="bg-white">
 							{invoices.map((invoice) => (
 								<TableRow key={invoice.invoice}>
 									<TableCell className="font-medium">{invoice.invoice}</TableCell>
@@ -177,14 +179,14 @@ export default function Index() {
 									<TableCell className="text-right">{invoice.totalAmount}</TableCell>
 									<TableCell className="text-right">{invoice.totalAmount}</TableCell>
 									<TableCell className="text-right">{invoice.totalAmount}</TableCell>
-									<TableCell className="text-right flex justify-end pr-">
+									<TableCell className="flex justify-end">
 										<SignOut size={32} />
 									</TableCell>
 								</TableRow>
 							))}
 						</TableBody>
 					</Table>
-				</table>
+				</div>
 			</main>
 			<footer className="flex w-full justify-center py-2 bg-[#D9DDE5] mt-auto text-[10px]">{new Date().getFullYear()} - Powered by Ubicua ©</footer>
 		</div>

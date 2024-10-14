@@ -56,7 +56,7 @@ export const routes: CustomRoute[] = [
 		isShowed: true,
 	}, */
 	{
-		path: '/clientDetails/',
+		path: '/clientDetails',
 		label: '',
 		element: <ClientDetails />,
 		isShowed: false,
@@ -68,13 +68,13 @@ export const routes: CustomRoute[] = [
 		isShowed: true,
 	},
 	{
-		path: '/dashboard/',
+		path: '/dashboard',
 		label: 'Dashboard',
 		element: <Dashboard />,
 		isShowed: true,
 	},
 	{
-		path: '/userAlerts/',
+		path: '/userAlerts',
 		element: <UserAlerts />,
 		isShowed: false,
 	},

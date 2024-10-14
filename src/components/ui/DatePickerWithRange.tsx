@@ -21,22 +21,29 @@ export function DatePickerWithRange({ className }: React.HTMLAttributes<HTMLDivE
 						id="date"
 						variant={'outline'}
 						className={cn(
-							'justify-start text-left font-normal',
+							'flex gap-2 h-10 px-2 justify-start text-left font-normal',
 							!date && 'text-muted-foreground',
 							'border border-slate-400' // Adiciona borda escura
 						)}>
-						<CalendarIcon className="mr-2 h-4 w-4" />
-						{date?.from ? (
-							date.to ? (
-								<>
-									{format(date.from, 'LLL dd, y')} - {format(date.to, 'LLL dd, y')}
-								</>
-							) : (
-								format(date.from, 'LLL dd, y')
-							)
-						) : (
-							<span>Pick a date</span>
-						)}
+						<div className="flex flex-col ">
+							<span className='text-[10px] leading-3'>Período</span>
+							<span className="text-[10px] leading-3 text-[#ABB1C2]">
+								{date?.from ? (
+									date.to ? (
+										<>
+											{format(date.from, 'LLL dd, y')} - {format(date.to, 'LLL dd, y')}
+										</>
+									) : (
+										format(date.from, 'LLL dd, y')
+									)
+								) : (
+									'DD-MM-YYYY - DD-MM-YYYY'
+								)}
+							</span>
+						</div>
+
+						<CalendarIcon className="" />
+
 					</Button>
 				</PopoverTrigger>
 				<PopoverContent className="w-auto p-0" align="start">

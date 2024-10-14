@@ -3,12 +3,12 @@ import NavBar from '@/components/ui/NavBar'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Clipboard, Printer } from '@phosphor-icons/react'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { toast, Toaster } from 'react-hot-toast'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Separator } from '@/components/ui/separator'
 import { Combobox } from '@/components/ui/Combobox'
 import Pagination from '@/components/ui/PaginationItem'
+import { Input } from '@/components/ui/input'
 
 interface AttendanceData {
 	clientName: string
@@ -76,8 +76,8 @@ export default function Index() {
 
 			<main className="flex flex-col items-center gap-10 m-5 flex-grow">
 				<div>
-					<div className="bg-white pb-3 w-full border rounded-2xl border-slate-400">
-						<div className="bg-[#365da5] w-full rounded-t-2xl border-slate-400">
+					<div className="bg-white pb-4 w-full border rounded-3xl border-slate-400">
+						<div className="bg-[#203863] w-full rounded-t-2xl border-slate-400">
 							<h1 className="p-4 text-white">Atendimentos</h1>
 						</div>
 						<Table className="rounded-b-xl pb-3">
@@ -106,7 +106,7 @@ export default function Index() {
 										<TableCell>
 											<Dialog open={isOpenClosure} onOpenChange={setIsOpenClosure}>
 												<DialogTrigger asChild>
-													<Button className="bg-[#d92d1f]">Encerrar</Button>
+													<Button className="bg-[#d92d1f] p-1">Encerrar</Button>
 												</DialogTrigger>
 												<DialogContent>
 													<DialogHeader>
@@ -122,7 +122,7 @@ export default function Index() {
 										<TableCell>
 											<Dialog open={isOpenHistory} onOpenChange={setIsOpenHistory}>
 												<DialogTrigger asChild>
-													<Button className="bg-[#365da5]">Histórico</Button>
+													<Button className="bg-[#365da5] p-1">Histórico</Button>
 												</DialogTrigger>
 												<DialogContent>
 													<DialogHeader>
@@ -138,7 +138,7 @@ export default function Index() {
 										<TableCell>
 											<Dialog open={isOpenTransfer} onOpenChange={setIsOpenTransfer}>
 												<DialogTrigger asChild>
-													<Button className="bg-[#00852c]">Transferir</Button>
+													<Button className="bg-[#00852c] p-1">Transferir</Button>
 												</DialogTrigger>
 												<DialogContent>
 													<DialogHeader>
@@ -186,10 +186,10 @@ function ClosureForm({ onSubmit, onCancel }: FormProps) {
 			<Input type="text" placeholder="" />
 
 			<div className="w-full flex gap-4 justify-end">
-				<Button variant="outline" type="button" onClick={onCancel}>
+				<Button className="p-2" variant="outline" type="button" onClick={onCancel}>
 					Cancelar
 				</Button>
-				<Button type="submit" className="bg-[#d92d1f]">
+				<Button type="submit" className="bg-[#d92d1f] p-2">
 					Encerrar
 				</Button>
 			</div>
@@ -207,10 +207,10 @@ function TransferForm({ onSubmit, onCancel }: FormProps) {
 		<form className="grid items-start gap-4" onSubmit={handleSave}>
 			<Combobox label="Selecione um operador" options={[]} />
 			<div className="w-full flex gap-4 justify-end">
-				<Button variant="outline" type="button" onClick={onCancel}>
+				<Button className="p-2" variant="outline" type="button" onClick={onCancel}>
 					Cancelar
 				</Button>
-				<Button type="submit" className="bg-[#365da5]">
+				<Button type="submit" className="bg-[#365da5] p-2">
 					Transferir
 				</Button>
 			</div>
