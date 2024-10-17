@@ -1,6 +1,4 @@
-export const API_BASE_URL = 'http://localhost:5151'
-
-type ApiMethod = string | ((id: number) => string) // Tipo que permite string ou uma função que recebe um número e retorna uma string
+import { env } from "@/env"
 
 export interface API {
 	BASE: string
@@ -9,24 +7,62 @@ export interface API {
 	CREATE?: string
 	UPDATE?: (id: number) => string
 	DELETE?: (id: number) => string
-	[key: string]: ApiMethod | undefined // Permite adicionar outras rotas dinamicamente
+	[key: string]: any // Permite adicionar outras rotas dinamicamente
 }
 
 export const AUTHENTICATION_API: API = {
-	BASE: `${API_BASE_URL}/api/auth`,
-	REGISTER: `${API_BASE_URL}/api/auth/register`,
-	LOGIN: `${API_BASE_URL}/api/auth/login`,
-	LOGOUT: `${API_BASE_URL}/api/auth/logout`,
-	GET_CURRENT_USER: `${API_BASE_URL}/api/auth/current-user`,
-	REFRESH_TOKEN: `${API_BASE_URL}/api/auth/refresh-token`,
-	REVOKE: `${API_BASE_URL}/api/auth/revoke`,
+	BASE: `${env.VITE_API_URL}/api/auth`,
+	REGISTER: `${env.VITE_API_URL}/api/auth/register`,
+	LOGIN: `${env.VITE_API_URL}/api/auth/login`,
+	LOGOUT: `${env.VITE_API_URL}/api/auth/logout`,
+	GET_CURRENT_USER: `${env.VITE_API_URL}/api/auth/current-user`,
+	REFRESH_TOKEN: `${env.VITE_API_URL}/api/auth/refresh-token`,
+	REVOKE: `${env.VITE_API_URL}/api/auth/revoke`
 }
 
 export const CLIENTDETAILS_API: API = {
-	BASE: `${API_BASE_URL}/clientdetailss`,
-	GET_ALL: `${API_BASE_URL}/clientdetailss`,
-	GET_BY_ID: (id: number) => `${API_BASE_URL}/clientdetailss/${id}`,
-	CREATE: `${API_BASE_URL}/clientdetailss`,
-	UPDATE: (id: number) => `${API_BASE_URL}/clientdetailss/${id}`,
-	DELETE: (id: number) => `${API_BASE_URL}/clientdetailss/${id}`,
+	BASE: `${env.VITE_API_URL}/clientdetailss`,
+	GET_ALL: `${env.VITE_API_URL}/clientdetailss`,
+	GET_BY_ID: (id: number) => `${env.VITE_API_URL}/clientdetailss/${id}`,
+	CREATE: `${env.VITE_API_URL}/clientdetailss`,
+	UPDATE: (id: number) => `${env.VITE_API_URL}/clientdetailss/${id}`,
+	DELETE: (id: number) => `${env.VITE_API_URL}/clientdetailss/${id}`,
+}
+export const CLOSETHELOOP_API: API = {
+	BASE: `${env.VITE_API_URL}/closetheloops`,
+	GET_ALL: `${env.VITE_API_URL}/closetheloops`,
+	GET_BY_ID: (id: number) => `${env.VITE_API_URL}/closetheloops/${id}`,
+	CREATE: `${env.VITE_API_URL}/closetheloops`,
+	UPDATE: (id: number) => `${env.VITE_API_URL}/closetheloops/${id}`,
+	DELETE: (id: number) => `${env.VITE_API_URL}/closetheloops/${id}`,
+}
+export const DASHBOARD_API: API = {
+	BASE: `${env.VITE_API_URL}/dashboards`,
+	GET_ALL: `${env.VITE_API_URL}/dashboards`,
+	GET_BY_ID: (id: number) => `${env.VITE_API_URL}/dashboards/${id}`,
+	CREATE: `${env.VITE_API_URL}/dashboards`,
+	UPDATE: (id: number) => `${env.VITE_API_URL}/dashboards/${id}`,
+	DELETE: (id: number) => `${env.VITE_API_URL}/dashboards/${id}`,
+}
+export const PENDINGSEARCH_API: API = {
+	BASE: `${env.VITE_API_URL}/pendingsearchs`,
+	GET_ALL: `${env.VITE_API_URL}/pendingsearchs`,
+	GET_BY_ID: (id: number) => `${env.VITE_API_URL}/pendingsearchs/${id}`,
+	CREATE: `${env.VITE_API_URL}/pendingsearchs`,
+	UPDATE: (id: number) => `${env.VITE_API_URL}/pendingsearchs/${id}`,
+	DELETE: (id: number) => `${env.VITE_API_URL}/pendingsearchs/${id}`,
+}
+export const USERALERT_API: API = {
+	BASE: `${env.VITE_API_URL}/useralerts`,
+	GET_ALL: `${env.VITE_API_URL}/useralerts`,
+	GET_BY_ID: (id: number) => `${env.VITE_API_URL}/useralerts/${id}`,
+	CREATE: `${env.VITE_API_URL}/useralerts`,
+	UPDATE: (id: number) => `${env.VITE_API_URL}/useralerts/${id}`,
+	DELETE: (id: number) => `${env.VITE_API_URL}/useralerts/${id}`,
+}
+
+export const MESSAGE_API: API = {
+	BASE: `${env.VITE_API_URL}/api/messages`,
+	POST_MESSAGES: `${env.VITE_API_URL}/api/messages/send`,
+	POST_MESSAGES_SINGLE: `${env.VITE_API_URL}/api/messages/single/send`,
 }

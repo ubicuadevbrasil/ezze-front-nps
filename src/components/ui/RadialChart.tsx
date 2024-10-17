@@ -20,7 +20,6 @@ const GaugeChart: React.FC<GaugeChartProps> = ({ value }) => {
 
 	return (
 		<div className="flex flex-col items-center justify-center w-full h-full">
-			<div className="relative w-full h-full">
 				{/* Componente responsivo */}
 				<ResponsiveContainer width="100%" height="100%">
 					<RadialBarChart innerRadius="70%" outerRadius="100%" startAngle={180} endAngle={0} data={chartData}>
@@ -30,10 +29,9 @@ const GaugeChart: React.FC<GaugeChartProps> = ({ value }) => {
 						<RadialBar background dataKey="value" />
 					</RadialBarChart>
 				</ResponsiveContainer>
-			</div>
 
 			{/* Mostra o valor no centro do gráfico */}
-			<div className="absolute text-center -mt-6">
+			<div className="absolute text-center ">
 				<p className="text-3xl font-bold text-primary">{normalizedValue}%</p>
 			</div>
 		</div>

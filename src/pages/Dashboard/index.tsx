@@ -58,45 +58,45 @@ export default function Index() {
 	return (
 		<BaseTemplate>
 			<FilterSearchBar />
-			<main className="flex flex-col items-center gap-4 mt-2 mb-6 w-full p-4">
-				<div className="flex flex-row gap-4 max-w-7xl w-full">
+			<main className="flex flex-col items-center gap-4 mt-2 mb-6 w-full py-4 px-10">
+				<div className="flex flex-row gap-4 w-full">
 					<div className="w-full md:w-1/2 bg-white flex flex-col rounded-[8px] p-4">
-						<p>% de negocioss fechados em 48 horas:</p>
+						<p className='text-sm text-[#333946]'>% de alertas fechados em 48 horas:</p>
 						<RadialChart value={10} />
 					</div>
 					<div className="w-full md:w-1/2 bg-white flex flex-col rounded-[8px] p-4">
-						<p>% de negocioss fechados em 48 horas ao longo do tempo:</p>
+						<p className='text-sm text-[#333946]'>% de alertas fechados em 48 horas ao longo do tempo:</p>
 						<LineChartComponent data={data.lineChart.data} config={data.lineChart.config} />
 					</div>
 				</div>
-				<div className="w-full flex flex-col gap-5 max-w-7xl bg-white rounded-[8px] p-4">
-					<p>Tabela de negocioss:</p>
+				<div className="w-full flex flex-col gap-5 bg-white rounded-[8px] p-4">
+					<p className='text-sm text-[#333946]'>Tabela de alertas:</p>
 					<AlertsTable />
 				</div>
-				<div className="w-full flex flex-col gap-5 max-w-7xl bg-white rounded-[8px] p-4">
-					<p>Performance por gerente de qualidade:</p>
+				<div className="w-full flex flex-col gap-5 bg-white rounded-[8px] p-4">
+					<p className='text-sm text-[#333946]'>Performance por gerente de qualidade:</p>
 					<PerformanceTable />
 				</div>
-				<div className="w-full flex flex-col gap-5 max-w-7xl bg-white rounded-[8px] p-4">
+				<div className="w-full flex flex-col gap-5 bg-white rounded-[8px] p-4">
 					<p>Acompanhamento dos motivos:</p>
 					<ReasonsTable />
 				</div>
-				<div className="flex flex-row justify-center gap-5 max-w-7xl w-full">
+				<div className="flex flex-row justify-center gap-5 w-full">
 					<div className="w-full md:w-1/2 bg-white flex flex-col justify-start rounded-[8px] p-4">
-						<p>Indicador por área macro e micro:</p>
+						<p className='text-sm text-[#333946]'>Indicador por área macro e micro:</p>
 						<MacroMicroTable />
 					</div>
 					<div className="w-full md:w-1/2 bg-white flex flex-col justify-start rounded-[8px] p-4">
-						<p>Indicador por solução oferecida:</p>
+						<p className='text-sm text-[#333946]'>Indicador por solução oferecida:</p>
 						<SolutionsTable />
 					</div>
 				</div>
-				<div className="w-full flex flex-col gap-5 max-w-7xl bg-white rounded-xl p-4">
-					<p>Procedência de negócios:</p>
+				<div className="w-full flex flex-col gap-5 bg-white rounded-xl p-4">
+					<p className='text-sm text-[#333946]'>Procedência de alertas:</p>
 					<AlertProcedureTable />
 				</div>
-				<div className="w-full flex flex-col gap-5 max-w-7xl bg-white rounded-xl p-4">
-					<p>Percentual de Clientes satisfeitos após o contato:</p>
+				<div className="w-full flex flex-col gap-5 bg-white rounded-xl p-4">
+					<p className='text-sm text-[#333946]'>Percentual de Clientes satisfeitos após o contato:</p>
 					<DualBarChart data={data.dualBarChart.data} />
 				</div>
 			</main>
