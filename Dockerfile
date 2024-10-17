@@ -55,5 +55,5 @@ RUN npm install typescript
 
 EXPOSE 5173
 # Start the app
-CMD ["npm", "start"]
+CMD ["npm", "run", "preview"]
 
