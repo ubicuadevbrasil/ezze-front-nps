@@ -20,10 +20,14 @@ const initialState = {
     // outros estados, se necessário
 };
 
+interface SignInBody {
+	username: string
+	password: string
+}
 
 // Async thunks
-export const login = createAsyncThunk('auth/login', async (credentials) => {
-	const response = await axios.post(AUTHENTICATION_API.LOGIN, credentials)
+export const login = createAsyncThunk('auth/login', async (data: SignInBody) => {
+	const response = await axios.post(AUTHENTICATION_API.LOGIN, data)
 	return response.data // Deve incluir { user, token }
 })
 
