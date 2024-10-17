@@ -11,16 +11,6 @@ export interface AuthenticationState {
 	status: 'idle' | 'loading' | 'failed'
 }
 
-// AuthenticationSlice.ts
-
-const initialState = {
-    user: null,
-    token: null,
-    refreshToken: null, // Adicione esta linha
-    status: 'idle',
-    // outros estados, se necessário
-};
-
 interface SignInBody {
 	username: string
 	password: string
@@ -37,10 +27,7 @@ const initialState: AuthenticationState = {
 export const login = createAsyncThunk('auth/login', async (data: SignInBody) => {
 	const response = await axios.post(AUTHENTICATION_API.LOGIN, data)
 	return response.data // Deve incluir { user, token }
-export const login = createAsyncThunk('auth/login', async (credentials: string) => {
-	const response = await axios.post(AUTHENTICATION_API.LOGIN, credentials)
-	return response.data // Deve incluir { user, token, refreshToken }
-})
+	})
 
 export const refreshAccessToken = createAsyncThunk('auth/refreshToken', async (refreshToken: string) => {
 	const response = await axios.post(AUTHENTICATION_API.REFRESH_TOKEN, { refreshToken })

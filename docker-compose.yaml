@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  ezze_nps-front:
+    image: nps-front
+    build:
+      context: .
+    ports:
+      - "5173:80"
+    networks:
+      - ezze-network
+    command: npm start
+
+networks:
+  ezze-network:
+    driver: bridge

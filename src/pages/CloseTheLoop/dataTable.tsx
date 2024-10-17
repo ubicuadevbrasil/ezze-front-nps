@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
 import { Chat } from '@phosphor-icons/react'
 // import { useDispatch } from 'react-redux'
 import { ICloseTheLoop } from './columns'
-import { Badge } from '@/components/ui/badge'
 import Pagination from '@/components/ui/PaginationItem'
 import { useNavigate } from 'react-router-dom'
+import { Status } from '@/components/ui/Status'
 
 interface DataTableProps<TData> {
 	columns: ColumnDef<TData>[]
@@ -67,7 +67,7 @@ export function DataTable<TData extends ICloseTheLoop>({ columns, data }: DataTa
 														</Button>
 												) : cell.column.id === 'status' || cell.column.id === 'alerta' ? (
 													<div onClick={() => navigate('/userAlerts', { state: cell.row.original })} className="cursor-pointer py-1">
-														<Status data={cellValue} />
+														<Status data={cellValue as string} />
 													</div>
 												) : (
 													flexRender(cell.column.columnDef.cell, cell.getContext())
@@ -95,37 +95,4 @@ export function DataTable<TData extends ICloseTheLoop>({ columns, data }: DataTa
 	)
 }
 
-function Status({ data }: { data: string }) {
-	if (data === 'Concluido' || data === 'Promotor') {
-		return (
-			<Badge className="text-xs border justify-center w-full border-green-600 bg-green-100 rounded py-1 px-4" variant={'outline'}>
-				{data}
-			</Badge>
-		)
-	} else if (data === 'Novo' || data === 'Neutro') {
-		return (
-			<Badge className="text-xs border justify-center w-full border-yellow-600 bg-yellow-100 rounded py-1 px-4" variant={'outline'}>
-				{data}
-			</Badge>
-		)
-	} else if (data === 'Atrasado' || data === 'Detrator') {
-		return (
-			<Badge className="text-xs border justify-center w-full border-red-600 bg-red-100 rounded py-1 px-4" variant={'outline'}>
-				{data}
-			</Badge>
-		)
-	} else if (data === 'Andamento') {
-		return (
-			<Badge className="text-xs border justify-center w-full border-orange-600 bg-orange-100 rounded py-1 px-4" variant={'outline'}>
-				{data}
-			</Badge>
-		)
-	} else {
-		return (
-			<Badge className="text-xs border justify-center w-full border-blue-600 bg-blue-100 rounded py-1 px-4" variant={'outline'}>
-				{data}
-			</Badge>
-		)
-	}
-	return null
-}
+

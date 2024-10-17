@@ -1,5 +1,3 @@
-import React from 'react'
-
 const data = {
 	header: [
 		{ type: 'Novo', count: 3, color: 'bg-yellow-400' },

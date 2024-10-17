@@ -29,7 +29,7 @@ export default function Index() {
 
 	const [isOpen, setIsOpen] = useState(false) // Estado que controla o modal
 	const [formSubmitted, setFormSubmitted] = useState(false) // Estado que controla o envio do formulário
-	const [UserType, setUserType] = useState<Item>()
+	const [UserType, setUserType] = useState<Item>({ label: '', value: '' })
 
 	// Efeito que dispara o toast após o modal ser fechado e o formulário ser submetido
 	useEffect(() => {
@@ -76,7 +76,7 @@ export default function Index() {
 									<Users size={20} weight="fill" />
 									Cadastrar novo usuário
 								</DialogDescription>
-								<ToggleButtons onSelect={setUserType} selected={UserType}/>
+								<ToggleButtons onSelect={setUserType} selected={UserType ?? { label: '', value: '' }} />
 
 								<Separator className="bg-black " />
 							</DialogHeader>

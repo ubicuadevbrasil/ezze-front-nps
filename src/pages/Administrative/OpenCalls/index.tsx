@@ -37,6 +37,12 @@ export default function Index() {
 	const [isOpenTransfer, setIsOpenTransfer] = useState(false)
 	const [formSubmitted, setFormSubmitted] = useState(false)
 
+	const [currentPage, setCurrentPage] = useState(1)
+	const itemsPerPage = 7 // Exibir no máximo 7 itens por página
+
+	// Calcula o número total de páginas
+	const totalPages = Math.max(1, Math.ceil(datas.length / itemsPerPage))
+
 	const formatPhoneNumber = (phoneNumber:string) => {
 		const match = phoneNumber.match(/^(\d{2})(\d{5})(\d{4})$/)
 		return match ? `(${match[1]}) ${match[2]}-${match[3]}` : phoneNumber
@@ -156,7 +162,7 @@ export default function Index() {
 					</div>
 					<div className="flex justify-around items-center p-4">
 						<div className="text-sm text-gray-600 ">Total de alertas: {9}</div>
-						<Pagination />
+						<Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
 					</div>
 				</div>
 			</main>

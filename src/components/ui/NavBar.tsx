@@ -18,7 +18,7 @@ const Navbar: React.FC = () => {
 				<div className="hidden h-full md:block w-full md:w-auto" id="mobile-menu">
 					<ul className="flex-col md:h-full md:flex-row flex  mt-4 md:mt-0 md:text-sm">
 						{routes.map((route, index) => {
-							return route.isShowed ? route.children ? <Dropdown key={index} labelGroup={route.label} routesGroup={route.children} currentPath={currentPath} /> : <Button key={index} label={route.label} route={route.path} isActive={currentPath === route.path} /> : null
+							return route.isShowed ? route.children ? <Dropdown key={index} labelGroup={route.label as string} routesGroup={route.children} currentPath={currentPath} /> : <Button key={index} label={route.label as string} route={route.path} isActive={currentPath === route.path} /> : null
 						})}
 					</ul>
 				</div>
@@ -75,7 +75,7 @@ const Dropdown: React.FC<DropdownType> = ({ labelGroup, routesGroup }) => {
 					<DropdownMenuContent>
 						{routesGroup.map((route, index) => {
 							return (
-								<a key={index} href={route.path} className="text-black md:bg-transparent text-white block pl-3 pr-4 py-2 md:text-black md:p-0 rounded focus:outline-none" aria-current="page">
+								<a key={index} href={route.path} className="text-black md:bg-transparent block pl-3 pr-4 py-2 md:text-black md:p-0 rounded focus:outline-none" aria-current="page">
 									<DropdownMenuItem>{route.label}</DropdownMenuItem>
 								</a>
 							)

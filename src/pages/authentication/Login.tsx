@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Link } from 'react-router-dom'
@@ -14,18 +14,13 @@ const signInForm = z.object({
 type SignInForm = z.infer<typeof signInForm>
 
 const Login: React.FC = () => {
-	const { register, handleSubmit, formState: {isSubmitting} } = useForm<SignInForm>()
-
+	const {
+		register,
+		handleSubmit,
+		formState: { isSubmitting },
+	} = useForm<SignInForm>()
 	const [visible, setVisible] = useState(false)
 	const dispatch = useDispatch()
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
-	const [isDisabled, setIsDisabled] = useState(true)
-
-	useEffect(() => {
-		setIsDisabled(email === '' || password === '')
-	}, [email, password])
-
 
 	const handleLogin = async (data: SignInForm) => {
 		try {
@@ -34,18 +29,18 @@ const Login: React.FC = () => {
 			const response = await dispatch(login({ username: data.email, password: data.password }) as any)
 
 			if (response.meta.requestStatus === 'fulfilled') {
-				const { token, refreshToken }: LoginResponse = response.payload // Ajuste conforme sua resposta
+				const { token, refreshToken } = response.payload // Adjust this according to your API response
 				console.log('Token:', token)
 				console.log('Refresh Token:', refreshToken)
 
-				// Salvar no localStorage
+				// Save to localStorage
 				localStorage.setItem('token', token)
 				localStorage.setItem('refreshToken', refreshToken)
 			} else {
-				console.error('Erro ao despachar a ação:', response.error)
+				console.error('Error dispatching action:', response.error)
 			}
 		} catch (error) {
-			console.error('Erro no login:', error)
+			console.error('Login error:', error)
 		}
 	}
 
@@ -65,16 +60,15 @@ const Login: React.FC = () => {
 						<label htmlFor="password" className="text-[10px] text-[#687286]">
 							Senha
 						</label>
-
-						{/* <input type={visible ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} id="password" placeholder="Digite aqui a senha" className="w-full placeholder:text-sm placeholder:text-[#A8B1C2] outline-none" /> */}
-						<input id="password" {...register('password')} placeholder="Digite aqui a senha" className="w-full placeholder:text-sm placeholder:text-[#A8B1C2] outline-none" />
+						<input id="password" type={visible ? 'text' : 'password'} {...register('password')} placeholder="Digite aqui a senha" className="w-full placeholder:text-sm placeholder:text-[#A8B1C2] outline-none" />
 					</div>
-					<button onClick={() => setVisible(!visible)}>{visible ? <EyeSlash size={24} /> : <Eye size={24} />}</button>
+					<button type="button" onClick={() => setVisible(!visible)}>
+						{visible ? <EyeSlash size={24} /> : <Eye size={24} />}
+					</button>
 				</div>
 				<Link to={'/recover-password'} className="hover:text-blue-500 transition-colors duration-300 text-xs text-[#1E3868] md:bg-transparent block pl-3 pr-4 py-2 md:text-black md:p-0 rounded focus:outline-none">
 					Esqueci minha senha
 				</Link>
-				<a className="text-black md:b g-transparent block pl-3 pr-4 py-2 md:text-black md:p-0 rounded focus:outline-none" aria-current="page"></a>
 				<button disabled={isSubmitting} className="w-full flex justify-center py-2 bg-[#365DA5] text-white font-semibold rounded disabled:opacity-60">
 					Entrar
 				</button>

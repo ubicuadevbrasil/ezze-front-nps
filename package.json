@@ -6,7 +6,8 @@
     "dev": "vite --force",
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+	"start": "npm run dev"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

@@ -10,6 +10,8 @@ export interface API {
 	[key: string]: any // Permite adicionar outras rotas dinamicamente
 }
 
+export const API_BASE_URL = env.VITE_API_URL
+
 export const AUTHENTICATION_API: API = {
 	BASE: `${env.VITE_API_URL}/api/auth`,
 	REGISTER: `${env.VITE_API_URL}/api/auth/register`,
