@@ -173,6 +173,10 @@ interface FormProps {
 function ClosureForm({ onSubmit, onCancel }: FormProps) {
 	const description = ['Global', 'Privado', 'Solicitado pelo cliente']
 
+	const [selectedGroup, setSelectedGroup] = React.useState<string | null>(null)
+	const [selectedReason, setSelectedReason] = React.useState<string | null>(null)
+	const [selectedSubReason, setSelectedSubReason] = React.useState<string | null>(null)
+
 	const handleSave = (event: React.FormEvent) => {
 		event.preventDefault()
 		onSubmit()
@@ -180,9 +184,9 @@ function ClosureForm({ onSubmit, onCancel }: FormProps) {
 
 	return (
 		<form className="grid items-start gap-4" onSubmit={handleSave}>
-			<Combobox label="Grupo" options={[]} />
-			<Combobox label="Motivo" options={description} />
-			<Combobox label="Submotivo" options={[]} />
+			<Combobox label="Grupo" options={[]} selected={selectedGroup} onSelected={setSelectedGroup} />
+			<Combobox label="Motivo" options={description} selected={selectedReason} onSelected={setSelectedReason} />
+			<Combobox label="Submotivo" options={[]} selected={selectedSubReason} onSelected={setSelectedSubReason} />
 			<Input type="text" placeholder="" />
 
 			<div className="w-full flex gap-4 justify-end">
@@ -198,6 +202,8 @@ function ClosureForm({ onSubmit, onCancel }: FormProps) {
 }
 
 function TransferForm({ onSubmit, onCancel }: FormProps) {
+	const [selectedOperator, setSelectedOperator] = React.useState<string | null>(null)
+
 	const handleSave = (event: React.FormEvent) => {
 		event.preventDefault()
 		onSubmit()
@@ -205,7 +211,7 @@ function TransferForm({ onSubmit, onCancel }: FormProps) {
 
 	return (
 		<form className="grid items-start gap-4" onSubmit={handleSave}>
-			<Combobox label="Selecione um operador" options={[]} />
+			<Combobox label="Selecione um operador" options={[]} selected={selectedOperator} onSelected={setSelectedOperator} />
 			<div className="w-full flex gap-4 justify-end">
 				<Button className="p-2" variant="outline" type="button" onClick={onCancel}>
 					Cancelar

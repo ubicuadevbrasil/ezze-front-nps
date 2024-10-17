@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
 import NavBar from '@/components/ui/NavBar'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardDescription } from '@/components/ui/card'
 import { ChartBar, CheckCircle, Checks, Clock, PaperPlaneRight, SignOut, UsersThree } from '@phosphor-icons/react'
 import { Button } from '@/components/ui/button'
-import { TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow, Table } from '@/components/ui/table'
+import { TableBody, TableCell, TableHead, TableHeader, TableRow, Table } from '@/components/ui/table'
 
 export default function Index() {
 

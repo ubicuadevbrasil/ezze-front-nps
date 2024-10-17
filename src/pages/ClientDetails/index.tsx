@@ -1,15 +1,12 @@
-import { useEffect, useState } from 'react'
-import { IPedingSearch } from '../PendingSearch/columns'
-import { useLocation } from 'react-router-dom'
-import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import NavBar from '@/components/ui/NavBar'
+import { useState } from 'react'
+// import { useLocation } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import ConfirmationModal from '@/components/ui/ConfirmationModal'
 import { BaseTemplate } from '../layouts/BaseTemplate'
 
 
-export default function index() {
-	const location = useLocation()
+export default function Index() {
+	// const location = useLocation()
 	const [isModalVisible, setModalVisible] = useState(false)
 
 	const handleConfirm = () => {
@@ -21,9 +18,9 @@ export default function index() {
 		console.log('Cancelled!')
 		setModalVisible(false)
 	}
-	const clientData: IPedingSearch = location.state
+	// const clientData: IPedingSearch = location.state
 
-	const invoices = [
+	/* const invoices = [
 		{
 			invoice: 'INV001',
 			paymentStatus: 'Paid',
@@ -66,7 +63,7 @@ export default function index() {
 			totalAmount: '$300.00',
 			paymentMethod: 'Credit Card',
 		},
-	]
+	] */
 
 	return (
 		<BaseTemplate>

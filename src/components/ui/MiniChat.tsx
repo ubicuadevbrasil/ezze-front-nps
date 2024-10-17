@@ -1,5 +1,5 @@
 import { RootState } from '@/app/store'
-import { selectCurrentChat, selectIsChatOpen, selectMessagesByPhone } from '@/features/chat/chatSelectors'
+import { selectCurrentChat, selectIsChatOpen } from '@/features/chat/chatSelectors'
 import { closeChat, addMessage, openChat } from '@/features/chat/chatSlice'
 import { CaretUp, PaperPlaneRight, X } from '@phosphor-icons/react'
 import React, { useEffect, useState } from 'react'
@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const MiniChat: React.FC = () => {
 	const currentChat = useSelector((state: RootState) => selectCurrentChat(state))
-	const messages = useSelector((state: RootState) => selectMessagesByPhone(currentChat?.telefone || 0)(state))
+	// const messages = useSelector((state: RootState) => selectMessagesByPhone(currentChat?.telefone || 0)(state))
 	const isOpen = useSelector(selectIsChatOpen)
 	const dispatch = useDispatch()
 	const [showBar, setShowBar] = useState(true)

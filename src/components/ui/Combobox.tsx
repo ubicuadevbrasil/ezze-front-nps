@@ -1,24 +1,22 @@
-import { useState } from "react"
+// Combobox.tsx
+import React from 'react'
 
 interface ComboboxProps {
 	options: string[]
 	label: string
-	// onSelected: (selection) => void | null
+	onSelected: (value: string | null) => void // Change this to 'void' for onSelected
+	selected: string | null
 }
 
-
-
-export const Combobox: React.FC<ComboboxProps> = ({ options, label,  }) => {
-	const [selectedOption, setSelectedOption] = useState<string | null>(null)
-
+export const Combobox: React.FC<ComboboxProps> = ({ options, label = 'Selecione uma opção', onSelected, selected }) => {
 	const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-		setSelectedOption(event.target.value)
-		// onSelected(event.target.value)
+		onSelected(event.target.value)
 	}
 
 	return (
 		<div className="w-full grid gap-2">
-			<select value={selectedOption || ''} onChange={handleSelectChange} className="p-2 rounded-md border bg-transparent text-slate-500">
+			<div className="border rounded-2xl border-slate-400"></div>
+			<select value={selected || ''} onChange={handleSelectChange} className="p-2 rounded-md border first-letter: bg-transparent border-slate-400">
 				<option value="" disabled hidden>
 					{label}
 				</option>

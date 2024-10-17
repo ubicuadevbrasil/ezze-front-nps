@@ -95,7 +95,7 @@ async function getData(): Promise<ICloseTheLoop[]> {
 	return closeTheLoopData
 }
 
-const index: React.FC = () => {
+const Index: React.FC = () => {
 	const [data, setData] = useState<ICloseTheLoop[]>([])
 	const [loading, setLoading] = useState<boolean>(true)
 
@@ -127,4 +127,4 @@ const index: React.FC = () => {
 	)
 }
 
-export default index
+export default Index

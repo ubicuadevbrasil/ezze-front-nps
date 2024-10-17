@@ -8,6 +8,12 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Separator } from '@/components/ui/separator'
 import toast, { Toaster } from 'react-hot-toast'
 import { AlertModal } from '@/components/ui/AlertModal'
+import { Combobox } from '@/components/ui/Combobox'
+
+interface Item {
+	label: string
+	value: string
+}
 
 export default function Index() {
 	const invoices = [
@@ -19,11 +25,11 @@ export default function Index() {
 			supervisor: 'Jane Smith',
 			password: '********',
 		},
-		// Adicione mais registros se necessário
 	]
 
 	const [isOpen, setIsOpen] = useState(false) // Estado que controla o modal
 	const [formSubmitted, setFormSubmitted] = useState(false) // Estado que controla o envio do formulário
+	const [UserType, setUserType] = useState<Item>()
 
 	// Efeito que dispara o toast após o modal ser fechado e o formulário ser submetido
 	useEffect(() => {
@@ -70,7 +76,7 @@ export default function Index() {
 									<Users size={20} weight="fill" />
 									Cadastrar novo usuário
 								</DialogDescription>
-								<ToggleButtons onSelect={null} />
+								<ToggleButtons onSelect={setUserType} selected={UserType}/>
 
 								<Separator className="bg-black " />
 							</DialogHeader>
@@ -117,7 +123,7 @@ export default function Index() {
 										</Button>
 									</TableCell>
 									<TableCell>
-										<AlertModal title="Aviso" description="Confirma a ação de deletar esse usuário?">
+										<AlertModal title="Aviso" description="Confirma a ação de deletar esse usuário?" onConfirm={() => console.log('Confirmed')} onCancel={() => console.log('Cancelled')}>
 											<Button variant="ghost">
 												<Trash size={32} />
 											</Button>
@@ -137,6 +143,8 @@ export default function Index() {
 function ProfileForm({ onSubmit }: { onSubmit: () => void }) {
 	const jobOptions = ['Administrador', 'Supervisor', 'Operador', 'Gerente', 'Coordenador']
 
+	const [JobSelected, setJobSelected] = useState<string|null>(null)
+
 	const handleSave = (event: React.FormEvent) => {
 		event.preventDefault()
 		onSubmit()
@@ -154,7 +162,7 @@ function ProfileForm({ onSubmit }: { onSubmit: () => void }) {
 			</div>
 			<div className="flex items-center gap-2">
 				<User size={20} />
-				<Combobox options={jobOptions} label="Cargo" />
+				<Combobox options={jobOptions} label="Cargo" onSelected={setJobSelected} selected={JobSelected} />
 			</div>
 			<div className="flex items-center gap-2">
 				<Lock size={20} />
@@ -177,54 +185,28 @@ function ProfileForm({ onSubmit }: { onSubmit: () => void }) {
 }
 
 interface ToggleButtonsProps {
-	onSelect: (selected: string) => void
+	onSelect: (selected: Item) => void
+	selected: Item
 }
 
-const ToggleButtons: React.FC<ToggleButtonsProps> = ({ onSelect }) => {
-	const [selected, setSelected] = useState<'supervisor' | 'atendente' | null>(null)
+const ToggleButtons: React.FC<ToggleButtonsProps> = ({ onSelect, selected }) => {
+	const [selectedItem, setSelectedItem] = useState<Item>(selected)
 
-	const handleClick = (button: 'supervisor' | 'atendente') => {
-		setSelected(button)
+	const handleClick = (button: Item) => {
+		setSelectedItem(button)
 		onSelect(button)
 	}
 
 	return (
 		<div className="flex gap-4">
-			<Button className='p-2' variant={selected === 'supervisor' ? '' : 'secondary'} onClick={() => handleClick('supervisor')}>
+			<Button className="p-2" variant={selectedItem?.value === 'supervisor' ? 'default' : 'secondary'} onClick={() => handleClick({ label: 'Supervisor', value: 'supervisor' })}>
 				Supervisor
 			</Button>
-			<Button className='p-2' variant={selected === 'atendente' ? '' : 'secondary'} onClick={() => handleClick('atendente')}>
+			<Button className="p-2" variant={selectedItem?.value === 'atendente' ? 'default' : 'secondary'} onClick={() => handleClick({ label: 'Atendente', value: 'atendente' })}>
 				Atendente
 			</Button>
 		</div>
 	)
 }
 
-interface ComboboxProps {
-	options: string[]
-	label: string
-}
 
-const Combobox: React.FC<ComboboxProps> = ({ options, label }) => {
-	const [selectedOption, setSelectedOption] = useState<string | null>(null)
-
-	const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-		setSelectedOption(event.target.value)
-	}
-
-	return (
-		<div className="w-full grid gap-2">
-			<div className="border rounded-2xl border-slate-400"></div>
-			<select value={selectedOption || ''} onChange={handleSelectChange} className="p-2 rounded-md border first-letter: bg-transparent border-slate-400">
-				<option value="" disabled hidden>
-					Selecione uma opção
-				</option>
-				{options.map((option) => (
-					<option key={option} value={option}>
-						{option}
-					</option>
-				))}
-			</select>
-		</div>
-	)
-}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import NavBar from '@/components/ui/NavBar'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { Pencil, Trash, Lock, MagnifyingGlass, User, UsersThree, Users, WarningCircle, CheckCircle, Plus } from '@phosphor-icons/react'
+import { Pencil, Trash, MagnifyingGlass, WarningCircle, CheckCircle, Plus } from '@phosphor-icons/react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from '@/components/ui/dialog'
@@ -19,6 +19,10 @@ export default function Index() {
 	]
 
 	const description = ['Global', 'Privado', 'Solicitado pelo cliente']
+
+	const [selectedMotivo, setSelectedMotivo] = useState<string | null>(null)
+	const [selectedSubmotivo, setSelectedSubmotivo] = useState<string | null>(null)
+
 
 	const [isOpen, setIsOpen] = useState(false) // Estado que controla o modal
 	const [formSubmitted, setFormSubmitted] = useState(false) // Estado que controla o envio do formulário
@@ -48,8 +52,8 @@ export default function Index() {
 				<div className="flex gap-5">
 					<div className="flex w-full max-w-sm items-center space-x-2 border rounded-lg border-[#b6afaf]">
 						<Input type="search" placeholder="Pesquisa" className="border-none focus:outline-none focus:ring-0 focus:border-transparent focus:shadow-none" />
-						<Button className='pr-3' variant="ghost" type="submit">
-							<MagnifyingGlass size={25}/>
+						<Button className="pr-3" variant="ghost" type="submit">
+							<MagnifyingGlass size={25} />
 						</Button>
 					</div>
 
@@ -57,7 +61,7 @@ export default function Index() {
 					<Dialog open={isOpen} onOpenChange={setIsOpen}>
 						<DialogTrigger asChild>
 							<Button className="bg-[#203863] px-3 text-lg flex gap-4">
-								<Plus size={25}  />
+								<Plus size={25} />
 								<p className="px-5">Novo</p>
 							</Button>
 						</DialogTrigger>
@@ -97,10 +101,20 @@ export default function Index() {
 								<TableRow key={invoice.grup}>
 									<TableCell className="font-medium">{invoice.grup}</TableCell>
 									<TableCell>
-										<Combobox label="Motivo" options={description} />
+										<Combobox
+											label="Motivo"
+											options={description}
+											selected={selectedMotivo} // Estado que controla o item selecionado
+											onSelected={(value) => setSelectedMotivo(value)} // Função para atualizar o estado
+										/>
 									</TableCell>
 									<TableCell>
-										<Combobox label="Submotivo" options={description} />
+										<Combobox
+											label="Submotivo"
+											options={description}
+											selected={selectedSubmotivo} // Estado que controla o item selecionado
+											onSelected={(value) => setSelectedSubmotivo(value)} // Função para atualizar o estado
+										/>
 									</TableCell>
 
 									<TableCell>
@@ -109,7 +123,7 @@ export default function Index() {
 										</Button>
 									</TableCell>
 									<TableCell>
-										<AlertModal title="Aviso" description="Confirma a ação de deletar esse usuário?" onNo={() => console.log('Fechar modal aqui')}>
+										<AlertModal title="Deletar usuário" description="Tem certeza que deseja deletar este usuário?" onConfirm={() => console.log('Usuário deletado')} onCancel={() => console.log('Ação cancelada')}>
 											<Button variant="ghost">
 												<Trash size={32} />
 											</Button>

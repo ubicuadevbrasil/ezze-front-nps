@@ -2,14 +2,14 @@ import * as fs from 'fs'
 import * as path from 'path'
 
 // Interface para representar a estrutura da API
-interface API {
+/* interface API {
 	BASE: string
 	GET_ALL: string
 	GET_BY_ID: (id: number) => string
 	CREATE: string
 	UPDATE: (id: number) => string
 	DELETE: (id: number) => string
-}
+} */
 
 // Função para criar arquivos Slice, API e adicionar rota ao apiRoutes.ts
 function createReduxFiles(pageNames: string[]): void {

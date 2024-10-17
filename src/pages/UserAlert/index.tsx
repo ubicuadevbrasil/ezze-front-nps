@@ -1,32 +1,28 @@
 import { useState } from 'react'
-import { useLocation } from 'react-router-dom'
-import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
 import ConfirmationModal from '@/components/ui/ConfirmationModal'
-import { ICloseTheLoop } from '../CloseTheLoop/columns'
 import ProgressBar from '@/components/ui/ProgressBar'
 import { Bell } from '@phosphor-icons/react'
 import MainReason from '@/components/ui/MainReason'
 import { BaseTemplate } from '../layouts/BaseTemplate'
 
-export default function index() {
-	const location = useLocation()
+export default function Index() {
+	// const location = useLocation()
 	const [isModalVisible, setModalVisible] = useState(false)
 
 	const handleConfirm = () => {
 		console.log('Confirmed!')
 		setModalVisible(false)
 	}
-
 	const handleCancel = () => {
 		console.log('Cancelled!')
 		setModalVisible(false)
 	}
-	const clientData: ICloseTheLoop = location.state
+	// const clientData: ICloseTheLoop = location.state
 
 	return (
 		<BaseTemplate>
-			{/* <ConfirmationModal isVisible={isModalVisible} onConfirm={handleConfirm} onCancel={handleCancel} message="Você deseja tabular uma tentativa de contato?" /> */}
+			{<ConfirmationModal isVisible={isModalVisible} onConfirm={handleConfirm} onCancel={handleCancel} message="Você deseja tabular uma tentativa de contato?" />}
 				<div className="w-full pt-2 pb-4 px-3 gap-5 flex flex-row  items-center justify-between">
 					<div className="flex flex-row gap-5 items-center">
 						<Button className="text-lg bg-[#104b94] h-10 px-3">Voltar</Button>
@@ -84,42 +80,6 @@ export default function index() {
 								</tr>
 							</tbody>
 						</table>
-						{/* <Table>
-							<TableBody>
-								<TableRow>
-									<TableCell className="font-medium">Nome cliente</TableCell>
-									<TableCell>Alfredo</TableCell>
-								</TableRow>
-								<TableRow>
-									<TableCell className="font-medium">Email do Cliente</TableCell>
-									<TableCell>-</TableCell>
-								</TableRow>
-								<TableRow>
-									<TableCell className="font-medium">Gênero</TableCell>
-									<TableCell>-</TableCell>
-								</TableRow>
-								<TableRow>
-									<TableCell className="font-medium">Telefone do Cliente</TableCell>
-									<TableCell>11947571208</TableCell>
-								</TableRow>
-								<TableRow>
-									<TableCell className="font-medium">Data de Nascimento</TableCell>
-									<TableCell>-</TableCell>
-								</TableRow>
-								<TableRow>
-									<TableCell className="font-medium">Estado do Cliente</TableCell>
-									<TableCell>São Paulo</TableCell>
-								</TableRow>
-								<TableRow>
-									<TableCell className="font-medium">Cidade do Cliente</TableCell>
-									<TableCell>São Paulo</TableCell>
-								</TableRow>
-								<TableRow>
-									<TableCell className="font-medium">Endereço</TableCell>
-									<TableCell>-</TableCell>
-								</TableRow>
-							</TableBody>
-						</Table> */}
 					</div>
 					<div className='col-span-2 row-span-2 py-2 px-4 bg-white flex flex-col gap-2 rounded-sm'>
 						<h1 className="font-medium text-sm">Informações sobre a transação</h1>
@@ -176,79 +136,7 @@ export default function index() {
 									</tr>
 								</tbody>
 							</table>
-							{/* <Table>
-								<TableBody>
-									<TableRow>
-										<TableCell className="font-medium">Número da assistência</TableCell>
-										<TableCell>124536598</TableCell>
-									</TableRow>
-									<TableRow>
-										<TableCell className="font-medium">Data de Abertura do Arquivo</TableCell>
-										<TableCell>21/07/2024</TableCell>
-									</TableRow>
-									<TableRow>
-										<TableCell className="font-medium">Tipo de Assistência</TableCell>
-										<TableCell>EMERGENCIA</TableCell>
-									</TableRow>
-									<TableRow>
-										<TableCell className="font-medium">Garantira</TableCell>
-										<TableCell>ELETRICISTA</TableCell>
-									</TableRow>
-									<TableRow>
-										<TableCell className="font-medium">Risco</TableCell>
-										<TableCell>CONSTRUÇÃO E INSTALAÇÕES</TableCell>
-									</TableRow>
-									<TableRow>
-										<TableCell className="font-medium">Número do contrato</TableCell>
-										<TableCell>40000044089</TableCell>
-									</TableRow>
-									<TableRow>
-										<TableCell className="font-medium">Centro Tramitador</TableCell>
-										<TableCell>TAMBORE</TableCell>
-									</TableRow>
-									<TableRow>
-										<TableCell className="font-medium">Tipo de Serviço</TableCell>
-										<TableCell>ELETRICISTA</TableCell>
-									</TableRow>
-								</TableBody>
-							</Table>
 
-							<Table>
-								<TableBody>
-									<TableRow>
-										<TableCell className="font-medium">Código do serviço</TableCell>
-										<TableCell>4000</TableCell>
-									</TableRow>
-									<TableRow>
-										<TableCell className="font-medium">Endereço dos serviços</TableCell>
-										<TableCell>GUARULHOS, SÃO PAULO, SUDESTE</TableCell>
-									</TableRow>
-									<TableRow>
-										<TableCell className="font-medium">Data do serviço</TableCell>
-										<TableCell>21/07/2024</TableCell>
-									</TableRow>
-									<TableRow>
-										<TableCell className="font-medium">Tipo de prestador</TableCell>
-										<TableCell>CONSTRUÇÃO MANUTENÇÃO CIVIL</TableCell>
-									</TableRow>
-									<TableRow>
-										<TableCell className="font-medium">Nome do prestador</TableCell>
-										<TableCell>EMBAJADOR RESOLVE - HOME SERVICE</TableCell>
-									</TableRow>
-									<TableRow>
-										<TableCell className="font-medium">Estado do prestador</TableCell>
-										<TableCell>São Paulo</TableCell>
-									</TableRow>
-									<TableRow>
-										<TableCell className="font-medium">Cidade do prestador</TableCell>
-										<TableCell>GUARULHOS</TableCell>
-									</TableRow>
-									<TableRow>
-										<TableCell className="font-medium">Canal de resposta</TableCell>
-										<TableCell>SMS</TableCell>
-									</TableRow>
-								</TableBody>
-							</Table> */}
 						</div>
 						</div>
 						<div className="py-2 px-4 bg-white flex flex-col gap-4 rounded-sm">

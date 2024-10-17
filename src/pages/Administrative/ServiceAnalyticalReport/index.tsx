@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import NavBar from '@/components/ui/NavBar'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
 import { toast, Toaster } from 'react-hot-toast'
-import { Combobox } from '@/components/ui/Combobox'
 import Pagination from '@/components/ui/PaginationItem'
 import { Archive } from 'lucide-react'
 import { DatePickerWithRange } from '@/components/ui/DatePickerWithRange'
-import { Input } from '@/components/ui/input'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { CaretDown } from '@phosphor-icons/react'
 import './scrollStiles.css'
+import Dropdown from '@/components/ui/Dropdown'
 
 interface ContactRecord {
 	name: string
@@ -30,6 +27,10 @@ interface ContactRecord {
 	history: string
 }
 
+interface Item {
+	label: string
+	value: string
+}
 
 export default function Index() {
 	const datas: ContactRecord[] = [
@@ -86,28 +87,58 @@ export default function Index() {
 		},
 	]
 
+/* Ilhas */
+	const [selectedIlhas, setSelectedIlhas] = useState<Item[]>([])
+	const optionsIlhas = [
+		{ label: 'Opção 1', value: 'option1' },
+		{ label: 'Opção 2', value: 'option2' },
+		{ label: 'Opção 3', value: 'option3' },
+	]
 
+/* Tabulação */
+	const [selectedTab, setSelectedTab] = useState<Item[]>([])
+	const optionsTab = [
+		{ label: 'Opção 1', value: 'option1' },
+		{ label: 'Opção 2', value: 'option2' },
+		{ label: 'Opção 3', value: 'option3' },
+	]
 
+/* Interação */
+	const [selectedInteraction, setSelectedInteraction] = useState<Item[]>([])
+	const optionsInteraction = [
+		{ label: 'Opção 1', value: 'option1' },
+		{ label: 'Opção 2', value: 'option2' },
+		{ label: 'Opção 3', value: 'option3' },
+	]
 
-	const [isOpenIlhas, setIsOpenIlhas] = useState(false)
-	const [IlhasData, setIlhasData] = useState<Array<{ label: string; value: string }>>()
-	const [IlhasValue, setIlhasValue] = useState<{label:string, value:string}>()
+/* Interação */
+	const [selectedSituation, setSelectedSituation] = useState<Item[]>([])
+	const optionsSituation = [
+		{ label: 'Opção 1', value: 'option1' },
+		{ label: 'Opção 2', value: 'option2' },
+		{ label: 'Opção 3', value: 'option3' },
+	]
 
-	const [isOpenTab, setIsOpenTab] = useState(false)
-	const [TabData, setTabData] = useState<Array<{ label: string; value: string }>>()
-	const [TabValue, setTabValue] = useState<{label:string, value:string}>()
+	const handleSelectIlhas = (selectedItems: Item[]) => {
+		setSelectedIlhas(selectedItems) // Agora espera um array de itens selecionados
+	}
 
-	const [isOpenInteraction, setIsOpenInteraction] = useState(false)
-	const [InteractionData, setInteractionData] = useState<Array<{ label: string; value: string }>>()
-	const [InteractionValue, setInteractionValue] = useState<{label:string, value:string}>()
+	const handleSelectTab = (selectedItems: Item[]) => {
+		setSelectedTab(selectedItems) // Agora espera um array de itens selecionados
+	}
 
-	const [isOpenSituation, setIsOpenSituation] = useState(false)
-	const [SituationData, setSituationData] = useState<Array<{ label: string; value: string }>>()
-	const [SituationValue, setSituationValue] = useState<{label:string, value:string}>()
+	// Mesma lógica para os demais:
+	const handleSelectInteraction = (selectedItems: Item[]) => {
+		setSelectedInteraction(selectedItems)
+	}
 
-	const [isOpenHistory, setIsOpenHistory] = useState(false)
+	const handleSelectSituation = (selectedItems: Item[]) => {
+		setSelectedSituation(selectedItems)
+	}
+
+	/* const [isOpenHistory, setIsOpenHistory] = useState(false)
 	const [isOpenTransfer, setIsOpenTransfer] = useState(false)
-
+	*/
 	const [formSubmitted, setFormSubmitted] = useState(false)
 	const [IdAssistencia, setIdAssistencia] = useState<string>('')
 	const [NomeCliente, setNomeCliente] = useState<string>('')
@@ -135,9 +166,6 @@ export default function Index() {
 		}
 	}, [formSubmitted])
 
-	const handleFormSubmit = () => {
-		setFormSubmitted(true)
-	}
 
 	return (
 		<div className="flex flex-col min-h-screen bg-[#f1f3fe]">
@@ -158,39 +186,11 @@ export default function Index() {
 						</label>
 						<input id="assignment" className="w-full outline-none" placeholder="---" value={IdAssistencia} onChange={(e) => setIdAssistencia(e.target.value)} />
 					</div>
-					<Popover open={isOpenIlhas} onOpenChange={setIsOpenIlhas}>
-						<PopoverTrigger asChild className="border border-slate-400">
-							<div className="flex h-10 items-center px-3 border border-slate-400 rounded-md bg-white">
-								<div className="flex flex-col w-full text-[10px] leading-3  justify-center ">
-									<span className="text-[10px] leading-3">Ilhas</span>
-									<div className="text-[#a8b1c2]">{IlhasValue ? IlhasData.find((status) => status.value === IlhasValue)?.label : 'Selecionar'}</div>
-								</div>
-								<CaretDown size={24} />
-							</div>
-							{/* <Button variant="outline" role="combobox" className=" justify-between text-gray-500 font-normal">
-							{statusValue ? statusList.find((status) => status.value === statusValue)?.label : 'Status'}
-							<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-						</Button> */}
-						</PopoverTrigger>
-						<PopoverContent className="w-[200px] p-0 border border-slate-400 flex gap-5 flex-col p-3"></PopoverContent>
-					</Popover>
 
-					<Popover open={isOpenTab} onOpenChange={setIsOpenTab}>
-						<PopoverTrigger asChild className="border border-slate-400">
-							<div className="flex h-10 items-center px-3 border border-slate-400 rounded-md bg-white">
-								<div className="flex flex-col w-full text-[10px] leading-3  justify-center ">
-									<span className="text-[10px] leading-3">Tabulação</span>
-									<div className="text-[#a8b1c2]">{TabValue ? TabData.find((status) => status.value === TabValue)?.label : 'Selecionar'}</div>
-								</div>
-								<CaretDown size={24} />
-							</div>
-							{/* <Button variant="outline" role="combobox" className=" justify-between text-gray-500 font-normal">
-							{statusValue ? statusList.find((status) => status.value === statusValue)?.label : 'Status'}
-							<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-						</Button> */}
-						</PopoverTrigger>
-						<PopoverContent className="w-[200px] p-0 border border-slate-400 flex gap-5 flex-col p-3"></PopoverContent>
-					</Popover>
+					<Dropdown items={optionsIlhas} selectedItems={selectedIlhas} onSelect={handleSelectIlhas} title="Ilhas" />
+
+					<Dropdown items={optionsTab} selectedItems={selectedTab} onSelect={handleSelectTab} title="Tabulação" />
+
 					<div className="flex flex-col text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md bg-white">
 						<label htmlFor="assignment" className="">
 							Nome do Cliente
@@ -204,39 +204,9 @@ export default function Index() {
 						<input id="assignment" className="w-full outline-none" placeholder="---" value={Telefone} onChange={(e) => setTelefone(e.target.value)} />
 					</div>
 
-					<Popover open={isOpenInteraction} onOpenChange={setIsOpenInteraction}>
-						<PopoverTrigger asChild className="border border-slate-400">
-							<div className="flex h-10 items-center px-3 border border-slate-400 rounded-md bg-white">
-								<div className="flex flex-col w-full text-[10px] leading-3  justify-center ">
-									<span className="text-[10px] leading-3">Interação</span>
-									<div className="text-[#a8b1c2]">{InteractionValue ? InteractionData.find((status) => status.value === InteractionValue)?.label : 'Selecionarf'}</div>
-								</div>
-								<CaretDown size={24} />
-							</div>
-							{/* <Button variant="outline" role="combobox" className=" justify-between text-gray-500 font-normal">
-							{statusValue ? statusList.find((status) => status.value === statusValue)?.label : 'Status'}
-							<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-						</Button> */}
-						</PopoverTrigger>
-						<PopoverContent className="w-[200px] p-0 border border-slate-400 flex gap-5 flex-col p-3"></PopoverContent>
-					</Popover>
+					<Dropdown items={optionsInteraction} selectedItems={selectedInteraction} onSelect={handleSelectInteraction} title="Interação" />
 
-					<Popover open={isOpenSituation} onOpenChange={setIsOpenSituation}>
-						<PopoverTrigger asChild className="border border-slate-400">
-							<div className="flex h-10 items-center px-3 border border-slate-400 rounded-md bg-white">
-								<div className="flex flex-col w-full text-[10px] leading-3  justify-center ">
-									<span className="text-[10px] leading-3">Situação</span>
-									<div className="text-[#a8b1c2]">{SituationValue ? SituationData.find((status) => status.value === SituationValue)?.label : 'Selecionar'}</div>
-								</div>
-								<CaretDown size={24} />
-							</div>
-							{/* <Button variant="outline" role="combobox" className=" justify-between text-gray-500 font-normal">
-							{statusValue ? statusList.find((status) => status.value === statusValue)?.label : 'Status'}
-							<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-						</Button> */}
-						</PopoverTrigger>
-						<PopoverContent className="w-[200px] p-0 border border-slate-400 flex gap-5 flex-col p-3"></PopoverContent>
-					</Popover>
+					<Dropdown items={optionsSituation} selectedItems={selectedSituation} onSelect={handleSelectSituation} title="Situação" />
 				</div>
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5 px-5 py-2 items-center text-2xl">
 					<Button className="bg-[#d9dde5] text-lg py-2 px-3 border border-[#c0c7d4] text-[#333946] font-bold">Bloqueios</Button>
@@ -252,7 +222,7 @@ export default function Index() {
 						<div className="bg-[#365da5] w-full rounded-t-2xl border-slate-400">
 							<h1 className="p-4 text-white">Resultados</h1>
 						</div>
-						{!!datas ? (
+						{datas ? (
 							<div className="custom-scrollbar overflow-x-auto">
 								{' '}
 								{/* Scroll horizontal com estilo */}
@@ -314,58 +284,5 @@ export default function Index() {
 			</main>
 			<footer className="flex w-full justify-center py-2 bg-[#D9DDE5] mt-auto text-[10px]">{new Date().getFullYear()} - Powered by Ubicua ©</footer>
 		</div>
-	)
-}
-
-interface FormProps {
-	onSubmit: () => void
-	onCancel: () => void
-}
-
-function ClosureForm({ onSubmit, onCancel }: FormProps) {
-	const description = ['Global', 'Privado', 'Solicitado pelo cliente']
-
-	const handleSave = (event: React.FormEvent) => {
-		event.preventDefault()
-		onSubmit()
-	}
-
-	return (
-		<form className="grid items-start gap-4" onSubmit={handleSave}>
-			<Combobox label="Grupo" options={[]} />
-			<Combobox label="Motivo" options={description} />
-			<Combobox label="Submotivo" options={[]} />
-			<Input type="text" placeholder="" />
-
-			<div className="w-full flex gap-4 justify-end">
-				<Button variant="outline" type="button" onClick={onCancel}>
-					Cancelar
-				</Button>
-				<Button type="submit" className="bg-[#d92d1f]">
-					Encerrar
-				</Button>
-			</div>
-		</form>
-	)
-}
-
-function TransferForm({ onSubmit, onCancel }: FormProps) {
-	const handleSave = (event: React.FormEvent) => {
-		event.preventDefault()
-		onSubmit()
-	}
-
-	return (
-		<form className="grid items-start gap-4" onSubmit={handleSave}>
-			<Combobox label="Selecione um operador" options={[]} />
-			<div className="w-full flex gap-4 justify-end">
-				<Button variant="outline" type="button" onClick={onCancel}>
-					Cancelar
-				</Button>
-				<Button type="submit" className="bg-[#365da5]">
-					Transferir
-				</Button>
-			</div>
-		</form>
 	)
 }

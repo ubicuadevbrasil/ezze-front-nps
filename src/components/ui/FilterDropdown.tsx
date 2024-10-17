@@ -1,10 +1,22 @@
-import { ChevronsUpDown } from "lucide-react"
-import { Button } from "./button"
-import { Popover, PopoverContent, PopoverTrigger } from "./popover"
-import { Checkbox } from "./checkbox"
-import { useState } from "react"
+import { ChevronsUpDown } from 'lucide-react'
+import { Button } from './button'
+import { Popover, PopoverContent, PopoverTrigger } from './popover'
+import { Checkbox } from './checkbox'
+import { useState } from 'react'
 
-const FilterDropdown = ({ label, options, selectedValue, setSelectedValue }) => {
+interface Option {
+	value: string
+	label: string
+}
+
+interface FilterDropdownProps {
+	label: string
+	options: Option[]
+	selectedValue: string
+	setSelectedValue: (value: string) => void
+}
+
+const FilterDropdown: React.FC<FilterDropdownProps> = ({ label, options, selectedValue, setSelectedValue }) => {
 	const [isOpen, setIsOpen] = useState(false)
 
 	return (
@@ -13,7 +25,6 @@ const FilterDropdown = ({ label, options, selectedValue, setSelectedValue }) => 
 				<Button variant="outline" role="combobox" aria-expanded={isOpen} className="w-[200px] justify-between text-gray-500 font-normal">
 					{selectedValue ? options.find((option) => option.value === selectedValue)?.label : label}
 					<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-
 				</Button>
 			</PopoverTrigger>
 			<PopoverContent className="w-[200px] p-0 flex gap-5 flex-col p-3">
@@ -25,8 +36,8 @@ const FilterDropdown = ({ label, options, selectedValue, setSelectedValue }) => 
 							value={option.value}
 							checked={selectedValue === option.value}
 							onChange={(e) => {
-								const currentValue = e.target.value
-								setSelectedValue(currentValue === selectedValue ? '' : currentValue)
+								const currentValue = e.target as HTMLInputElement // Caste o target para HTMLInputElement
+								setSelectedValue(currentValue.checked ? currentValue.value : '')
 								setIsOpen(false)
 							}}
 						/>
@@ -39,3 +50,5 @@ const FilterDropdown = ({ label, options, selectedValue, setSelectedValue }) => 
 		</Popover>
 	)
 }
+
+export default FilterDropdown

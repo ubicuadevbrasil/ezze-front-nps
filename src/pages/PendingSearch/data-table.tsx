@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table'
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
@@ -45,6 +45,10 @@ export function DataTable<TData extends IPedingSearch>({ columns, data }: DataTa
 	const handleOpenChat = (dataFone: IPedingSearch) => {
 		dispatch(setCurrentChat(dataFone))
 	}
+
+	useEffect(() => {
+		setCurrentPage(1)
+	}, [])
 
 
 	return (

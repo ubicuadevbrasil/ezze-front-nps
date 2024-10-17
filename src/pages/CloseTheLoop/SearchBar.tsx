@@ -87,7 +87,7 @@ const SearchBar: React.FC = () => {
 							<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
 						</Button> */}
 					</PopoverTrigger>
-					<PopoverContent className="w-[200px] p-0 border border-slate-400 flex gap-5 flex-col p-3">
+					<PopoverContent className="w-[200px] p-3 border border-slate-400 flex gap-5 flex-col">
 						{statusList.map((status) => (
 							<div key={status.value} className="flex items-center space-x-2">
 								<Checkbox
@@ -121,15 +121,15 @@ const SearchBar: React.FC = () => {
 							<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
 						</Button> */}
 					</PopoverTrigger>
-					<PopoverContent className="w-[200px] p-0 border border-slate-400  flex gap-5 flex-col p-3">
+					<PopoverContent className="w-[200px] p-3 border border-slate-400  flex gap-5 flex-col">
 						{alertaList.map((alerta) => (
 							<div key={alerta.value} className="flex items-center space-x-2">
 								<Checkbox
 									className="border-gray-400"
 									id={alerta.value}
 									onSelect={(currentValue) => {
-										setStatusValue(String(currentValue) === alertaValue ? '' : String(currentValue))
-										setStatusOpen(false)
+										setAlertaValue(String(currentValue) === alertaValue ? '' : String(currentValue))
+										setAlertaOpen(false)
 									}}
 								/>
 								<label htmlFor="terms" className="text-sm text-gray-700 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">

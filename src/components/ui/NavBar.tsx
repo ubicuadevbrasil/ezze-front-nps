@@ -8,7 +8,6 @@ import { CaretDown, SignOut } from '@phosphor-icons/react'
 const Navbar: React.FC = () => {
 	const location = useLocation()
 	const currentPath = location.pathname
-	console.table(routes)
 
 	return (
 		<nav className="bg-white w-auto h-14 flex items-center ">
@@ -40,7 +39,7 @@ interface ButtonType {
 	isActive: boolean
 }
 
-const Button: React.FC<ButtonType> = ({ route, label, isActive }) => {
+const Button: React.FC<ButtonType> = ({ route, label }) => {
 	return (
 		<>
 			<li>
@@ -61,8 +60,7 @@ interface DropdownType {
 	currentPath: string
 }
 
-const Dropdown: React.FC<DropdownType> = ({ labelGroup, routesGroup, currentPath }) => {
-	const isSubPageActive = routesGroup.some((route) => currentPath === `/${route.path}`)
+const Dropdown: React.FC<DropdownType> = ({ labelGroup, routesGroup }) => {
 
 	return (
 		<>

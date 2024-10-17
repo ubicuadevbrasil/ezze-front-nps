@@ -6,9 +6,11 @@ interface AlertModalProps {
 	children: React.ReactNode
 	title: string
 	description: string
+	onConfirm: () => void // Ação para o botão "Sim"
+	onCancel: () => void // Ação para o botão "Não"
 }
 
-export function AlertModal({ children, description, title }: AlertModalProps) {
+export function AlertModal({ children, title, description, onConfirm, onCancel }: AlertModalProps) {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>{children}</DialogTrigger>
@@ -21,10 +23,12 @@ export function AlertModal({ children, description, title }: AlertModalProps) {
 				</DialogHeader>
 				<DialogFooter>
 					<div className="w-full flex gap-4 justify-center">
-						<Button variant="outline" className="w-full p-2">
+						{/* Botão para cancelar, chamando a função onCancel */}
+						<Button variant="outline" className="w-full p-2" onClick={onCancel}>
 							Não
 						</Button>
-						<Button variant="destructive" className="w-full p-2">
+						{/* Botão para confirmar, chamando a função onConfirm */}
+						<Button variant="destructive" className="w-full p-2" onClick={onConfirm}>
 							Sim
 						</Button>
 					</div>

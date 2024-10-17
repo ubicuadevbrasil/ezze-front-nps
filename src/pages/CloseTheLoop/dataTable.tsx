@@ -3,7 +3,7 @@ import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
 import { Chat } from '@phosphor-icons/react'
-import { useDispatch } from 'react-redux'
+// import { useDispatch } from 'react-redux'
 import { ICloseTheLoop } from './columns'
 import { Badge } from '@/components/ui/badge'
 import Pagination from '@/components/ui/PaginationItem'
@@ -15,7 +15,7 @@ interface DataTableProps<TData> {
 }
 
 export function DataTable<TData extends ICloseTheLoop>({ columns, data }: DataTableProps<TData>) {
-	const dispatch = useDispatch()
+	// const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const [currentPage, setCurrentPage] = useState(1)
 	const itemsPerPage = 7
