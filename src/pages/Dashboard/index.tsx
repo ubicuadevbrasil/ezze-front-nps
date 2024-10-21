@@ -1,6 +1,3 @@
-import React, { useState } from 'react'
-import { DatePickerWithRange } from '@/components/ui/DatePickerWithRange'
-import { Button } from '@/components/ui/button'
 import RadialChart from '@/components/ui/RadialChart'
 import { LineChartComponent } from '@/components/ui/LineChartsDots'
 import DualBarChart from '@/components/ui/DualBarChart'
@@ -10,13 +7,17 @@ import { ReasonsTable } from '@/components/ui/ReasonsTable'
 import { SolutionsTable } from '@/components/ui/Solutions'
 import { MacroMicroTable } from '@/components/ui/MacroMicroTable'
 import { AlertProcedureTable } from '@/components/ui/AlertProcedureTable'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { Checkbox } from '@/components/ui/checkbox'
 import { BaseTemplate } from '../layouts/BaseTemplate'
-import { CaretDown } from '@phosphor-icons/react'
+import { FilterSearchBar } from '@/components/ui/FilterBarDashboard'
+import { useDispatch, useSelector } from 'react-redux'
+import { DashboardFilter } from '@/models/dashboardFilters'
+import { useEffect, useState } from 'react'
+import { fetchDashboard } from '@/features/Dashboard/DashboardSlice'
+import { RootState } from '@/app/store'
+import { useAppDispatch } from '@/hooks/hooks'
 
 export default function Index() {
-	const data = {
+	const dataTeste = {
 		lineChart: {
 			data: [
 				{ month: 'January', alertas: 186 },
@@ -54,6 +55,7 @@ export default function Index() {
 			},
 		},
 	}
+	const { data, loading, error } = useSelector((state: RootState) => state.dashboard)
 
 	return (
 		<BaseTemplate>
@@ -61,21 +63,29 @@ export default function Index() {
 			<main className="flex flex-col items-center gap-4 mt-2 mb-6 w-full py-4 px-10">
 				<div className="flex flex-row gap-4 w-full">
 					<div className="w-full md:w-1/2 bg-white flex flex-col rounded-[8px] p-4">
-						<p className='text-sm text-[#333946]'>% de alertas fechados em 48 horas:</p>
-						<RadialChart value={10} />
+						<p className="text-sm text-[#333946]">% de alertas fechados em 48 horas:</p>
+						<RadialChart value={data?.closedDeals48hPercent as number} />
 					</div>
 					<div className="w-full md:w-1/2 bg-white flex flex-col rounded-[8px] p-4">
-						<p className='text-sm text-[#333946]'>% de alertas fechados em 48 horas ao longo do tempo:</p>
-						<LineChartComponent data={data.lineChart.data} config={data.lineChart.config} />
+						<p className="text-sm text-[#333946]">% de alertas fechados em 48 horas ao longo do tempo:</p>
+						<LineChartComponent
+							data={data?.closedDeals48hOverTime as []}
+							config={{
+								alertas: {
+									label: 'Negocios',
+									color: '#0c8ce9',
+								},
+							}}
+						/>
 					</div>
 				</div>
 				<div className="w-full flex flex-col gap-5 bg-white rounded-[8px] p-4">
-					<p className='text-sm text-[#333946]'>Tabela de alertas:</p>
-					<AlertsTable />
+					<p className="text-sm text-[#333946]">Tabela de alertas:</p>
+					<AlertsTable header={data?.dealsTable?.header as []} rows={data?.dealsTable?.rows as []} />
 				</div>
 				<div className="w-full flex flex-col gap-5 bg-white rounded-[8px] p-4">
-					<p className='text-sm text-[#333946]'>Performance por gerente de qualidade:</p>
-					<PerformanceTable />
+					<p className="text-sm text-[#333946]">Performance por gerente de qualidade:</p>
+					<PerformanceTable data={data?.qualityManagerPerformance as []} />
 				</div>
 				<div className="w-full flex flex-col gap-5 bg-white rounded-[8px] p-4">
 					<p>Acompanhamento dos motivos:</p>
@@ -83,20 +93,20 @@ export default function Index() {
 				</div>
 				<div className="flex flex-row justify-center gap-5 w-full">
 					<div className="w-full md:w-1/2 bg-white flex flex-col justify-start rounded-[8px] p-4">
-						<p className='text-sm text-[#333946]'>Indicador por área macro e micro:</p>
+						<p className="text-sm text-[#333946]">Indicador por área macro e micro:</p>
 						<MacroMicroTable />
 					</div>
 					<div className="w-full md:w-1/2 bg-white flex flex-col justify-start rounded-[8px] p-4">
-						<p className='text-sm text-[#333946]'>Indicador por solução oferecida:</p>
+						<p className="text-sm text-[#333946]">Indicador por solução oferecida:</p>
 						<SolutionsTable />
 					</div>
 				</div>
 				<div className="w-full flex flex-col gap-5 bg-white rounded-xl p-4">
-					<p className='text-sm text-[#333946]'>Procedência de alertas:</p>
+					<p className="text-sm text-[#333946]">Procedência de alertas:</p>
 					<AlertProcedureTable />
 				</div>
 				<div className="w-full flex flex-col gap-5 bg-white rounded-xl p-4">
-					<p className='text-sm text-[#333946]'>Percentual de Clientes satisfeitos após o contato:</p>
+					<p className="text-sm text-[#333946]">Percentual de Clientes satisfeitos após o contato:</p>
 					<DualBarChart data={data.dualBarChart.data} />
 				</div>
 			</main>
@@ -104,163 +114,5 @@ export default function Index() {
 	)
 }
 
-const ciaList = [
-	{
-		value: 'cia1',
-		label: 'Cia 1',
-	},
-	{
-		value: 'cia2',
-		label: 'Cia 2',
-	},
-	// Continue com os outros valores...
-]
-
-const negociosList = [
-	{
-		value: 'promotor',
-		label: 'Promotor',
-	},
-	{
-		value: 'neutro',
-		label: 'Neutro',
-	},
-	{
-		value: 'detrator',
-		label: 'Detrator',
-	},
-]
-
-const motivosList = [
-	{
-		value: 'promotor',
-		label: 'Promotor',
-	},
-	{
-		value: 'neutro',
-		label: 'Neutro',
-	},
-	{
-		value: 'detrator',
-		label: 'Detrator',
-	},
-]
-
-const FilterSearchBar: React.FC = () => {
-	const [ciaOpen, setCiaOpen] = useState(false)
-	const [ciaValue, setCiaValue] = useState('')
-	const [negociosOpen, setNegociosOpen] = useState(false)
-	const [negociosValue, setNegociosValue] = useState('')
-	const [motivosOpen, setMotivosOpen] = useState(false)
-	const [motivosValue, setMotivosValue] = useState('')
-
-	return (
-		<div className="px-5 py-3 w-full gap-2 flex flex-row items-center justify-end">
-			<DatePickerWithRange className="border-slate-400" />
-			{/* Cia */}
-			<Popover open={ciaOpen} onOpenChange={setCiaOpen}>
-				<PopoverTrigger asChild>
-					<div className="flex w-32 h-10 items-center px-3 border border-slate-400 rounded-md bg-white">
-						<div className="flex flex-col w-full text-[10px] leading-3  justify-center ">
-							<span className="text-[10px] leading-3">Cia</span>
-							<div className="">{ciaValue ? ciaList.find((cia) => cia.value === ciaValue)?.label : '---'}</div>
-						</div>
-						<CaretDown size={24} />
-					</div>
-				</PopoverTrigger>
-				<PopoverContent className="w-[200px] flex gap-5 flex-col p-3">
-					{ciaList.map((cia) => (
-						<div key={cia.value} className="flex items-center space-x-2">
-							<Checkbox
-								className="border-gray-400"
-								id={cia.value}
-								value={cia.value}
-								checked={ciaValue === cia.value}
-								onChange={(e) => {
-									const target = e.target as HTMLInputElement
-									const currentValue = target.value
-									setCiaValue(currentValue === ciaValue ? '' : currentValue)
-									setCiaOpen(false)
-								}}
-							/>
-							<label htmlFor={cia.value} className="text-sm text-gray-700 font-medium leading-none">
-								{cia.label}
-							</label>
-						</div>
-					))}
-				</PopoverContent>
-			</Popover>
-
-			{/* Negocios */}
-			<Popover open={negociosOpen} onOpenChange={setNegociosOpen}>
-				<PopoverTrigger asChild>
-					<div className="flex w-32 h-10 items-center px-3 border border-slate-400 rounded-md bg-white">
-						<div className="flex flex-col w-full text-[10px] leading-3  justify-center ">
-							<span className="text-[10px] leading-3">Área de negócios</span>
-							<div className="">{negociosValue ? negociosList.find((negocios) => negocios.value === negociosValue)?.label : '---'}</div>
-						</div>
-						<CaretDown size={24} />
-					</div>
-				</PopoverTrigger>
-				<PopoverContent className="w-[200px] flex gap-5 flex-col p-3">
-					{negociosList.map((negocios) => (
-						<div key={negocios.value} className="flex items-center space-x-2">
-							<Checkbox
-								className="border-gray-400"
-								id={negocios.value}
-								value={negocios.value}
-								checked={negociosValue === negocios.value}
-								onChange={(e) => {
-									const target = e.target as HTMLInputElement
-									const currentValue = target.value
-									setNegociosValue(currentValue === negociosValue ? '' : currentValue)
-									setNegociosOpen(false)
-								}}
-							/>
-							<label htmlFor={negocios.value} className="text-sm text-gray-700 font-medium leading-none">
-								{negocios.label}
-							</label>
-						</div>
-					))}
-				</PopoverContent>
-			</Popover>
-
-			{/* Motivos */}
-			<Popover open={motivosOpen} onOpenChange={setMotivosOpen}>
-				<PopoverTrigger asChild>
-					<div className="flex w-32 h-10 items-center px-3 border border-slate-400 rounded-md bg-white">
-						<div className="flex flex-col w-full text-[10px] leading-3  justify-center ">
-							<span className="text-[10px] leading-3">Motivos</span>
-							<div className="">{motivosValue ? motivosList.find((motivos) => motivos.value === motivosValue)?.label : '---'}</div>
-						</div>
-						<CaretDown size={24} />
-					</div>
-				</PopoverTrigger>
-				<PopoverContent className="w-[200px] p-3 flex gap-5 flex-col">
-					{motivosList.map((motivos) => (
-						<div key={motivos.value} className="flex items-center space-x-2">
-							<Checkbox
-								className="border-gray-400"
-								id={motivos.value}
-								value={motivos.value}
-								checked={motivosValue === motivos.value}
-								onChange={(e) => {
-									const target = e.target as HTMLInputElement
-									const currentValue = target.value
-									setMotivosValue(currentValue === motivosValue ? '' : currentValue)
-									setMotivosOpen(false)
-								}}
-							/>
-							<label htmlFor={motivos.value} className="text-sm text-gray-700 font-medium leading-none">
-								{motivos.label}
-							</label>
-						</div>
-					))}
-				</PopoverContent>
-			</Popover>
-			<Button className="text-lg bg-[#104b94] h-10 px-3">Buscar</Button>
-		</div>
-	)
-}
 
 

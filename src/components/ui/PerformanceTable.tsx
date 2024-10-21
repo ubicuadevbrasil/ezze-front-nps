@@ -1,54 +1,11 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { QualityManagerPerformance } from '@/models/dashboardResponse'
 
-const performanceData = [
-	{
-		name: 'Courtney Henry',
-		alertCount: 994,
-		closedAlertPercentage: '100%',
-		closedIn48HoursPercentage: '80%',
-		averageClosingTime: '00:00:53',
-		delayedPercentage: '0,00%',
-		escalatedPercentage: '0,00%',
-	},
-	{
-		name: 'Ralph Edwards',
-		alertCount: 492,
-		closedAlertPercentage: '80%',
-		closedIn48HoursPercentage: '75%',
-		averageClosingTime: '00:00:53',
-		delayedPercentage: '0,00%',
-		escalatedPercentage: '0,00%',
-	},
-	{
-		name: 'Marvin McKinney',
-		alertCount: 536,
-		closedAlertPercentage: '70%',
-		closedIn48HoursPercentage: '80%',
-		averageClosingTime: '00:01:53',
-		delayedPercentage: '0,00%',
-		escalatedPercentage: '0,00%',
-	},
-	{
-		name: 'Jane Cooper',
-		alertCount: 703,
-		closedAlertPercentage: '70%',
-		closedIn48HoursPercentage: '60%',
-		averageClosingTime: '00:15:53',
-		delayedPercentage: '0,00%',
-		escalatedPercentage: '0,00%',
-	},
-	{
-		name: 'Guy Hawkins',
-		alertCount: 423,
-		closedAlertPercentage: '100%',
-		closedIn48HoursPercentage: '100%',
-		averageClosingTime: '01:15:53',
-		delayedPercentage: '0,00%',
-		escalatedPercentage: '0,00%',
-	},
-]
+interface PerformanceTableProps {
+	data: QualityManagerPerformance[]
+}
 
-export function PerformanceTable() {
+export function PerformanceTable({data}:PerformanceTableProps) {
 	return (
 		<Table>
 			<TableHeader className='bg-yellow-300 text-black rounded-2xl'>
@@ -63,15 +20,15 @@ export function PerformanceTable() {
 				</TableRow>
 			</TableHeader>
 			<TableBody>
-				{performanceData.map((data) => (
-					<TableRow key={data.name}>
-						<TableCell className="font-medium">{data.name}</TableCell>
-						<TableCell>{data.alertCount}</TableCell>
-						<TableCell>{data.closedAlertPercentage}</TableCell>
-						<TableCell>{data.closedIn48HoursPercentage}</TableCell>
-						<TableCell>{data.averageClosingTime}</TableCell>
-						<TableCell>{data.delayedPercentage}</TableCell>
-						<TableCell>{data.escalatedPercentage}</TableCell>
+				{data.map((items) => (
+					<TableRow key={items.name}>
+						<TableCell className="font-medium">{items.name}</TableCell>
+						<TableCell>{items.alertCount}</TableCell>
+						<TableCell>{items.closedPercent}</TableCell>
+						<TableCell>{items.closedIn48hPercent}</TableCell>
+						<TableCell>{items.avgClosingTime}</TableCell>
+						<TableCell>{items.delayedPercent}</TableCell>
+						<TableCell>{items.escalatedPercent}</TableCell>
 					</TableRow>
 				))}
 			</TableBody>

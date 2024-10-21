@@ -1,3 +1,5 @@
+import { DealsTable } from "@/models/dashboardResponse"
+
 const data = {
 	header: [
 		{ type: 'Novo', count: 3, color: 'bg-yellow-400' },
@@ -14,7 +16,7 @@ const data = {
 	],
 }
 
-const AlertTable = () => {
+const AlertTable = (data: DealsTable) => {
 	return (
 		<div className="rounded-sm overflow-x-auto">
 			<table className="min-w-full border-collapse border">
@@ -39,11 +41,11 @@ const AlertTable = () => {
 					{data.rows.map((row, idx) => (
 						<tr key={idx} className={`${idx % 2 === 0 ? 'bg-white' : 'bg-red-50'}`}>
 							<td className="border p-2 text-center font-semibold bg-indigo-50">{row.category}</td>
-							<td className="border p-2 text-center">{row.novo}</td>
-							<td className="border p-2 text-center">{row.vencido}</td>
-							<td className="border p-2 text-center">{row.escalado}</td>
-							<td className="border p-2 text-center">{row.andamento}</td>
-							<td className="border p-2 text-center">{row.concluido}</td>
+							<td className="border p-2 text-center">{row.new}</td>
+							<td className="border p-2 text-center">{row.overdue}</td>
+							<td className="border p-2 text-center">{row.escalated}</td>
+							<td className="border p-2 text-center">{row.ongoing}</td>
+							<td className="border p-2 text-center">{row.closed}</td>
 							<td className="border p-2 text-center font-bold">{row.total}</td>
 						</tr>
 					))}

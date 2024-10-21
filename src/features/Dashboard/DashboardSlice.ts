@@ -1,69 +1,52 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
+import { DashboardResponse } from '@/models/dashboardResponse'
+import { DashboardFilter } from '@/models/dashboardFilters'
 import { DashboardAPI } from './DashboardAPI'
 
-export interface Dashboard {
-	id: number
-	title: string // Renomeado de name para title
-	data: any // Ajuste o tipo de acordo com o que a API retorna
-	description: string
-}
-
+// Definindo a interface para o estado do slice
 interface DashboardState {
-	items: Dashboard[]
-	status: 'idle' | 'loading' | 'failed'
+	data: DashboardResponse | null
+	loading: boolean
+	error: string | null
 }
 
+// Estado inicial
 const initialState: DashboardState = {
-	items: [],
-	status: 'idle',
+	data: null,
+	loading: false,
+	error: null,
 }
 
-export const fetchDashboardsAsync = createAsyncThunk('Dashboard/fetchDashboards', async () => {
-	const response = await DashboardAPI.fetchAll()
-	return response.data as Dashboard[] // Assegure-se de que response.data seja um array de Dashboard
+// Ação assíncrona para buscar os dados do dashboard com filtros
+export const fetchDashboard = createAsyncThunk('dashboard/fetchDashboard', async (filters: DashboardFilter) => {
+	const response = await DashboardAPI.get(filters)
+	return response.data
 })
 
-export const createDashboardAsync = createAsyncThunk('Dashboard/createDashboard', async (newItem: Dashboard) => {
-	const response = await DashboardAPI.create(newItem)
-	return response.data as Dashboard // Assegure-se de que response.data seja um Dashboard válido
-})
-
-export const updateDashboardAsync = createAsyncThunk('Dashboard/updateDashboard', async (updatedItem: Dashboard) => {
-	const response = await DashboardAPI.update(updatedItem.id, updatedItem)
-	return response.data as Dashboard // Assegure-se de que response.data seja um Dashboard válido
-})
-
-export const deleteDashboardAsync = createAsyncThunk('Dashboard/deleteDashboard', async (id: number) => {
-	await DashboardAPI.delete(id)
-	return id
-})
-
-const DashboardSlice = createSlice({
-	name: 'Dashboard',
+// Slice do dashboard
+const dashboardSlice = createSlice({
+	name: 'dashboard',
 	initialState,
-	reducers: {},
+	reducers: {
+		// Você pode adicionar reducers comuns aqui se necessário
+	},
 	extraReducers: (builder) => {
 		builder
-			.addCase(fetchDashboardsAsync.pending, (state) => {
-				state.status = 'loading'
+			.addCase(fetchDashboard.pending, (state) => {
+				state.loading = true
+				state.error = null
 			})
-			.addCase(fetchDashboardsAsync.fulfilled, (state, action) => {
-				state.status = 'idle'
-				state.items = action.payload // Certifique-se de que action.payload é do tipo Dashboard[]
+			.addCase(fetchDashboard.fulfilled, (state, action: PayloadAction<DashboardResponse>) => {
+				state.loading = false
+				state.data = action.payload
 			})
-			.addCase(createDashboardAsync.fulfilled, (state, action) => {
-				state.items.push(action.payload)
-			})
-			.addCase(updateDashboardAsync.fulfilled, (state, action) => {
-				const index = state.items.findIndex((item) => item.id === action.payload.id)
-				if (index !== -1) {
-					state.items[index] = action.payload
-				}
-			})
-			.addCase(deleteDashboardAsync.fulfilled, (state, action) => {
-				state.items = state.items.filter((item) => item.id !== action.payload)
+			.addCase(fetchDashboard.rejected, (state, action) => {
+				state.loading = false
+				state.error = action.error.message || 'Failed to fetch dashboard data'
 			})
 	},
 })
 
-export default DashboardSlice.reducer
+// Exportando o reducer do slice
+export default dashboardSlice.reducer
+export type {DashboardState}

@@ -40,11 +40,7 @@ export const CLOSETHELOOP_API: API = {
 }
 export const DASHBOARD_API: API = {
 	BASE: `${env.VITE_API_URL}/dashboards`,
-	GET_ALL: `${env.VITE_API_URL}/dashboards`,
-	GET_BY_ID: (id: number) => `${env.VITE_API_URL}/dashboards/${id}`,
-	CREATE: `${env.VITE_API_URL}/dashboards`,
-	UPDATE: (id: number) => `${env.VITE_API_URL}/dashboards/${id}`,
-	DELETE: (id: number) => `${env.VITE_API_URL}/dashboards/${id}`,
+	GET: `${env.VITE_API_URL}/dashboards`,
 }
 export const PENDINGSEARCH_API: API = {
 	BASE: `${env.VITE_API_URL}/pendingsearchs`,
