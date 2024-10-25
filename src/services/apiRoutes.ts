@@ -13,13 +13,13 @@ export interface API {
 export const API_BASE_URL = env.VITE_API_URL
 
 export const AUTHENTICATION_API: API = {
-	BASE: `${env.VITE_API_URL}/api/auth`,
-	REGISTER: `${env.VITE_API_URL}/api/auth/register`,
-	LOGIN: `${env.VITE_API_URL}/api/auth/login`,
-	LOGOUT: `${env.VITE_API_URL}/api/auth/logout`,
-	GET_CURRENT_USER: `${env.VITE_API_URL}/api/auth/current-user`,
-	REFRESH_TOKEN: `${env.VITE_API_URL}/api/auth/refresh-token`,
-	REVOKE: `${env.VITE_API_URL}/api/auth/revoke`
+	BASE: `${env.VITE_API_URL}/api/user`,
+	REGISTER: `${env.VITE_API_URL}/api/user/register`,
+	LOGIN: `${env.VITE_API_URL}/api/user/login`,
+	LOGOUT: `${env.VITE_API_URL}/api/user/logout`,
+	GET_CURRENT_USER: `${env.VITE_API_URL}/api/user/current-user`,
+	REFRESH_TOKEN: `${env.VITE_API_URL}/api/user/refresh-token`,
+	REVOKE: `${env.VITE_API_URL}/api/user/revoke`
 }
 
 export const CLIENTDETAILS_API: API = {

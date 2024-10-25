@@ -7,8 +7,8 @@ interface RegisterDTO {
 	password: string
 }
 
-interface LoginDTO {
-	username: string
+interface SignInBody {
+	email: string
 	password: string
 }
 
@@ -17,8 +17,13 @@ const register = async (data: RegisterDTO) => {
 	return response.data
 }
 
-const login = async (data: LoginDTO) => {
-	const response = await axios.post(AUTHENTICATION_API.LOGIN as string, data)
+const login = async (data: SignInBody) => {
+	const response = await axios.post(`${AUTHENTICATION_API.LOGIN}` , {
+		username: "Xarlys",
+		email: data.email,
+		phoneNumber: "",
+		password: data.password
+	})
 	return response.data
 }
 

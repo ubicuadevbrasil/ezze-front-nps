@@ -13,6 +13,7 @@ import Attandants from "@/pages/Administrative/Attendants"
 import Tab from '@/pages/Administrative/Tab'
 import OpenCalls from '@/pages/Administrative/OpenCalls'
 import ServiceAnalyticalReport from '@/pages/Administrative/ServiceAnalyticalReport'
+import ProtectedRoute from './ProtectedRoute'
 
 export type CustomRoute = {
 	path: string
@@ -25,7 +26,7 @@ export type CustomRoute = {
 export const routes: CustomRoute[] = [
 	{
 		path: '/',
-		element: <Navigate to="/pendingSearch" replace />, // Redireciona automaticamente de "/" para "/pendingSearch"
+		element: <Navigate to="/closetheloop" replace />, // Redireciona automaticamente de "/" para "/pendingSearch"
 		isShowed: false, // Não mostramos no menu
 	},
 	{
@@ -45,16 +46,6 @@ export const routes: CustomRoute[] = [
 		label: 'Pesquisas pendentes',
 		isShowed: true,
 	},
-	/* {
-		path: '/pendingSearch',
-		element: (
-			<ProtectedRoute>
-				<PendingSearch />
-			</ProtectedRoute>
-		),
-		label: 'Pending Search',
-		isShowed: true,
-	}, */
 	{
 		path: '/clientDetails',
 		label: '',
@@ -64,7 +55,10 @@ export const routes: CustomRoute[] = [
 	{
 		path: '/closetheloop',
 		label: 'Close the loop',
-		element: <CloseTheLoop />,
+		// element: <CloseTheLoop />,
+		element: <ProtectedRoute>
+				<CloseTheLoop />
+			</ProtectedRoute>,
 		isShowed: true,
 	},
 	{
