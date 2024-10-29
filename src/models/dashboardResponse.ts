@@ -7,7 +7,7 @@ export interface DashboardResponse {
 	macroMicroIndicator?: MacroMicroIndicator[]
 	solutionIndicator?: SolutionIndicator[]
 	dealOrigin?: DealOrigin[]
-	satisfactionAfterContact?: SatisfactionAfterContact[]
+	satisfactionAfterContact?: DataPoint[]
 }
 
 export interface ClosedDeals48hOverTime {
@@ -76,7 +76,7 @@ export interface DealOrigin {
 	invalid: string
 }
 
-export interface SatisfactionAfterContact {
+export interface DataPoint {
 	month: string
 	yes: number
 	no: number

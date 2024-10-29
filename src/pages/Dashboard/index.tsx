@@ -15,6 +15,7 @@ import { useEffect, useState } from 'react'
 import { fetchDashboard } from '@/features/Dashboard/DashboardSlice'
 import { RootState } from '@/app/store'
 import { useAppDispatch } from '@/hooks/hooks'
+import { DataPoint, SatisfactionAfterContact } from '@/models/dashboardResponse'
 
 export default function Index() {
 	const dataTeste = {
@@ -107,7 +108,7 @@ export default function Index() {
 				</div>
 				<div className="w-full flex flex-col gap-5 bg-white rounded-xl p-4">
 					<p className="text-sm text-[#333946]">Percentual de Clientes satisfeitos após o contato:</p>
-					<DualBarChart data={data.dualBarChart?.data} />
+					<DualBarChart data={data?.satisfactionAfterContact as DataPoint} />
 				</div>
 			</main>
 		</BaseTemplate>

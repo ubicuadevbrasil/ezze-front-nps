@@ -1,17 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { routeObjects } from './routes'
+import { routeObjects } from './routes' // Import the converted routes
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/app/store';
+import { loadUserFromStorage } from '@/features/Authentication/AuthenticationSlice';
 
 const RoutesPage: React.FC = () => {
-	const renderRoutes = (routes: typeof routeObjects) => {
-		return routes.map((route, index) => (
-			<Route key={index} path={route.path} element={route.element}>
-				{route.children && renderRoutes(route.children)}
-			</Route>
-		))
-	}
+	const dispatch = useDispatch<AppDispatch>();
 
-	return <Routes>{renderRoutes(routeObjects)}</Routes>
+    useEffect(() => {
+        dispatch(loadUserFromStorage());
+    }, [dispatch]);
+
+	console.log('Routes are rendering')
+	return (
+		<Routes>
+			{routeObjects.map((route, index) => (
+				<Route key={index} path={route.path} element={route.element}>
+					{route.children?.map((childRoute, childIndex) => <Route key={childIndex} path={childRoute.path} element={childRoute.element} />)}
+				</Route>
+			))}
+		</Routes>
+	)
 }
+
 
 export default RoutesPage

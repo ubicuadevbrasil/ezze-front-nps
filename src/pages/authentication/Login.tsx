@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { login } from '@/features/Authentication/AuthenticationSlice'
 import { Eye, EyeSlash } from '@phosphor-icons/react'
 import { useDispatch } from 'react-redux'
+import { AppDispatch } from '@/app/store'
 
 const signInForm = z.object({
 	email: z.string().email(),
@@ -20,28 +21,12 @@ const Login: React.FC = () => {
 		formState: { isSubmitting },
 	} = useForm<SignInForm>()
 	const [visible, setVisible] = useState(false)
-	const dispatch = useDispatch()
+	const dispatch = useDispatch<AppDispatch>()
+	const navigate = useNavigate()
 
 	const handleLogin = async (data: SignInForm) => {
-		try {
-			await new Promise((resolve) => setTimeout(resolve, 2000))
-
-			const response = await dispatch(login({ username: data.email, password: data.password }) as any)
-
-			if (response.meta.requestStatus === 'fulfilled') {
-				const { token, refreshToken } = response.payload // Adjust this according to your API response
-				console.log('Token:', token)
-				console.log('Refresh Token:', refreshToken)
-
-				// Save to localStorage
-				localStorage.setItem('token', token)
-				localStorage.setItem('refreshToken', refreshToken)
-			} else {
-				console.error('Error dispatching action:', response.error)
-			}
-		} catch (error) {
-			console.error('Login error:', error)
-		}
+			await dispatch(login({ email: data.email, password: data.password }))
+			navigate('/closetheloop')
 	}
 
 	return (
@@ -66,7 +51,7 @@ const Login: React.FC = () => {
 						{visible ? <EyeSlash size={24} /> : <Eye size={24} />}
 					</button>
 				</div>
-				<Link to={'/recover-password'} className="hover:text-blue-500 transition-colors duration-300 text-xs text-[#1E3868] md:bg-transparent block pl-3 pr-4 py-2 md:text-black md:p-0 rounded focus:outline-none">
+				<Link to={'/auth/recover-password'} className="hover:text-blue-500 transition-colors duration-300 text-xs text-[#1E3868] md:bg-transparent block pl-3 pr-4 py-2 md:text-black md:p-0 rounded focus:outline-none">
 					Esqueci minha senha
 				</Link>
 				<button disabled={isSubmitting} className="w-full flex justify-center py-2 bg-[#365DA5] text-white font-semibold rounded disabled:opacity-60">

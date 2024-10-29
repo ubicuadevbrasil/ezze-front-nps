@@ -49,16 +49,6 @@ export const routes: CustomRoute[] = [
 		label: 'Pesquisas pendentes',
 		isShowed: true,
 	},
-	/* {
-		path: '/pendingSearch',
-		element: (
-			<ProtectedRoute>
-				<PendingSearch />
-			</ProtectedRoute>
-		),
-		label: 'Pending Search',
-		isShowed: true,
-	}, */
 	{
 		path: '/clientDetails',
 		label: '',
@@ -69,6 +59,9 @@ export const routes: CustomRoute[] = [
 		path: '/closetheloop',
 		label: 'Close the loop',
 		element: <CloseTheLoop />,
+		/* element: <ProtectedRoute>
+				<CloseTheLoop />
+			</ProtectedRoute>, */
 		isShowed: true,
 	},
 	{

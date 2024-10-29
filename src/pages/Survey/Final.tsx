@@ -1,10 +1,8 @@
 import { TemplatePage } from './TemplatePage'
-import { useNavigate } from 'react-router-dom'
 import ImageSurvey from '@/assets/ImageSurvey.svg'
 
 
 function Final() {
-	const navigate = useNavigate()
 
 	return (
 		<TemplatePage>

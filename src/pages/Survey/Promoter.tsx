@@ -2,7 +2,6 @@ import { Button } from '@/components/ui/button'
 import { useCallback, useState } from 'react'
 import { TemplatePage } from './TemplatePage'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { PromoterAPI } from '@/features/Survey/SurveyAPI'
 
 type IPedingSearch = {
 	idAssistencia: string
@@ -36,14 +35,14 @@ function Promoter
 
 	const handleSubmit = useCallback(
 	  () => {
-		const date = {
+		/* const date = {
 			name: surveyData.client.nome,
 			id: surveyData.client.idAssistencia,
 			ratingCenterServiceSelected: RatingCenterServiceSelected,
 			ratingAttendantsSelected: RattingAttendantsSelected,
 			ratingTimeToBeServedSelected: RattingTimeToBeServedSelected,
 			ratting: surveyData.ratting
-		}
+		} */
 
 		navigate('/survey/final')
 

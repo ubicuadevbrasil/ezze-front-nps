@@ -4,6 +4,7 @@ import Authentication from "../../assets/Authentication.svg";
 import Logo from "../../assets/Logo.svg";
 
 const AuthenticationLayout: React.FC = () => {
+
   return (
     <div className="w-screen h-screen flex flex-col lg:flex-row justify-center">
       <div className="flex flex-col w-full h-full justify-center items-center relative z-10">
