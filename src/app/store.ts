@@ -3,12 +3,14 @@ import { configureStore } from '@reduxjs/toolkit'
 import authReducer from '@/features/Authentication/AuthenticationSlice'
 import chatReducer from '@/features/chat/chatSlice'
 import dashboardReducer from "@/features/Dashboard/DashboardSlice"
+import openConversationsReducer from "@/features/OpenConversations/OpenConversationsSlice"
 
 const store = configureStore({
 	reducer: {
 		auth: authReducer,
 		chat: chatReducer,
-		dashboard: dashboardReducer
+		dashboard: dashboardReducer,
+		openConversations: openConversationsReducer
 	},
 })
 

@@ -64,3 +64,14 @@ export const MESSAGE_API: API = {
 	POST_MESSAGES: `${env.VITE_API_URL}/api/messages/send`,
 	POST_MESSAGES_SINGLE: `${env.VITE_API_URL}/api/messages/single/send`,
 }
+
+export const CONVERSATIONS = {
+	BASE: `${env.VITE_API_URL}/api/conversations`,
+	GET_CONVERSATIONS: `${env.VITE_API_URL}/api/conversations`,
+	GET_OPEN_CONVERSATIONS : `/api/conversations/open`
+}
+
+export const SURVEY_API = {
+	BASE: `${env.VITE_API_URL}/api/surveys`,
+	postPromoter: `${env.VITE_API_URL}/api/surveys/promoter`,
+}

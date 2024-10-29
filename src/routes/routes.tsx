@@ -13,6 +13,10 @@ import Attandants from "@/pages/Administrative/Attendants"
 import Tab from '@/pages/Administrative/Tab'
 import OpenCalls from '@/pages/Administrative/OpenCalls'
 import ServiceAnalyticalReport from '@/pages/Administrative/ServiceAnalyticalReport'
+import Survey from '@/pages/Survey'
+import { Detractor } from '@/pages/Survey/Detractor'
+import { Promoter } from '@/pages/Survey/Promoter'
+import { Final } from '@/pages/Survey/Final'
 
 export type CustomRoute = {
 	path: string
@@ -25,8 +29,8 @@ export type CustomRoute = {
 export const routes: CustomRoute[] = [
 	{
 		path: '/',
-		element: <Navigate to="/pendingSearch" replace />, // Redireciona automaticamente de "/" para "/pendingSearch"
-		isShowed: false, // Não mostramos no menu
+		element: <Navigate to="/pendingSearch" replace />,
+		isShowed: false,
 	},
 	{
 		path: '/auth',
@@ -77,6 +81,23 @@ export const routes: CustomRoute[] = [
 		path: '/userAlerts',
 		element: <UserAlerts />,
 		isShowed: false,
+	},
+	{
+		path: '/survey/*',
+		label: '',
+		element: <Survey />,
+		isShowed: false,
+		children: [
+			{
+				path: 'detractor', element: <Detractor/>
+			},
+			{
+				path: 'promoter', element: <Promoter/>
+			},
+			{
+				path: 'final', element: <Final/>
+			}
+		]
 	},
 	{
 		path: '/',

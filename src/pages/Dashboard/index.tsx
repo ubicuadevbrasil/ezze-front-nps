@@ -107,7 +107,7 @@ export default function Index() {
 				</div>
 				<div className="w-full flex flex-col gap-5 bg-white rounded-xl p-4">
 					<p className="text-sm text-[#333946]">Percentual de Clientes satisfeitos após o contato:</p>
-					<DualBarChart data={data.dualBarChart.data} />
+					<DualBarChart data={data.dualBarChart?.data} />
 				</div>
 			</main>
 		</BaseTemplate>

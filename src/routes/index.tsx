@@ -1,19 +1,17 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { routeObjects } from './routes' // Import the converted routes
+import { routeObjects } from './routes'
 
 const RoutesPage: React.FC = () => {
-	console.log('Routes are rendering')
-	return (
-		<Routes>
-			{routeObjects.map((route, index) => (
-				<Route key={index} path={route.path} element={route.element}>
-					{route.children?.map((childRoute, childIndex) => <Route key={childIndex} path={childRoute.path} element={childRoute.element} />)}
-				</Route>
-			))}
-		</Routes>
-	)
-}
+	const renderRoutes = (routes: typeof routeObjects) => {
+		return routes.map((route, index) => (
+			<Route key={index} path={route.path} element={route.element}>
+				{route.children && renderRoutes(route.children)}
+			</Route>
+		))
+	}
 
+	return <Routes>{renderRoutes(routeObjects)}</Routes>
+}
 
 export default RoutesPage

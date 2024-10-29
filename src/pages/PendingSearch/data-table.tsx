@@ -76,7 +76,7 @@ export function DataTable<TData extends IPedingSearch>({ columns, data }: DataTa
 												{cell.column.id === 'dataPrimeroDisparo' && cellValue instanceof Date ? (
 													cellValue.toLocaleDateString()
 												) : cell.column.id === 'conversa' ? (
-													<Button className="bg-[#104b94] border-0 w-full px-5 py-1" variant={'outline'} onClick={() => handleOpenChat(row.original)}>
+													<Button className="bg-[#104b94] border-0 w-full px-5 py-1 hover:bg-slate-500" variant={'outline'} onClick={() => handleOpenChat(row.original)}>
 														<Chat color="#f1f1f1" size={20} />
 													</Button>
 												) : cell.column.id === 'tentativaContato' ? (

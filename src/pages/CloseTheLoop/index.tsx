@@ -3,6 +3,7 @@ import { BaseTemplate } from '../layouts/BaseTemplate'
 import SearchBar from './SearchBar'
 import { DataTable } from './dataTable'
 import { columns, ICloseTheLoop } from './columns'
+import OpenConversations from '@/components/ui/OpenConversations'
 
 async function getData(): Promise<ICloseTheLoop[]> {
 	const closeTheLoopData: ICloseTheLoop[] = [
@@ -123,6 +124,7 @@ const Index: React.FC = () => {
 			<div className="px-5 pt-2 pb-10 bg-white">
 				<DataTable columns={columns} data={data} />
 			</div>
+			<OpenConversations/>
 		</BaseTemplate>
 	)
 }
