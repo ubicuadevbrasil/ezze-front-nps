@@ -7,10 +7,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Button } from './button'
 import { Popover } from '@radix-ui/react-popover'
 import { PopoverContent, PopoverTrigger } from './popover'
-import { useNavigate } from 'react-router-dom'
+import { match } from 'assert'
+import { DetractorAPI, PromoterAPI } from '@/features/Survey/SurveyAPI'
 
 const MiniChat: React.FC = () => {
-	const navigate = useNavigate()
 	const currentChat = useSelector((state: RootState) => selectCurrentChat(state))
 	// const messages = useSelector((state: RootState) => selectMessagesByPhone(currentChat?.telefone || 0)(state))
 	const isOpen = useSelector(selectIsChatOpen)
@@ -52,12 +52,22 @@ const MiniChat: React.FC = () => {
 			JSON.stringify({
 				client: currentChat,
 				attendant: 'Atendente teste',
-				timestamp: new Date().getTime(), 
+				timestamp: new Date().getTime(),
 			})
 		)
 
 		// Abre nova guia apenas com o ID
 		window.open(`${window.location.origin}/survey?id=${surveyId}`, '_blank')
+	}
+
+	const handleResendSearch = () => {
+		switch(currentChat?.tipo){
+			case 'Detrator':
+				DetractorAPI.postResendSearch(currentChat)
+				break
+			case 'Promotor':
+				PromoterAPI.postResendSearch(currentChat)
+		}
 	}
 
 	return (
@@ -82,7 +92,7 @@ const MiniChat: React.FC = () => {
 								<Button variant={'ghost'} className="w-full" onClick={handleSurvey}>
 									<p className="w-full text-left">Responder pesquisa</p>
 								</Button>
-								<Button variant={'ghost'} className="w-full">
+								<Button variant={'ghost'} onClick={handleResendSearch} className="w-full">
 									<p className="w-full text-left">Reenviar pesquisa</p>
 								</Button>
 								<Button variant={'ghost'} className="w-full ">

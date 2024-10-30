@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { DatePickerWithRange } from './DatePickerWithRange'
 import { Button } from './button'
-import { Input } from './input'
 
 const FilterSearchBarPendingSearch: React.FC = () => {
 	const [IdAssistencia, setIdAssistencia] = useState<string>('')
@@ -23,9 +22,6 @@ const FilterSearchBarPendingSearch: React.FC = () => {
 				<label htmlFor="client_company" className=''>CIA Cliente</label>
 				<input id='client_company' className="w-full outline-none" placeholder="---" value={CiaCliente} onChange={(e) => setCiaCliente(e.target.value)} />
 			</div>
-			<Input className="w-32 border-slate-400" placeholder="Id da assistencia" value={IdAssistencia} onChange={(e) => setIdAssistencia(e.target.value)} />
-			<Input className="w-32 border-slate-400" placeholder="Nome do cliente" value={NomeCliente} onChange={(e) => setNomeCliente(e.target.value)} />
-			<Input className="w-32 border-slate-400" placeholder="CIA Cliente" value={CiaCliente} onChange={(e) => setCiaCliente(e.target.value)} />
 			<Button className="text-lg bg-[#104b94] h-10 px-3">Buscar</Button>
 		</div>
 	)

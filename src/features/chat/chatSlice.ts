@@ -12,6 +12,7 @@ export type IPedingSearch = {
 	submit: 'Sim' | 'Não'
 	tentativaContato: object
 	conversa: object
+	tipo: "Promotor" | "Detrator"
 }
 
 interface ChatState {
