@@ -64,4 +64,7 @@ export const CONVERSATIONS = {
 export const SURVEY_API = {
 	BASE: `${env.VITE_API_URL}/api/surveys`,
 	postPromoter: `${env.VITE_API_URL}/api/surveys/promoter`,
+	postDetractor: `${env.VITE_API_URL}/api/surveys/detractor`,
+	postPromoterResendSearch:`${env.VITE_API_URL}/api/surveys/resendSearchPromoter`,
+	postDetractorResendSearch:`${env.VITE_API_URL}/api/surveys/resendSearchDetractor`
 }

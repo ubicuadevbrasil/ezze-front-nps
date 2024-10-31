@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { TemplatePage } from './TemplatePage'
 import { useLocation, useNavigate } from 'react-router-dom'
 
@@ -32,6 +32,7 @@ function Promoter
 	const [RatingCenterServiceSelected, setRatingCenterServiceSelected] = useState<number>()
 	const [RattingAttendantsSelected, setRattingAttendantsSelected] = useState<number>()
 	const [RattingTimeToBeServedSelected, setRattingTimeToBeServedSelected] = useState<number>()
+	const [isDisableSubmit, setIsDisableSubmit] = useState(true)
 
 	const handleSubmit = useCallback(
 	  () => {
@@ -56,6 +57,11 @@ function Promoter
 	)
 
 
+	useEffect(() => {
+		if (RattingAttendantsSelected && RatingCenterServiceSelected && RattingTimeToBeServedSelected) setIsDisableSubmit(false)
+		else setIsDisableSubmit(true)
+	}, [RattingAttendantsSelected, RatingCenterServiceSelected, RattingTimeToBeServedSelected])
+
 	return (
 		<TemplatePage>
 			<div className="flex flex-col gap-5 bg-white rounded-xl p-5">
@@ -76,7 +82,7 @@ function Promoter
 
 					<RatingScale onSelect={setRattingTimeToBeServedSelected} selected={RattingTimeToBeServedSelected as number} />
 				</div>
-				<Button className="bg-[#365da5]" onClick={handleSubmit}>Enviar</Button>
+				<Button className="bg-[#365da5]" disabled={isDisableSubmit} onClick={handleSubmit}>Enviar</Button>
 			</div>
 		</TemplatePage>
 	)
@@ -97,8 +103,7 @@ export const RatingScale = ({ onSelect, selected }: RatingScaleProps) => {
 	]
 
 	return (
-		<div className="flex flex-col justify-center items-center">
-			<div className="flex gap-2">
+		<div className="flex gap-2 justify-center items-center">
 				{ratings.map((rating) => (
 					<Button
 						key={rating.label}
@@ -116,7 +121,6 @@ export const RatingScale = ({ onSelect, selected }: RatingScaleProps) => {
 						{rating.label}
 					</Button>
 				))}
-			</div>
 		</div>
 	)
 }
