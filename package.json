@@ -7,7 +7,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-	"start": "npm run dev"
+    "start": "npm run dev"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -21,6 +21,7 @@
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.2",
     "@reduxjs/toolkit": "^2.2.7",
+    "@tanstack/react-query": "^5.59.16",
     "@tanstack/react-table": "^8.19.3",
     "apexcharts": "^3.52.0",
     "axios": "^1.7.7",

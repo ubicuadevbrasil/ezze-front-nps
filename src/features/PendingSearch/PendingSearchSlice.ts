@@ -8,7 +8,7 @@ export interface PendingSearch {
 }
 
 interface PendingSearchState {
-	items: PendingSearch[]
+	items?: PendingSearch[]
 	status: 'idle' | 'loading' | 'failed'
 }
 
@@ -18,8 +18,13 @@ const initialState: PendingSearchState = {
 }
 
 export const fetchPendingSearchsAsync = createAsyncThunk('PendingSearch/fetchPendingSearchs', async () => {
-	const response = await PendingSearchAPI.fetchAll()
-	return response.data as PendingSearch[] // Assegure-se de que response.data seja um array de PendingSearch
+	try {
+		const response = await PendingSearchAPI.fetchAll()
+		return response.data as PendingSearch[] // Assegure-se de que response.data seja um array de PendingSearch
+		
+	}catch (error: any) {
+		console.log(error.messages);
+	}
 })
 
 export const createPendingSearchAsync = createAsyncThunk('PendingSearch/createPendingSearch', async (newItem: PendingSearch) => {
@@ -51,16 +56,16 @@ const PendingSearchSlice = createSlice({
 				state.items = action.payload
 			})
 			.addCase(createPendingSearchAsync.fulfilled, (state, action) => {
-				state.items.push(action.payload)
+				state.items?.push(action.payload)
 			})
 			.addCase(updatePendingSearchAsync.fulfilled, (state, action) => {
-				const index = state.items.findIndex((item) => item.id === action.payload.id)
-				if (index !== -1) {
+				const index = state.items?.findIndex((item) => item.id === action.payload.id)
+				if (index !== -1 && index && state.items) {
 					state.items[index] = action.payload
 				}
 			})
 			.addCase(deletePendingSearchAsync.fulfilled, (state, action) => {
-				state.items = state.items.filter((item) => item.id !== action.payload)
+				state.items = state.items?.filter((item) => item.id !== action.payload)
 			})
 	},
 })

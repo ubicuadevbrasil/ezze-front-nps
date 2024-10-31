@@ -9,9 +9,38 @@ import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { SetURLSearchParams } from 'react-router-dom'
 
-export function DatePickerWithRange({ className }: React.HTMLAttributes<HTMLDivElement>) {
+interface DataPickerProps {
+	className: string
+	setSearchParams: SetURLSearchParams
+}
+
+export function DatePickerWithRange({ className, setSearchParams }: DataPickerProps) {
 	const [date, setDate] = React.useState<DateRange | undefined>()
+	console.log(date)
+	function handleSearchParams(date: DateRange | undefined) {
+		setSearchParams(prev => {
+			if(date && date.from) {
+				prev.set('dateFrom', format(date.from, 'yyyy-MM-dd'))
+			} else {
+				prev.delete('dateFrom')
+			}
+
+			if(date &&  date.to) {
+				prev.set('dateTo', format(date.to, 'yyyy-MM-dd'))
+			} else {
+				prev.delete('dateTo')
+			}
+
+			return prev
+		})
+	}
+
+	React.useEffect(() => {
+			handleSearchParams(date)
+	}, [date])
+
 
 	return (
 		<div className={cn('grid gap-2', className)}>
