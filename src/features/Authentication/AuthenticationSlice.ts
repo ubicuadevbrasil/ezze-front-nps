@@ -37,7 +37,7 @@ const initialState: AuthenticationState = {
 }
 
 // Async thunks
-export const login = createAsyncThunk('user/login', async (data: SignInBody, rejectWithValue) => {
+export const login = createAsyncThunk('user/login', async (data: SignInBody) => {
 	try{
 		const response = await axios.post(AUTHENTICATION_API.LOGIN, {
 			username: "Xarlys",
