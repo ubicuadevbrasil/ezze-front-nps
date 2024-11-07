@@ -70,6 +70,8 @@ const MiniChat: React.FC = () => {
 		}
 	}
 
+	if(!currentChat) return
+
 	return (
 		<div className={`fixed z-10 bottom-0 right-5 w-80 ${isOpen ? 'h-96' : 'h-10'} transition-all duration-300 ease-in-out`}>
 			{showBar && (
