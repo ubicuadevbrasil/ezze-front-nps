@@ -7,6 +7,10 @@ import { useEffect, useState } from "react"
 import { DashboardFilter } from "@/models/dashboardFilters"
 import { useAppDispatch } from "@/hooks/hooks"
 import { fetchDashboard } from "@/features/Dashboard/DashboardSlice"
+import { SetURLSearchParams } from "react-router-dom"
+import { DashboardResponse } from "@/models/dashboardResponse"
+import { DashboardAPI } from "@/features/Dashboard/DashboardAPI"
+import { useQuery } from "@tanstack/react-query"
 
 const ciaList = [
 	{
@@ -57,22 +61,22 @@ export const FilterSearchBar: React.FC = () => {
 	const [negociosValue, setNegociosValue] = useState('')
 	const [motivosOpen, setMotivosOpen] = useState(false)
 	const [motivosValue, setMotivosValue] = useState('')
+	const [datePicker, setDatePicker] = useState<SetURLSearchParams>()
 
-	// Estado local para os filtros
-	const [filters, setFilters] = useState<DashboardFilter>({
-		closedDeals48hPercent: undefined,
-		dealOrigins: undefined,
-	})
-
-	const dispatch = useAppDispatch()
-
-	useEffect(() => {
-		dispatch(fetchDashboard(filters))
-	}, [dispatch, filters])
+	useQuery<DashboardResponse>(
+		{ queryKey: ['searchDashboard'],
+		queryFn: () =>
+			DashboardAPI.post({
+				cia: ciaValue,
+				negocio: negociosValue,
+				motivo: motivosValue,
+				data: datePicker as SetURLSearchParams,
+			}).then((res) => res.data)}
+	)
 
 	return (
 		<div className="px-5 py-3 w-full gap-2 flex flex-row items-center justify-end">
-			<DatePickerWithRange className="border-slate-400" />
+			<DatePickerWithRange className="border-slate-400" setSearchParams={setDatePicker as SetURLSearchParams} />
 			{/* Cia */}
 			<Popover open={ciaOpen} onOpenChange={setCiaOpen}>
 				<PopoverTrigger asChild>
@@ -177,8 +181,5 @@ export const FilterSearchBar: React.FC = () => {
 			<Button className="text-lg bg-[#104b94] h-10 px-3">Buscar</Button>
 		</div>
 	)
-}
-function dispatch(arg0: any) {
-	throw new Error("Function not implemented.")
 }
 

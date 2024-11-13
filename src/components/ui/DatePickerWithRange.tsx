@@ -18,7 +18,6 @@ interface DataPickerProps {
 
 export function DatePickerWithRange({ className, setSearchParams }: DataPickerProps) {
 	const [date, setDate] = React.useState<DateRange | undefined>()
-	console.log(date)
 	function handleSearchParams(date: DateRange | undefined) {
 		setSearchParams(prev => {
 			if(date && date.from) {

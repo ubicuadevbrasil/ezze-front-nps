@@ -9,13 +9,9 @@ import { MacroMicroTable } from '@/components/ui/MacroMicroTable'
 import { AlertProcedureTable } from '@/components/ui/AlertProcedureTable'
 import { BaseTemplate } from '../layouts/BaseTemplate'
 import { FilterSearchBar } from '@/components/ui/FilterBarDashboard'
-import { useDispatch, useSelector } from 'react-redux'
-import { DashboardFilter } from '@/models/dashboardFilters'
-import { useEffect, useState } from 'react'
-import { fetchDashboard } from '@/features/Dashboard/DashboardSlice'
-import { RootState } from '@/app/store'
-import { useAppDispatch } from '@/hooks/hooks'
-import { DataPoint, SatisfactionAfterContact } from '@/models/dashboardResponse'
+import { DashboardResponse, DataPoint } from '@/models/dashboardResponse'
+import { useQuery } from '@tanstack/react-query'
+import { Spinner } from '@/components/ui/Spinner'
 
 export default function Index() {
 	const dataTeste = {
@@ -56,7 +52,29 @@ export default function Index() {
 			},
 		},
 	}
-	const { data, loading, error } = useSelector((state: RootState) => state.dashboard)
+	const { data, error, isLoading } = useQuery<DashboardResponse>({queryKey:['searchDashboard']})
+
+	if(error){
+		return (
+			<BaseTemplate>
+			<FilterSearchBar />
+			<main className="flex flex-col items-center gap-4 mt-2 mb-6 w-full py-4 px-10">
+				Erro: {error.message}
+			</main>
+			</BaseTemplate>
+		)
+	}
+
+	if (isLoading){
+		return (
+			<BaseTemplate>
+				<FilterSearchBar />
+				<main className="flex flex-col items-center gap-4 mt-2 mb-6 w-full py-4 px-10">
+					<Spinner/>
+				</main>
+			</BaseTemplate>
+		)
+	}
 
 	return (
 		<BaseTemplate>
@@ -108,7 +126,7 @@ export default function Index() {
 				</div>
 				<div className="w-full flex flex-col gap-5 bg-white rounded-xl p-4">
 					<p className="text-sm text-[#333946]">Percentual de Clientes satisfeitos após o contato:</p>
-					<DualBarChart data={data?.satisfactionAfterContact as DataPoint} />
+					<DualBarChart data={data?.satisfactionAfterContact as DataPoint[]} />
 				</div>
 			</main>
 		</BaseTemplate>
