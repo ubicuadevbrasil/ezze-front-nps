@@ -6,8 +6,8 @@ import { DASHBOARD_API } from '@/services/apiRoutes'
 
 
 export const DashboardAPI = {
-	post: (filters: DashboardFilter) => {
-		return apiClient.post<DashboardResponse>(DASHBOARD_API.BASE, {
+	get: (filters: DashboardFilter) => {
+		return apiClient.get<DashboardResponse>(DASHBOARD_API.BASE, {
 			params: filters})
 	},
 }

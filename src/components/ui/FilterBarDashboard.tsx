@@ -61,22 +61,24 @@ export const FilterSearchBar: React.FC = () => {
 	const [negociosValue, setNegociosValue] = useState('')
 	const [motivosOpen, setMotivosOpen] = useState(false)
 	const [motivosValue, setMotivosValue] = useState('')
-	const [datePicker, setDatePicker] = useState<SetURLSearchParams>()
+	const [DateStart, setDataStart] = useState<Date>()
+	const [DateEnd, setDataEnd] = useState<Date>()
 
 	useQuery<DashboardResponse>(
 		{ queryKey: ['searchDashboard'],
 		queryFn: () =>
-			DashboardAPI.post({
+			DashboardAPI.get({
 				cia: ciaValue,
 				negocio: negociosValue,
 				motivo: motivosValue,
-				data: datePicker as SetURLSearchParams,
+				dataStart: DateStart as Date,
+				dataEnd: DateEnd as Date,
 			}).then((res) => res.data)}
 	)
 
 	return (
 		<div className="px-5 py-3 w-full gap-2 flex flex-row items-center justify-end">
-			<DatePickerWithRange className="border-slate-400" setSearchParams={setDatePicker as SetURLSearchParams} />
+			<DatePickerWithRange className="border-slate-400" setEnd={setDataEnd} setStart={setDataStart} />
 			{/* Cia */}
 			<Popover open={ciaOpen} onOpenChange={setCiaOpen}>
 				<PopoverTrigger asChild>

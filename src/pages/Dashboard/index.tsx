@@ -129,6 +129,7 @@ export default function Index() {
 					<DualBarChart data={data?.satisfactionAfterContact as DataPoint[]} />
 				</div>
 			</main>
+
 		</BaseTemplate>
 	)
 }
