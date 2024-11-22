@@ -41,7 +41,7 @@ export default function Index() {
 	}
 
 	return (
-		<div className="flex flex-col min-h-screen bg-slate-300">
+		<div className="flex flex-col min-h-screen bg-white">
 			<NavBar />
 			<Toaster />
 			<nav className="flex text-[#333946] bg-white h-20 items-center justify-between pl-8 pr-3">
