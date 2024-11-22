@@ -29,17 +29,19 @@ export interface GetClientsQuery {
   clientCia?: string | null
   assistanceId?: string | null
   dateFrom?: string | null
-  dateTo?: string | null
+	dateTo?: string | null
 }
 
-export async function getClients({pageNumber, pageSize, clientName, clientCia, assistanceId}: GetClientsQuery) {
-  const response = await apiClient.get<GetClientsResponse>('/getAllByPagination', {
+export async function getPendingSearch({pageNumber, pageSize, clientName, clientCia, assistanceId, dateFrom, dateTo}: GetClientsQuery) {
+  const response = await apiClient.get<GetClientsResponse>('/get-pending-search', {
     params: {
       pageNumber,
       pageSize,
       clientName,
       clientCia,
-      assistanceId
+      assistanceId,
+      dateFrom,
+      dateTo,
     }
   })
 

@@ -1,33 +1,26 @@
-import { useEffect, useState } from 'react'
-import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table'
+import { ColumnDef } from '@tanstack/react-table'
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
 import { Chat } from '@phosphor-icons/react'
-import { useDispatch } from 'react-redux'
 import { IPedingSearch } from './columns'
-import { setCurrentChat } from '@/features/chat/chatSlice'
 import Pagination from '@/components/ui/PaginationItem' // Ajuste o caminho se necessário
-import { SetURLSearchParams, useNavigate, useSearchParams } from 'react-router-dom'
-import { fetchPendingSearchsAsync } from '@/features/PendingSearch/PendingSearchSlice'
-import { AppDispatch } from '@/app/store'
-import { useQuery } from '@tanstack/react-query'
-import { getClients, GetClientsResponse } from '../api/get-clients'
+import { SetURLSearchParams } from 'react-router-dom'
+import { GetClientsResponse } from '../api/get-clients'
 import { format } from 'date-fns'
-import { z } from 'zod'
 
 interface DataTableProps<TableCellata> {
 	columns: ColumnDef<TableCellata>[]
 	result?: GetClientsResponse
-	clientName?: string
-	clientCia?: string
-	assistanceId?: string
+	// clientName?: string
+	// clientCia?: string
+	// assistanceId?: string
 	setSearchParams: SetURLSearchParams
 }
 
-export function DataTable<TableCellata extends IPedingSearch>({ columns, result, setSearchParams, clientCia, clientName, assistanceId }: DataTableProps<TableCellata>) {
-	const dispatch = useDispatch<AppDispatch>()
-	const navigate = useNavigate()
+export function DataTable<TableCellata extends IPedingSearch>({ columns, result, setSearchParams }: DataTableProps<TableCellata>) {
+	// const dispatch = useDispatch<AppDispatch>()
+	// const navigate = useNavigate()
 	// const [currentPage, setCurrentPage] = useState(1)
 	// const itemsPerPage = 7 // Exibir no máximo 7 itens por página
 
@@ -48,13 +41,13 @@ export function DataTable<TableCellata extends IPedingSearch>({ columns, result,
 	// 	getCoreRowModel: getCoreRowModel(),
 	// })
 
-	const handleButtonClick = (data: IPedingSearch) => {
-		navigate('clienTableCelletails', { state: data })
-	}
+	// const handleButtonClick = (data: IPedingSearch) => {
+	// 	navigate('clienTableCelletails', { state: data })
+	// }
 
-	const handleOpenChat = (dataFone: IPedingSearch) => {
-		dispatch(setCurrentChat(dataFone))
-	}
+	// const handleOpenChat = (dataFone: IPedingSearch) => {
+	// 	dispatch(setCurrentChat(dataFone))
+	// }
 
 	function handlePagination(pageNumber: number){
 		setSearchParams(prev => {
@@ -75,9 +68,10 @@ export function DataTable<TableCellata extends IPedingSearch>({ columns, result,
 					<TableHeader>
 							<TableRow>
 									<TableHead>ID da Assistência</TableHead>
-									<TableHead>Nome do CLiente</TableHead>
+									<TableHead>Nome do Cliente</TableHead>
 									<TableHead>CIA Cliente</TableHead>
-									<TableHead>Telefone do CLiente</TableHead>
+									<TableHead>Telefone do Cliente</TableHead>
+									<TableHead>N° de assistência</TableHead>
 									<TableHead>Data do primeiro disparo</TableHead>
 									<TableHead>Tipo de Serviço</TableHead>
 									<TableHead>Formato (E-mail ou SMS)</TableHead>

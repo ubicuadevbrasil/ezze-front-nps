@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { BaseTemplate } from '../layouts/BaseTemplate'
-import { IPedingSearch, columns } from './columns'
+import { columns } from './columns'
 import { DataTable } from './data-table'
 import MiniChat from '@/components/ui/MiniChat'
 import FilterSearchBar from '@/components/ui/FilterSearchBarPendingSearch'
 import { z } from 'zod'
 import { useQuery } from '@tanstack/react-query'
-import { getClients } from '../api/get-clients'
+import { getPendingSearch } from '../api/get-clients'
 import { useSearchParams } from 'react-router-dom'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
@@ -130,15 +130,22 @@ const filterForm = z.object({
 
 export type FilterForm = z.infer<typeof filterForm>
 
+export interface DateProps {
+	dateFrom: string | null
+	dateTo: string | null
+}
+
 const Index: React.FC = () => {
 
 	const [searchParams, setSearchParams] = useSearchParams()
+	const [date, setDate] = useState<DateProps>({dateFrom: null, dateTo: null})
 
 	const clientName = searchParams.get('clientName')
 	const clientCia = searchParams.get('clientCia')
 	const assistanceId = searchParams.get('assistanceId')
-	const dateFrom = searchParams.get('dateFrom')
-	const dateTo = searchParams.get('dateTo')
+	const dateFrom = date.dateFrom
+	const dateTo = date.dateTo
+
 
 	const {
 		register,
@@ -156,8 +163,8 @@ const Index: React.FC = () => {
 	const pageSize = 7
 
 	const { data: result } = useQuery({
-		queryKey: ['clients', pageNumber, pageSize, clientName, clientCia, assistanceId, dateFrom, dateTo],
-		queryFn: () => getClients({pageNumber, pageSize, clientName, clientCia, assistanceId }),
+		queryKey: ['clients', pageNumber, pageSize, clientName, clientCia, assistanceId, dateFrom, dateTo ],
+		queryFn: () => getPendingSearch({pageNumber, pageSize, clientName, clientCia, assistanceId, dateFrom: date.dateFrom , dateTo: date.dateTo }),
 	})
 
 	
@@ -183,7 +190,7 @@ const Index: React.FC = () => {
 
 	return (
 		<BaseTemplate>
-			<FilterSearchBar register={register} handleSubmit={handleSubmit} setSearchParams={setSearchParams}/>
+			<FilterSearchBar register={register} handleSubmit={handleSubmit} setSearchParams={setSearchParams} setDate={setDate}/>
 			<div className="px-5 pt-2 pb-10 bg-white">
 				<DataTable columns={columns} result={result} setSearchParams={setSearchParams} />
 			</div>

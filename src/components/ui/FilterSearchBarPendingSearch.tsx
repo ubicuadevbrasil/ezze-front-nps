@@ -1,21 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { DatePickerWithRange } from './DatePickerWithRange'
 import { Button } from './button'
-import { Input } from './input'
-import { Form, useForm, UseFormHandleSubmit, UseFormRegister } from 'react-hook-form'
-import { z } from 'zod'
-import { queryClient } from '@/lib/react-query'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { SetURLSearchParams, useSearchParams } from 'react-router-dom'
-import { FilterForm } from '@/pages/PendingSearch'
+import { UseFormHandleSubmit, UseFormRegister } from 'react-hook-form'
+import { SetURLSearchParams } from 'react-router-dom'
+import { DateProps, FilterForm } from '@/pages/PendingSearch'
 
 interface FilterProps {
 	register: UseFormRegister<FilterForm>
 	handleSubmit: UseFormHandleSubmit<FilterForm, undefined>
 	setSearchParams: SetURLSearchParams
+	setDate: React.Dispatch<React.SetStateAction<DateProps>>
 }
 
-const FilterSearchBarPendingSearch: React.FC<FilterProps> = ({register, handleSubmit, setSearchParams}) => {
+const FilterSearchBarPendingSearch: React.FC<FilterProps> = ({register, handleSubmit, setSearchParams, setDate}) => {
 
 
 	const handleFilter = (data: FilterForm) => {
@@ -39,6 +36,15 @@ const FilterSearchBarPendingSearch: React.FC<FilterProps> = ({register, handleSu
 			}
 
 			state.set('page', '1')
+
+			if(state.get('dateFrom') !== null && state.get('dateTo') !== null) {
+				console.log("entrou")
+				setDate({dateFrom: state.get('dateFrom'), dateTo: state.get('dateTo')})
+			} else {
+				setDate({dateFrom: null, dateTo: null})
+				state.delete('dateFrom')
+				state.delete('dateTo')
+			}
 
 			return state
 		})

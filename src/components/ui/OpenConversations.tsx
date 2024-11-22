@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Button } from './button'
 import { Spinner } from './Spinner'
-import { setCurrentChat } from '@/features/chat/chatSlice'
 
 const Index: React.FC = () => {
 	const [isExpanded, setIsExpanded] = useState(false)
@@ -12,11 +11,10 @@ const Index: React.FC = () => {
 	const loading = useSelector(selectConversationsLoading)
 	const error = useSelector(selectConversationsError)
 	const [showBar, setShowBar] = useState(true)
-	const [message, setMessage] = useState('')
 
-	const handleOpenChat = (id: string) => {
-		//dispatch(setCurrentChat(id))
-	}
+	// const handleOpenChat = (id: string) => {
+		// dispatch(setCurrentChat(id))
+	// }
 
 	const toggleExpansion = () => {
 		setIsExpanded(!isExpanded)
@@ -39,14 +37,14 @@ const Index: React.FC = () => {
 						<CaretDown size={20} />
 					</Button>
 				</div>
-				<div className="p-3 flex justify-center items-center h-full">{loading ? <Spinner /> : error ? <div>{error}</div> : conversations ? conversations?.map((conversation, index) => <Button id={index.toString()} onClick={() => handleOpenChat(conversation.id)}>{conversation.name}</Button>) : (<p>Sem Conversas em aberto</p>)}</div>
+				<div className="p-3 flex justify-center items-center h-full">{loading ? <Spinner /> : error ? <div>{error}</div> : conversations ? conversations?.map((conversation, index) => <Button id={index.toString()} >{conversation.name}</Button>) : (<p>Sem Conversas em aberto</p>)}</div>
 			</div>
 		</div>
 	)
 }
 
 export default Index
-function dispatch(arg0: any) {
-	throw new Error('Function not implemented.')
-}
+// function dispatch(arg0: any) {
+// 	throw new Error('Function not implemented.')
+// }
 

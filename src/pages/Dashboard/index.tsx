@@ -1,6 +1,6 @@
 import RadialChart from '@/components/ui/RadialChart'
 import { LineChartComponent } from '@/components/ui/LineChartsDots'
-import DualBarChart from '@/components/ui/DualBarChart'
+// import DualBarChart from '@/components/ui/DualBarChart'
 import AlertsTable from "@/components/ui/AlertsTable"
 import { PerformanceTable } from '@/components/ui/PerformanceTable'
 import { ReasonsTable } from '@/components/ui/ReasonsTable'

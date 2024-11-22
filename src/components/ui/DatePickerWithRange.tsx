@@ -19,6 +19,24 @@ interface DataPickerProps {
 export function DatePickerWithRange({ className, setStart, setEnd }: DataPickerProps) {
 	const [date, setDate] = React.useState<DateRange | undefined>()
 
+	function handleSearchParams(date: DateRange | undefined) {
+		setSearchParams(prev => {
+			if(date && date.from) {
+				prev.set('dateFrom', format(date.from, 'yyyy-MM-dd'))
+			} else {
+				prev.delete('dateFrom')
+			}
+
+			if(date &&  date.to) {
+				prev.set('dateTo', format(date.to, 'yyyy-MM-dd'))
+			} else {
+				prev.delete('dateTo')
+			}
+
+			return prev
+		})
+	}
+
 	React.useEffect(() => {
 		if (date) {
 			setStart(date.from) // Atualiza o estado com a data inicial
