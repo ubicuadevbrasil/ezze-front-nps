@@ -1,33 +1,32 @@
-import ImageSurvey from '@/assets/ImageSurvey.svg'
 import { TemplatePage } from './TemplatePage'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { useCallback, useEffect, useState } from 'react'
 
-type IPedingSearch = {
-	idAssistencia: string
-	nome: string
-	ciaCliente: string
-	telefone: number
-	numeroAssistencia: number
-	dataPrimeroDisparo: Date
-	tipoServico: string
-	formato: 'E-mail' | 'SMS'
-	submit: 'Sim' | 'Não'
-	tentativaContato: object
-	conversa: object
-}
+// type IPedingSearch = {
+// 	idAssistencia: string
+// 	nome: string
+// 	ciaCliente: string
+// 	telefone: number
+// 	numeroAssistencia: number
+// 	dataPrimeroDisparo: Date
+// 	tipoServico: string
+// 	formato: 'E-mail' | 'SMS'
+// 	submit: 'Sim' | 'Não'
+// 	tentativaContato: object
+// 	conversa: object
+// }
 
-type IStateNavigation = {
-	client: IPedingSearch
-	attendant: string
-	ratting: number
-}
+// type IStateNavigation = {
+// 	client: IPedingSearch
+// 	attendant: string
+// 	ratting: number
+// }
 
 function Detractor() {
-	const location = useLocation()
+	//const location = useLocation()
 	const navigate = useNavigate()
-	const surveyData = location.state as IStateNavigation
+	//const surveyData = location.state as IStateNavigation
 	const [RatingYesOrNoSelected, setRatingYesOrNoSelected] = useState<string>()
 	const [RatingSituationSelected, setRatingSituationSelected] = useState<string>()
 	const [isDisableSubmit, setIsDisableSubmit] = useState(true)

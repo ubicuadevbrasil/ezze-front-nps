@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { DatePickerWithRange } from '@/components/ui/DatePickerWithRange'
 import { Button } from '@/components/ui/button'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { CaretDown } from '@phosphor-icons/react'
@@ -55,7 +54,7 @@ const SearchBar: React.FC = () => {
 	return (
 		<div className="px-5 py-3 flex items-center justify-between">
 			<div className="flex gap-2">
-				<DatePickerWithRange className="border-slate-400" />
+				{/* <DatePickerWithRange  className="border-slate-400" /> */}
 				<div className="flex flex-col w-32 text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md bg-white">
 					<label htmlFor="assignment" className=''>Atribuição</label>
 					<input id='assignment' className="w-full outline-none" placeholder="---" value={IdAssistencia} onChange={(e) => setIdAssistencia(e.target.value)} />

@@ -1,20 +1,20 @@
 import { DealsTable } from "@/models/dashboardResponse"
 
-const data = {
-	header: [
-		{ type: 'Novo', count: 3, color: 'bg-yellow-400' },
-		{ type: 'Vencido', count: 0, color: 'bg-orange-400' },
-		{ type: 'Escalado', count: 1, color: 'bg-green-700' },
-		{ type: 'Andamento', count: 0, color: 'bg-green-400' },
-		{ type: 'Concluído', count: 0, color: 'bg-blue-400' },
-		{ type: 'Total', count: 71, color: 'bg-red-900' },
-	],
-	rows: [
-		{ category: 'Promotor', novo: 3, vencido: 0, escalado: 0, andamento: 0, concluido: 0, total: 55 },
-		{ category: 'Neutro', novo: 0, vencido: 0, escalado: 0, andamento: 0, concluido: 4, total: 4 },
-		{ category: 'Detrator', novo: 0, vencido: 0, escalado: 1, andamento: 0, concluido: 0, total: 12 },
-	],
-}
+// const data = {
+// 	header: [
+// 		{ type: 'Novo', count: 3, color: 'bg-yellow-400' },
+// 		{ type: 'Vencido', count: 0, color: 'bg-orange-400' },
+// 		{ type: 'Escalado', count: 1, color: 'bg-green-700' },
+// 		{ type: 'Andamento', count: 0, color: 'bg-green-400' },
+// 		{ type: 'Concluído', count: 0, color: 'bg-blue-400' },
+// 		{ type: 'Total', count: 71, color: 'bg-red-900' },
+// 	],
+// 	rows: [
+// 		{ category: 'Promotor', novo: 3, vencido: 0, escalado: 0, andamento: 0, concluido: 0, total: 55 },
+// 		{ category: 'Neutro', novo: 0, vencido: 0, escalado: 0, andamento: 0, concluido: 4, total: 4 },
+// 		{ category: 'Detrator', novo: 0, vencido: 0, escalado: 1, andamento: 0, concluido: 0, total: 12 },
+// 	],
+// }
 
 const AlertTable = (data: DealsTable) => {
 	return (

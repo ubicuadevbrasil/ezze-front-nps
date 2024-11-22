@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { toast, Toaster } from 'react-hot-toast'
 import Pagination from '@/components/ui/PaginationItem'
 import { Archive } from 'lucide-react'
-import { DatePickerWithRange } from '@/components/ui/DatePickerWithRange'
+//import { DatePickerWithRange } from '@/components/ui/DatePickerWithRange'
 import './scrollStiles.css'
 import Dropdown from '@/components/ui/Dropdown'
 
@@ -185,7 +185,7 @@ export default function Index() {
 			</nav>
 			<div className="flex justify-between">
 				<div className="grid grid-cols-1 custom-scrollbar sm:grid-cols-2 lg:grid-cols-4 gap-5 px-5 py-2 items-center">
-					<DatePickerWithRange className="border-slate-400" />
+					{/* <DatePickerWithRange className="border-slate-400" /> */}
 					<div className="flex flex-col text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md bg-white">
 						<label htmlFor="assignment" className="">
 							Id da assistencia

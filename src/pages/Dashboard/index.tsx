@@ -1,6 +1,6 @@
 import RadialChart from '@/components/ui/RadialChart'
 import { LineChartComponent } from '@/components/ui/LineChartsDots'
-import DualBarChart from '@/components/ui/DualBarChart'
+// import DualBarChart from '@/components/ui/DualBarChart'
 import AlertsTable from "@/components/ui/AlertsTable"
 import { PerformanceTable } from '@/components/ui/PerformanceTable'
 import { ReasonsTable } from '@/components/ui/ReasonsTable'
@@ -9,54 +9,53 @@ import { MacroMicroTable } from '@/components/ui/MacroMicroTable'
 import { AlertProcedureTable } from '@/components/ui/AlertProcedureTable'
 import { BaseTemplate } from '../layouts/BaseTemplate'
 import { FilterSearchBar } from '@/components/ui/FilterBarDashboard'
-import { useDispatch, useSelector } from 'react-redux'
-import { DashboardFilter } from '@/models/dashboardFilters'
-import { useEffect, useState } from 'react'
-import { fetchDashboard } from '@/features/Dashboard/DashboardSlice'
+import { useSelector } from 'react-redux'
+//import { DashboardFilter } from '@/models/dashboardFilters'
+//import { useEffect, useState } from 'react'
+//import { fetchDashboard } from '@/features/Dashboard/DashboardSlice'
 import { RootState } from '@/app/store'
-import { useAppDispatch } from '@/hooks/hooks'
-import { DataPoint, SatisfactionAfterContact } from '@/models/dashboardResponse'
+// import { DataPoint } from '@/models/dashboardResponse'
 
 export default function Index() {
-	const dataTeste = {
-		lineChart: {
-			data: [
-				{ month: 'January', alertas: 186 },
-				{ month: 'February', alertas: 305 },
-				{ month: 'March', alertas: 237 },
-				{ month: 'April', alertas: 73 },
-				{ month: 'May', alertas: 209 },
-				{ month: 'June', alertas: 214 },
-			],
-			config: {
-				alertas: {
-					label: 'Negocios',
-					color: '#0c8ce9',
-				},
-			},
-		},
-		dualBarChart: {
-			data: [
-				{ month: 'January', sim: 120, nao: 66 },
-				{ month: 'February', sim: 180, nao: 125 },
-				{ month: 'March', sim: 140, nao: 97 },
-				{ month: 'April', sim: 40, nao: 33 },
-				{ month: 'May', sim: 160, nao: 49 },
-				{ month: 'June', sim: 170, nao: 44 },
-			],
-			config: {
-				sim: {
-					label: 'Sim',
-					color: '#34d399', // Verde
-				},
-				nao: {
-					label: 'Não',
-					color: '#f87171', // Vermelho
-				},
-			},
-		},
-	}
-	const { data, loading, error } = useSelector((state: RootState) => state.dashboard)
+	// const dataTeste = {
+	// 	lineChart: {
+	// 		data: [
+	// 			{ month: 'January', alertas: 186 },
+	// 			{ month: 'February', alertas: 305 },
+	// 			{ month: 'March', alertas: 237 },
+	// 			{ month: 'April', alertas: 73 },
+	// 			{ month: 'May', alertas: 209 },
+	// 			{ month: 'June', alertas: 214 },
+	// 		],
+	// 		config: {
+	// 			alertas: {
+	// 				label: 'Negocios',
+	// 				color: '#0c8ce9',
+	// 			},
+	// 		},
+	// 	},
+	// 	dualBarChart: {
+	// 		data: [
+	// 			{ month: 'January', sim: 120, nao: 66 },
+	// 			{ month: 'February', sim: 180, nao: 125 },
+	// 			{ month: 'March', sim: 140, nao: 97 },
+	// 			{ month: 'April', sim: 40, nao: 33 },
+	// 			{ month: 'May', sim: 160, nao: 49 },
+	// 			{ month: 'June', sim: 170, nao: 44 },
+	// 		],
+	// 		config: {
+	// 			sim: {
+	// 				label: 'Sim',
+	// 				color: '#34d399', // Verde
+	// 			},
+	// 			nao: {
+	// 				label: 'Não',
+	// 				color: '#f87171', // Vermelho
+	// 			},
+	// 		},
+	// 	},
+	// }
+	const { data } = useSelector((state: RootState) => state.dashboard)
 
 	return (
 		<BaseTemplate>
@@ -108,7 +107,7 @@ export default function Index() {
 				</div>
 				<div className="w-full flex flex-col gap-5 bg-white rounded-xl p-4">
 					<p className="text-sm text-[#333946]">Percentual de Clientes satisfeitos após o contato:</p>
-					<DualBarChart data={data?.satisfactionAfterContact as DataPoint} />
+					{/* <DualBarChart data={data?.satisfactionAfterContact as DataPoint} /> */}
 				</div>
 			</main>
 		</BaseTemplate>

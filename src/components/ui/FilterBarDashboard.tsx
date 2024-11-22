@@ -2,11 +2,11 @@ import { CaretDown } from "@phosphor-icons/react"
 import { Button } from "./button"
 import { Checkbox } from "./checkbox"
 import { Popover, PopoverContent, PopoverTrigger } from "./popover"
-import { DatePickerWithRange } from "./DatePickerWithRange"
-import { useEffect, useState } from "react"
-import { DashboardFilter } from "@/models/dashboardFilters"
-import { useAppDispatch } from "@/hooks/hooks"
-import { fetchDashboard } from "@/features/Dashboard/DashboardSlice"
+//import { DatePickerWithRange } from "./DatePickerWithRange"
+import { useState } from "react"
+//import { DashboardFilter } from "@/models/dashboardFilters"
+//import { useAppDispatch } from "@/hooks/hooks"
+//import { fetchDashboard } from "@/features/Dashboard/DashboardSlice"
 
 const ciaList = [
 	{
@@ -59,20 +59,20 @@ export const FilterSearchBar: React.FC = () => {
 	const [motivosValue, setMotivosValue] = useState('')
 
 	// Estado local para os filtros
-	const [filters, setFilters] = useState<DashboardFilter>({
-		closedDeals48hPercent: undefined,
-		dealOrigins: undefined,
-	})
+	// const [filters, setFilters] = useState<DashboardFilter>({
+	// 	closedDeals48hPercent: undefined,
+	// 	dealOrigins: undefined,
+	// })
 
-	const dispatch = useAppDispatch()
+	// const dispatch = useAppDispatch()
 
-	useEffect(() => {
-		dispatch(fetchDashboard(filters))
-	}, [dispatch, filters])
+	// useEffect(() => {
+	// 	dispatch(fetchDashboard(filters))
+	// }, [dispatch, filters])
 
 	return (
 		<div className="px-5 py-3 w-full gap-2 flex flex-row items-center justify-end">
-			<DatePickerWithRange className="border-slate-400" />
+			{/* <DatePickerWithRange className="border-slate-400" /> */}
 			{/* Cia */}
 			<Popover open={ciaOpen} onOpenChange={setCiaOpen}>
 				<PopoverTrigger asChild>
@@ -178,7 +178,7 @@ export const FilterSearchBar: React.FC = () => {
 		</div>
 	)
 }
-function dispatch(arg0: any) {
-	throw new Error("Function not implemented.")
-}
+// function dispatch(arg0: any) {
+// 	throw new Error("Function not implemented.")
+// }
 
