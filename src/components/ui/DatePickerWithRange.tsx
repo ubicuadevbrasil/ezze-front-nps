@@ -9,16 +9,16 @@ import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { SetURLSearchParams } from 'react-router-dom'
 
 interface DataPickerProps {
 	className: string
-	setStart: React.Dispatch<React.SetStateAction<Date | undefined>>
-	setEnd: React.Dispatch<React.SetStateAction<Date | undefined>>
+	setSearchParams: SetURLSearchParams
 }
 
-export function DatePickerWithRange({ className, setStart, setEnd }: DataPickerProps) {
+export function DatePickerWithRange({ className, setSearchParams }: DataPickerProps) {
 	const [date, setDate] = React.useState<DateRange | undefined>()
-
+	console.log(date)
 	function handleSearchParams(date: DateRange | undefined) {
 		setSearchParams(prev => {
 			if(date && date.from) {
@@ -38,14 +38,9 @@ export function DatePickerWithRange({ className, setStart, setEnd }: DataPickerP
 	}
 
 	React.useEffect(() => {
-		if (date) {
-			setStart(date.from) // Atualiza o estado com a data inicial
-			setEnd(date.to) // Atualiza o estado com a data final
-		} else {
-			setStart(undefined)
-			setEnd(undefined)
-		}
-	}, [date, setStart, setEnd])
+			handleSearchParams(date)
+	}, [date])
+
 
 	return (
 		<div className={cn('grid gap-2', className)}>
@@ -59,8 +54,8 @@ export function DatePickerWithRange({ className, setStart, setEnd }: DataPickerP
 							!date && 'text-muted-foreground',
 							'border border-slate-400' // Adiciona borda escura
 						)}>
-						<div className="flex flex-col">
-							<span className="text-[10px] leading-3">Período</span>
+						<div className="flex flex-col ">
+							<span className='text-[10px] leading-3'>Período</span>
 							<span className="text-[10px] leading-3 text-[#ABB1C2]">
 								{date?.from ? (
 									date.to ? (
@@ -75,7 +70,9 @@ export function DatePickerWithRange({ className, setStart, setEnd }: DataPickerP
 								)}
 							</span>
 						</div>
+
 						<CalendarIcon className="" />
+
 					</Button>
 				</PopoverTrigger>
 				<PopoverContent className="w-auto p-0" align="start">
