@@ -20,17 +20,17 @@ const initialState: UserAlertState = {
 	status: 'idle',
 }
 
-export const fetchUserAlertsAsync = createAsyncThunk('UserAlert/fetchUserAlerts', async () => {
+const fetchUserAlertsAsync = createAsyncThunk('UserAlert/fetchUserAlerts', async () => {
 	const response = await UserAlertAPI.fetchAll()
 	return response // Retorna a resposta completa
 })
 
-export const createUserAlertAsync = createAsyncThunk('UserAlert/createUserAlert', async (newItem: UserAlert) => {
+const createUserAlertAsync = createAsyncThunk('UserAlert/createUserAlert', async (newItem: UserAlert) => {
 	const response = await UserAlertAPI.create(newItem)
 	return response // Retorna a resposta completa
 })
 
-export const updateUserAlertAsync = createAsyncThunk('UserAlert/updateUserAlert', async (updatedItem: UserAlert) => {
+const updateUserAlertAsync = createAsyncThunk('UserAlert/updateUserAlert', async (updatedItem: UserAlert) => {
 	const response = await UserAlertAPI.update(updatedItem.id, updatedItem)
 	return response // Retorna a resposta completa
 })
