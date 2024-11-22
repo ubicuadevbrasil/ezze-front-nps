@@ -78,6 +78,6 @@ export interface DealOrigin {
 
 export interface DataPoint {
 	month: string
-	yes: number
-	no: number
+	sim: number
+	nao: number
 }

@@ -9,53 +9,72 @@ import { MacroMicroTable } from '@/components/ui/MacroMicroTable'
 import { AlertProcedureTable } from '@/components/ui/AlertProcedureTable'
 import { BaseTemplate } from '../layouts/BaseTemplate'
 import { FilterSearchBar } from '@/components/ui/FilterBarDashboard'
-import { useSelector } from 'react-redux'
-//import { DashboardFilter } from '@/models/dashboardFilters'
-//import { useEffect, useState } from 'react'
-//import { fetchDashboard } from '@/features/Dashboard/DashboardSlice'
-import { RootState } from '@/app/store'
-// import { DataPoint } from '@/models/dashboardResponse'
+import { DashboardResponse, DataPoint } from '@/models/dashboardResponse'
+import { useQuery } from '@tanstack/react-query'
+import { Spinner } from '@/components/ui/Spinner'
 
 export default function Index() {
-	// const dataTeste = {
-	// 	lineChart: {
-	// 		data: [
-	// 			{ month: 'January', alertas: 186 },
-	// 			{ month: 'February', alertas: 305 },
-	// 			{ month: 'March', alertas: 237 },
-	// 			{ month: 'April', alertas: 73 },
-	// 			{ month: 'May', alertas: 209 },
-	// 			{ month: 'June', alertas: 214 },
-	// 		],
-	// 		config: {
-	// 			alertas: {
-	// 				label: 'Negocios',
-	// 				color: '#0c8ce9',
-	// 			},
-	// 		},
-	// 	},
-	// 	dualBarChart: {
-	// 		data: [
-	// 			{ month: 'January', sim: 120, nao: 66 },
-	// 			{ month: 'February', sim: 180, nao: 125 },
-	// 			{ month: 'March', sim: 140, nao: 97 },
-	// 			{ month: 'April', sim: 40, nao: 33 },
-	// 			{ month: 'May', sim: 160, nao: 49 },
-	// 			{ month: 'June', sim: 170, nao: 44 },
-	// 		],
-	// 		config: {
-	// 			sim: {
-	// 				label: 'Sim',
-	// 				color: '#34d399', // Verde
-	// 			},
-	// 			nao: {
-	// 				label: 'Não',
-	// 				color: '#f87171', // Vermelho
-	// 			},
-	// 		},
-	// 	},
-	// }
-	const { data } = useSelector((state: RootState) => state.dashboard)
+	const dataTeste = {
+		lineChart: {
+			data: [
+				{ month: 'January', alertas: 186 },
+				{ month: 'February', alertas: 305 },
+				{ month: 'March', alertas: 237 },
+				{ month: 'April', alertas: 73 },
+				{ month: 'May', alertas: 209 },
+				{ month: 'June', alertas: 214 },
+			],
+			config: {
+				alertas: {
+					label: 'Negocios',
+					color: '#0c8ce9',
+				},
+			},
+		},
+		dualBarChart: {
+			data: [
+				{ month: 'January', sim: 120, nao: 66 },
+				{ month: 'February', sim: 180, nao: 125 },
+				{ month: 'March', sim: 140, nao: 97 },
+				{ month: 'April', sim: 40, nao: 33 },
+				{ month: 'May', sim: 160, nao: 49 },
+				{ month: 'June', sim: 170, nao: 44 },
+			],
+			config: {
+				sim: {
+					label: 'Sim',
+					color: '#34d399', // Verde
+				},
+				nao: {
+					label: 'Não',
+					color: '#f87171', // Vermelho
+				},
+			},
+		},
+	}
+	const { data, error, isLoading } = useQuery<DashboardResponse>({queryKey:['searchDashboard']})
+
+	if(error){
+		return (
+			<BaseTemplate>
+			<FilterSearchBar />
+			<main className="flex flex-col items-center gap-4 mt-2 mb-6 w-full py-4 px-10">
+				Erro: {error.message}
+			</main>
+			</BaseTemplate>
+		)
+	}
+
+	if (isLoading){
+		return (
+			<BaseTemplate>
+				<FilterSearchBar />
+				<main className="flex flex-col items-center gap-4 mt-2 mb-6 w-full py-4 px-10">
+					<Spinner/>
+				</main>
+			</BaseTemplate>
+		)
+	}
 
 	return (
 		<BaseTemplate>
@@ -107,9 +126,10 @@ export default function Index() {
 				</div>
 				<div className="w-full flex flex-col gap-5 bg-white rounded-xl p-4">
 					<p className="text-sm text-[#333946]">Percentual de Clientes satisfeitos após o contato:</p>
-					{/* <DualBarChart data={data?.satisfactionAfterContact as DataPoint} /> */}
+					<DualBarChart data={data?.satisfactionAfterContact as DataPoint[]} />
 				</div>
 			</main>
+
 		</BaseTemplate>
 	)
 }
