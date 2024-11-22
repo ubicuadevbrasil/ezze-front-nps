@@ -2,15 +2,15 @@ import { CaretDown } from "@phosphor-icons/react"
 import { Button } from "./button"
 import { Checkbox } from "./checkbox"
 import { Popover, PopoverContent, PopoverTrigger } from "./popover"
-import { DatePickerWithRange } from "./DatePickerWithRange"
-import { useEffect, useState } from "react"
-import { DashboardFilter } from "@/models/dashboardFilters"
-import { useAppDispatch } from "@/hooks/hooks"
-import { fetchDashboard } from "@/features/Dashboard/DashboardSlice"
-import { SetURLSearchParams } from "react-router-dom"
-import { DashboardResponse } from "@/models/dashboardResponse"
-import { DashboardAPI } from "@/features/Dashboard/DashboardAPI"
-import { useQuery } from "@tanstack/react-query"
+//import { DatePickerWithRange } from "./DatePickerWithRange"
+import { useState } from "react"
+//import { DashboardFilter } from "@/models/dashboardFilters"
+//import { useAppDispatch } from "@/hooks/hooks"
+//import { fetchDashboard } from "@/features/Dashboard/DashboardSlice"
+//import { SetURLSearchParams } from "react-router-dom"
+//import { DashboardResponse } from "@/models/dashboardResponse"
+//import { DashboardAPI } from "@/features/Dashboard/DashboardAPI"
+//import { useQuery } from "@tanstack/react-query"
 
 const ciaList = [
 	{
@@ -61,24 +61,24 @@ export const FilterSearchBar: React.FC = () => {
 	const [negociosValue, setNegociosValue] = useState('')
 	const [motivosOpen, setMotivosOpen] = useState(false)
 	const [motivosValue, setMotivosValue] = useState('')
-	const [DateStart, setDataStart] = useState<Date>()
-	const [DateEnd, setDataEnd] = useState<Date>()
+	// const [DateStart, setDataStart] = useState<Date>()
+	// const [DateEnd, setDataEnd] = useState<Date>()
 
-	useQuery<DashboardResponse>(
-		{ queryKey: ['searchDashboard'],
-		queryFn: () =>
-			DashboardAPI.get({
-				cia: ciaValue,
-				negocio: negociosValue,
-				motivo: motivosValue,
-				dataStart: DateStart as Date,
-				dataEnd: DateEnd as Date,
-			}).then((res) => res.data)}
-	)
+	// useQuery<DashboardResponse>(
+	// 	{ queryKey: ['searchDashboard'],
+	// 	queryFn: () =>
+	// 		DashboardAPI.get({
+	// 			cia: ciaValue,
+	// 			negocio: negociosValue,
+	// 			motivo: motivosValue,
+	// 			dataStart: DateStart as Date,
+	// 			dataEnd: DateEnd as Date,
+	// 		}).then((res) => res.data)}
+	// )
 
 	return (
 		<div className="px-5 py-3 w-full gap-2 flex flex-row items-center justify-end">
-			<DatePickerWithRange className="border-slate-400" setEnd={setDataEnd} setStart={setDataStart} />
+			{/* <DatePickerWithRange className="border-slate-400" setEnd={setDataEnd} setStart={setDataStart} /> */}
 			{/* Cia */}
 			<Popover open={ciaOpen} onOpenChange={setCiaOpen}>
 				<PopoverTrigger asChild>
