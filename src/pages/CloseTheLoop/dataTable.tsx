@@ -39,7 +39,7 @@ export function DataTable<TData extends ICloseTheLoop>({ columns, data }: DataTa
 
 	return (
 		<div>
-			<div className="border rounded-md border-slate-400">
+			<div className="border rounded-md -md border-slate-400">
 				<Table>
 					<TableHeader>
 						{table.getHeaderGroups().map((headerGroup) => (
@@ -62,9 +62,9 @@ export function DataTable<TData extends ICloseTheLoop>({ columns, data }: DataTa
 												{cell.column.id === 'dataPrimeroDisparo' && cellValue instanceof Date ? (
 													cellValue.toLocaleDateString()
 												) : cell.column.id === 'contato' ? (
-														<Button className="bg-[#104b94] border-0 w-full px-5 py-1" variant={'outline'}>
-															<Chat color="#f1f1f1" size={14} />
-														</Button>
+													<Button className="bg-[#104b94] border-0 w-full px-5 py-1" variant={'outline'}>
+														<Chat color="#f1f1f1" size={14} />
+													</Button>
 												) : cell.column.id === 'status' || cell.column.id === 'alerta' ? (
 													<div onClick={() => navigate('/userAlerts', { state: cell.row.original })} className="cursor-pointer py-1">
 														<Status data={cellValue as string} />

@@ -18,7 +18,9 @@ import { DealsTable } from "@/models/dashboardResponse"
 
 const AlertTable = (data: DealsTable) => {
 	return (
-		<div className="rounded-sm overflow-x-auto">
+		<div
+			className="rounded-md 
+-md overflow-x-auto">
 			<table className="min-w-full border-collapse border">
 				{/* Cabeçalho */}
 				<thead>
@@ -27,7 +29,9 @@ const AlertTable = (data: DealsTable) => {
 						{data.header.map((item, idx) => (
 							<th key={idx} className="border p-2">
 								<div className="flex items-center justify-start ">
-									<span className={`w-2 h-9 rounded-full ${item.color} mr-1`}></span>
+									<span
+										className={`w-2 h-9 rounded-md 
+-full ${item.color} mr-1`}></span>
 									<span className="font-bold">{item.count}</span>
 								</div>
 								<div className="text-xs">{item.type}</div>

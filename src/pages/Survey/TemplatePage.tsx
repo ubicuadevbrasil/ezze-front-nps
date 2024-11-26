@@ -19,15 +19,13 @@ export const TemplatePage: React.FC<TemplatePageProps> = ({
 		<div className={`flex justify-center items-center min-h-screen`} style={{ backgroundColor }}>
 			<div className={`shadow-lg p-3 w-full max-w-md h-screen flex flex-col gap-5 justify-center`} style={{ backgroundColor: containerColor }}>
 				<div className="flex justify-center">
-					<div className="bg-[#104b94] w-full h-16 rounded-lg flex items-center justify-center">
+					<div className="bg-[#104b94] w-full h-16 rounded-md -lg flex items-center justify-center">
 						<Link to={'/'}>
-						<img src={logoSrc} alt="Logo" className="h-16" />
+							<img src={logoSrc} alt="Logo" className="h-16" />
 						</Link>
 					</div>
 				</div>
-				<div className="flex flex-col gap-4">
-					{children}
-				</div>
+				<div className="flex flex-col gap-4">{children}</div>
 			</div>
 		</div>
 	)

@@ -75,7 +75,7 @@ const Dropdown: React.FC<DropdownType> = ({ labelGroup, routesGroup }) => {
 					<DropdownMenuContent>
 						{routesGroup.map((route, index) => {
 							return (
-								<a key={index} href={route.path} className="text-black md:bg-transparent block pl-3 pr-4 py-2 md:text-black md:p-0 rounded focus:outline-none" aria-current="page">
+								<a key={index} href={route.path} className="text-black md:bg-transparent block pl-3 pr-4 py-2 md:text-black md:p-0 rounded-md  focus:outline-none" aria-current="page">
 									<DropdownMenuItem>{route.label}</DropdownMenuItem>
 								</a>
 							)

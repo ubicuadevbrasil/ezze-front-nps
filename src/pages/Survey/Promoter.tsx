@@ -64,7 +64,7 @@ function Promoter
 
 	return (
 		<TemplatePage>
-			<div className="flex flex-col gap-5 bg-white rounded-xl p-5">
+			<div className="flex flex-col gap-5 bg-white rounded-md -xl p-5">
 				<div className="flex flex-col gap-2 text-center text-sm">
 					<p>{surveyData.client.nome}, agradecemos por sua participação. O que você achou do atendimento da Central?</p>
 
@@ -82,7 +82,9 @@ function Promoter
 
 					<RatingScale onSelect={setRattingTimeToBeServedSelected} selected={RattingTimeToBeServedSelected as number} />
 				</div>
-				<Button className="bg-[#365da5]" disabled={isDisableSubmit} onClick={handleSubmit}>Enviar</Button>
+				<Button className="bg-[#365da5]" disabled={isDisableSubmit} onClick={handleSubmit}>
+					Enviar
+				</Button>
 			</div>
 		</TemplatePage>
 	)

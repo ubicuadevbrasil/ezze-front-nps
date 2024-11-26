@@ -82,7 +82,7 @@ export const FilterSearchBar: React.FC = () => {
 			{/* Cia */}
 			<Popover open={ciaOpen} onOpenChange={setCiaOpen}>
 				<PopoverTrigger asChild>
-					<div className="flex w-32 h-10 items-center px-3 border border-slate-400 rounded-md bg-white">
+					<div className="flex w-32 h-10 items-center px-3 border border-slate-400 rounded-md -md bg-white">
 						<div className="flex flex-col w-full text-[10px] leading-3  justify-center ">
 							<span className="text-[10px] leading-3">Cia</span>
 							<div className="">{ciaValue ? ciaList.find((cia) => cia.value === ciaValue)?.label : '---'}</div>
@@ -116,7 +116,7 @@ export const FilterSearchBar: React.FC = () => {
 			{/* Negocios */}
 			<Popover open={negociosOpen} onOpenChange={setNegociosOpen}>
 				<PopoverTrigger asChild>
-					<div className="flex w-32 h-10 items-center px-3 border border-slate-400 rounded-md bg-white">
+					<div className="flex w-32 h-10 items-center px-3 border border-slate-400 rounded-md -md bg-white">
 						<div className="flex flex-col w-full text-[10px] leading-3  justify-center ">
 							<span className="text-[10px] leading-3">Área de negócios</span>
 							<div className="">{negociosValue ? negociosList.find((negocios) => negocios.value === negociosValue)?.label : '---'}</div>
@@ -150,7 +150,7 @@ export const FilterSearchBar: React.FC = () => {
 			{/* Motivos */}
 			<Popover open={motivosOpen} onOpenChange={setMotivosOpen}>
 				<PopoverTrigger asChild>
-					<div className="flex w-32 h-10 items-center px-3 border border-slate-400 rounded-md bg-white">
+					<div className="flex w-32 h-10 items-center px-3 border border-slate-400 rounded-md -md bg-white">
 						<div className="flex flex-col w-full text-[10px] leading-3  justify-center ">
 							<span className="text-[10px] leading-3">Motivos</span>
 							<div className="">{motivosValue ? motivosList.find((motivos) => motivos.value === motivosValue)?.label : '---'}</div>

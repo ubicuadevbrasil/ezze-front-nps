@@ -44,7 +44,7 @@ const Dropdown: React.FC<DropdownProps> = ({ items, selectedItems = [], onSelect
 					<FormItem>
 						<Popover>
 							<PopoverTrigger asChild>
-								<div className="flex h-10 items-center px-3 border border-slate-400 rounded-md bg-white cursor-pointer">
+								<div className="flex h-10 items-center px-3 border border-slate-400 rounded-md -md bg-white cursor-pointer">
 									<div className="flex flex-col w-full text-[10px] leading-3 justify-center">
 										<span className="text-[10px] leading-3">{title}</span>
 										<div className="text-[#a8b1c2]">{field.value.length > 0 ? field.value.join(', ') : placeholder}</div>
@@ -52,7 +52,7 @@ const Dropdown: React.FC<DropdownProps> = ({ items, selectedItems = [], onSelect
 									<CaretDown size={24} />
 								</div>
 							</PopoverTrigger>
-							<PopoverContent className="w-[200px] p-3 border border-slate-400 bg-white flex flex-col z-50 gap-2 rounded-lg">
+							<PopoverContent className="w-[200px] p-3 border border-slate-400 bg-white flex flex-col z-50 gap-2 rounded-md -lg">
 								{items.map((item) => (
 									<FormField
 										key={item.value}

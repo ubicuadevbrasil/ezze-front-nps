@@ -82,11 +82,11 @@ export default function Index() {
 
 			<main className="flex flex-col items-center gap-10 m-5 flex-grow">
 				<div>
-					<div className="bg-white pb-4 w-full border rounded-3xl border-slate-400">
-						<div className="bg-[#203863] w-full rounded-t-2xl border-slate-400">
+					<div className="bg-white pb-4 w-full border rounded-md -3xl border-slate-400">
+						<div className="bg-[#203863] w-full rounded-md -t-2xl border-slate-400">
 							<h1 className="p-4 text-white">Atendimentos</h1>
 						</div>
-						<Table className="rounded-b-xl pb-3">
+						<Table className="rounded-md -b-xl pb-3">
 							<TableHeader>
 								<TableRow className="bg-white">
 									<TableHead>Nome Cliente</TableHead>
@@ -100,7 +100,7 @@ export default function Index() {
 									<TableHead>Transferir</TableHead>
 								</TableRow>
 							</TableHeader>
-							<TableBody className="rounded-b-xl bg-white rounded-2xl">
+							<TableBody className="rounded-md -b-xl bg-white rounded-md -2xl">
 								{datas.map((data) => (
 									<TableRow key={data.protocol}>
 										<TableCell className="font-medium text-slate-700">{data.clientName}</TableCell>
@@ -134,7 +134,7 @@ export default function Index() {
 													<DialogHeader>
 														<div className="flex justify-start items-center gap-2">
 															<DialogTitle>Histórico de interação</DialogTitle>
-															<Printer size={25} className="border border-slate-400 p-1 rounded-lg" />
+															<Printer size={25} className="border border-slate-400 p-1 rounded-md -lg" />
 														</div>
 														<Separator />
 													</DialogHeader>

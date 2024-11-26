@@ -15,8 +15,8 @@ export const Combobox: React.FC<ComboboxProps> = ({ options, label = 'Selecione 
 
 	return (
 		<div className="w-full grid gap-2">
-			<div className="border rounded-2xl border-slate-400"></div>
-			<select value={selected || ''} onChange={handleSelectChange} className="p-2 rounded-md border first-letter: bg-transparent border-slate-400">
+			<div className="border rounded-md -2xl border-slate-400"></div>
+			<select value={selected || ''} onChange={handleSelectChange} className="p-2 rounded-md -md border first-letter: bg-transparent border-slate-400">
 				<option value="" disabled hidden>
 					{label}
 				</option>

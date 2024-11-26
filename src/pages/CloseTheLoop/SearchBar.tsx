@@ -55,26 +55,34 @@ const SearchBar: React.FC = () => {
 		<div className="px-5 py-3 flex items-center justify-between">
 			<div className="flex gap-2">
 				{/* <DatePickerWithRange  className="border-slate-400" /> */}
-				<div className="flex flex-col w-32 text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md bg-white">
-					<label htmlFor="assignment" className=''>Atribuição</label>
-					<input id='assignment' className="w-full outline-none" placeholder="---" value={IdAssistencia} onChange={(e) => setIdAssistencia(e.target.value)} />
+				<div className="flex flex-col w-32 text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md -md bg-white">
+					<label htmlFor="assignment" className="">
+						Atribuição
+					</label>
+					<input id="assignment" className="w-full outline-none" placeholder="---" value={IdAssistencia} onChange={(e) => setIdAssistencia(e.target.value)} />
 				</div>
-				<div className="flex flex-col w-32 text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md bg-white">
-					<label htmlFor="assistance" className=''>Id da assistência</label>
-					<input id='assistance' className="w-full outline-none" placeholder="---" value={IdAssistencia} onChange={(e) => setIdAssistencia(e.target.value)} />
+				<div className="flex flex-col w-32 text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md -md bg-white">
+					<label htmlFor="assistance" className="">
+						Id da assistência
+					</label>
+					<input id="assistance" className="w-full outline-none" placeholder="---" value={IdAssistencia} onChange={(e) => setIdAssistencia(e.target.value)} />
 				</div>
-				<div className="flex flex-col w-32 text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md bg-white">
-					<label htmlFor="client_company" className=''>CIA Cliente</label>
-					<input id='client_company' className="w-full outline-none" placeholder="---" value={CiaCliente} onChange={(e) => setCiaCliente(e.target.value)} />
+				<div className="flex flex-col w-32 text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md -md bg-white">
+					<label htmlFor="client_company" className="">
+						CIA Cliente
+					</label>
+					<input id="client_company" className="w-full outline-none" placeholder="---" value={CiaCliente} onChange={(e) => setCiaCliente(e.target.value)} />
 				</div>
-				<div className="flex flex-col w-32 text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md bg-white">
-					<label htmlFor="client_name" className=''>Nome do cliente</label>
-					<input id='client_name' className="w-full outline-none" placeholder="---" value={NomeCliente} onChange={(e) => setNomeCliente(e.target.value)} />
+				<div className="flex flex-col w-32 text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md -md bg-white">
+					<label htmlFor="client_name" className="">
+						Nome do cliente
+					</label>
+					<input id="client_name" className="w-full outline-none" placeholder="---" value={NomeCliente} onChange={(e) => setNomeCliente(e.target.value)} />
 				</div>
 				{/* Status */}
 				<Popover open={statusOpen} onOpenChange={setStatusOpen}>
 					<PopoverTrigger asChild className="border border-slate-400">
-						<div className='flex w-32 h-10 items-center px-3 border border-slate-400 rounded-md bg-white'>
+						<div className="flex w-32 h-10 items-center px-3 border border-slate-400 rounded-md -md bg-white">
 							<div className="flex flex-col w-full text-[10px] leading-3  justify-center ">
 								<span className="text-[10px] leading-3">Status</span>
 								<div className="">{statusValue ? statusList.find((status) => status.value === statusValue)?.label : '---'}</div>
@@ -108,7 +116,7 @@ const SearchBar: React.FC = () => {
 				{/* Alerta */}
 				<Popover open={alertaOpen} onOpenChange={setAlertaOpen}>
 					<PopoverTrigger asChild className="border border-slate-400">
-						<div className='flex w-32 h-10 items-center px-3 border border-slate-400 rounded-md bg-white'>
+						<div className="flex w-32 h-10 items-center px-3 border border-slate-400 rounded-md -md bg-white">
 							<div className="flex flex-col w-full text-[10px] leading-3  justify-center ">
 								<span className="text-[10px] leading-3">Alerta</span>
 								<div className="">{alertaValue ? alertaList.find((alerta) => alerta.value === alertaValue)?.label : '---'}</div>

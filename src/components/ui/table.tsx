@@ -51,18 +51,15 @@ const TableFooter = React.forwardRef<
 ))
 TableFooter.displayName = "TableFooter"
 
-const TableRow = React.forwardRef<
-  HTMLTableRowElement,
-  React.HTMLAttributes<HTMLTableRowElement>
->(({ className, ...props }, ref) => (
-  <tr
-    ref={ref}
-    className={cn(
-      " [&>th]:border-t-0 [&_th:first-child]:border-l-0 [&_th:last-child]:border-r-0 [&>td]:border-b-0 [&_td:first-child]:border-l-0 [&_td:last-child]:border-r-0 [&_th:nth-child(2)]:min-w-36 [&_td:last-child]:rounded-md [&_td:first-child]:rounded-md transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
-      className
-    )}
-    {...props}
-  />
+const TableRow = React.forwardRef<HTMLTableRowElement, React.HTMLAttributes<HTMLTableRowElement>>(({ className, ...props }, ref) => (
+	<tr
+		ref={ref}
+		className={cn(
+			' [&>th]:border-t-0 [&_th:first-child]:border-l-0 [&_th:last-child]:border-r-0 [&>td]:border-b-0 [&_td:first-child]:border-l-0 [&_td:last-child]:border-r-0 [&_th:nth-child(2)]:min-w-36 [&_td:last-child]:rounded-md -md [&_td:first-child]:rounded-md -md transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted',
+			className
+		)}
+		{...props}
+	/>
 ))
 TableRow.displayName = "TableRow"
 

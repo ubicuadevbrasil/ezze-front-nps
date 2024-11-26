@@ -63,23 +63,22 @@ export function DataTable<TableCellata extends IPedingSearch>({ columns, result,
 
 	return (
 		<div>
-			<div className="border rounded-md border-slate-400">
+			<div className="border rounded-md -md border-slate-400">
 				<Table>
 					<TableHeader>
-							<TableRow>
-									<TableHead>ID da Assistência</TableHead>
-									<TableHead>Nome do Cliente</TableHead>
-									<TableHead>CIA Cliente</TableHead>
-									<TableHead>Telefone do Cliente</TableHead>
-									<TableHead>N° de assistência</TableHead>
-									<TableHead>Data do primeiro disparo</TableHead>
-									<TableHead>Tipo de Serviço</TableHead>
-									<TableHead>Formato (E-mail ou SMS)</TableHead>
-									<TableHead>Teve Submit (Sim/Não)</TableHead>
-									<TableHead>Tentativa Contato</TableHead>
-									<TableHead>Conversa</TableHead>
-							</TableRow>
-						
+						<TableRow>
+							<TableHead>ID da Assistência</TableHead>
+							<TableHead>Nome do Cliente</TableHead>
+							<TableHead>CIA Cliente</TableHead>
+							<TableHead>Telefone do Cliente</TableHead>
+							<TableHead>N° de assistência</TableHead>
+							<TableHead>Data do primeiro disparo</TableHead>
+							<TableHead>Tipo de Serviço</TableHead>
+							<TableHead>Formato (E-mail ou SMS)</TableHead>
+							<TableHead>Teve Submit (Sim/Não)</TableHead>
+							<TableHead>Tentativa Contato</TableHead>
+							<TableHead>Conversa</TableHead>
+						</TableRow>
 					</TableHeader>
 					<TableBody>
 						{result && result.clients.length > 0 ? (
@@ -95,7 +94,7 @@ export function DataTable<TableCellata extends IPedingSearch>({ columns, result,
 									<TableCell>{client.format}</TableCell>
 									<TableCell>{client.status ? 'Sim' : 'Não'}</TableCell>
 									<TableCell>
-										<Button className="bg-[#a2b7d5] border border-[#104b94] rounded py-1 px-4 text-xs justify-center w-full" variant={'outline'} onClick={() => {}}>
+										<Button className="bg-[#a2b7d5] border border-[#104b94] rounded-md  py-1 px-4 text-xs justify-center w-full" variant={'outline'} onClick={() => {}}>
 											Mais Detalhes
 										</Button>
 									</TableCell>
@@ -105,30 +104,30 @@ export function DataTable<TableCellata extends IPedingSearch>({ columns, result,
 										</Button>
 									</TableCell>
 								</TableRow>
-							// 	<TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
-							// 		{row.getVisibleCells().map((cell) => {
-							// 			const cellValue = cell.getValue()
+								// 	<TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
+								// 		{row.getVisibleCells().map((cell) => {
+								// 			const cellValue = cell.getValue()
 
-							// 			return (
-							// 				<TableCell key={cell.id} className={index % 2 ? '' : 'bg-[#F1f3fE]'}>
-							// 					{cell.column.id === 'dataPrimeroDisparo' && cellValue instanceof Date ? (
-							// 						cellValue.toLocaleDateString()
-							// 					) : cell.column.id === 'conversa' ? (
-							// 						<Button className="bg-[#104b94] border-0 w-full px-5 py-1 hover:bg-slate-500" variant={'outline'} onClick={() => handleOpenChat(row.original)}>
-							// 							<Chat color="#f1f1f1" size={20} />
-							// 						</Button>
-							// 					) : cell.column.id === 'tentativaContato' ? (
-							// 						<Button className="bg-[#a2b7d5] border border-[#104b94] rounded py-1 px-4 text-xs justify-center w-full" variant={'outline'} onClick={() => handleButtonClick(row.original)}>
-							// 							Mais Detalhes
-							// 						</Button>
-							// 					) : (
-							// 						flexRender(cell.column.columnDef.cell, cell.getContext())
-							// 					)}
-							// 				</TableCell>
-							// 			)
-							// 		})}
-							// 	</TableRow>
-							 ))
+								// 			return (
+								// 				<TableCell key={cell.id} className={index % 2 ? '' : 'bg-[#F1f3fE]'}>
+								// 					{cell.column.id === 'dataPrimeroDisparo' && cellValue instanceof Date ? (
+								// 						cellValue.toLocaleDateString()
+								// 					) : cell.column.id === 'conversa' ? (
+								// 						<Button className="bg-[#104b94] border-0 w-full px-5 py-1 hover:bg-slate-500" variant={'outline'} onClick={() => handleOpenChat(row.original)}>
+								// 							<Chat color="#f1f1f1" size={20} />
+								// 						</Button>
+								// 					) : cell.column.id === 'tentativaContato' ? (
+								// 						<Button className="bg-[#a2b7d5] border border-[#104b94] rounded-md  py-1 px-4 text-xs justify-center w-full" variant={'outline'} onClick={() => handleButtonClick(row.original)}>
+								// 							Mais Detalhes
+								// 						</Button>
+								// 					) : (
+								// 						flexRender(cell.column.columnDef.cell, cell.getContext())
+								// 					)}
+								// 				</TableCell>
+								// 			)
+								// 		})}
+								// 	</TableRow>
+							))
 						) : (
 							<TableRow>
 								<TableCell colSpan={columns.length} className="h-24 text-center">

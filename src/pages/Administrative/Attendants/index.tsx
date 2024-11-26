@@ -54,7 +54,7 @@ export default function Index() {
 					<p>Atendentes</p>
 				</div>
 				<div className="flex gap-5">
-					<div className="flex w-full  max-w-sm items-center space-x-2 border-2 rounded-lg border-[#b6afaf]">
+					<div className="flex w-full  max-w-sm items-center space-x-2 border-2 rounded-md -lg border-[#b6afaf]">
 						<Input type="search" placeholder="Pesquisa" className="border-none focus:outline-none focus:ring-0 focus:border-transparent focus:shadow-none" />
 						<Button variant="ghost" type="submit">
 							<MagnifyingGlass size={25} />
@@ -87,11 +87,11 @@ export default function Index() {
 			</nav>
 
 			<main className="flex flex-col items-center gap-10 m-5 flex-grow">
-				<div className="bg-white pb-4 w-full border rounded-3xl border-slate-400">
-					<div className="bg-[#203863] w-full rounded-t-2xl border-slate-400">
+				<div className="bg-white pb-4 w-full border rounded-md -3xl border-slate-400">
+					<div className="bg-[#203863] w-full rounded-md -t-2xl border-slate-400">
 						<h1 className="p-4 text-white ">Atendentes online</h1>
 					</div>
-					<Table className="rounded-b-xl pb-3">
+					<Table className="rounded-md -b-xl pb-3">
 						<TableHeader>
 							<TableRow className="bg-white">
 								<TableHead>#</TableHead>
@@ -104,7 +104,7 @@ export default function Index() {
 								<TableHead>Deletar</TableHead>
 							</TableRow>
 						</TableHeader>
-						<TableBody className="rounded-b-xl bg-white rounded-2xl">
+						<TableBody className="rounded-md -b-xl bg-white rounded-md -2xl">
 							{invoices.map((invoice) => (
 								<TableRow key={invoice.invoice}>
 									<TableCell className="font-medium">{invoice.invoice}</TableCell>
