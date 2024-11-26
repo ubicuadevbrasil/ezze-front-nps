@@ -1,8 +1,8 @@
 import RadialChart from '@/components/ui/RadialChart'
 import { LineChartComponent } from '@/components/ui/LineChartsDots'
 // import DualBarChart from '@/components/ui/DualBarChart'
-import AlertsTable from "@/components/ui/AlertsTable"
-import { PerformanceTable } from '@/components/ui/PerformanceTable'
+//import AlertsTable from "@/components/ui/AlertsTable"
+//import { PerformanceTable } from '@/components/ui/PerformanceTable'
 import { ReasonsTable } from '@/components/ui/ReasonsTable'
 import { SolutionsTable } from '@/components/ui/Solutions'
 import { MacroMicroTable } from '@/components/ui/MacroMicroTable'
@@ -52,18 +52,18 @@ export default function Index() {
 	// 		},
 	// 	},
 	// }
-	const { data, error, isLoading } = useQuery<DashboardResponse>({queryKey:['searchDashboard']})
+	const { data, isLoading } = useQuery<DashboardResponse>({queryKey:['searchDashboard']})
 
-	if(error){
-		return (
-			<BaseTemplate>
-			<FilterSearchBar />
-			<main className="flex flex-col items-center gap-4 mt-2 mb-6 w-full py-4 px-10">
-				Erro: {error.message}
-			</main>
-			</BaseTemplate>
-		)
-	}
+	// if(error){
+	// 	return (
+	// 		<BaseTemplate>
+	// 		<FilterSearchBar />
+	// 		<main className="flex flex-col items-center gap-4 mt-2 mb-6 w-full py-4 px-10">
+	// 			Erro: {error.message}
+	// 		</main>
+	// 		</BaseTemplate>
+	// 	)
+	// }
 
 	if (isLoading){
 		return (
@@ -100,11 +100,11 @@ export default function Index() {
 				</div>
 				<div className="w-full flex flex-col gap-5 bg-white rounded-[8px] p-4">
 					<p className="text-sm text-[#333946]">Tabela de alertas:</p>
-					<AlertsTable header={data?.dealsTable?.header as []} rows={data?.dealsTable?.rows as []} />
+					{/* <AlertsTable header={data?.dealsTable?.header as []} rows={data?.dealsTable?.rows as []} /> */}
 				</div>
 				<div className="w-full flex flex-col gap-5 bg-white rounded-[8px] p-4">
 					<p className="text-sm text-[#333946]">Performance por gerente de qualidade:</p>
-					<PerformanceTable data={data?.qualityManagerPerformance as []} />
+					{/* <PerformanceTable data={data?.qualityManagerPerformance as []} /> */}
 				</div>
 				<div className="w-full flex flex-col gap-5 bg-white rounded-[8px] p-4">
 					<p>Acompanhamento dos motivos:</p>
