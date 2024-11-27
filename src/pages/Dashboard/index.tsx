@@ -14,45 +14,38 @@ import { useQuery } from '@tanstack/react-query'
 import { Spinner } from '@/components/ui/Spinner'
 
 export default function Index() {
-	// const dataTeste = {
-	// 	lineChart: {
-	// 		data: [
-	// 			{ month: 'January', alertas: 186 },
-	// 			{ month: 'February', alertas: 305 },
-	// 			{ month: 'March', alertas: 237 },
-	// 			{ month: 'April', alertas: 73 },
-	// 			{ month: 'May', alertas: 209 },
-	// 			{ month: 'June', alertas: 214 },
-	// 		],
-	// 		config: {
-	// 			alertas: {
-	// 				label: 'Negocios',
-	// 				color: '#0c8ce9',
-	// 			},
-	// 		},
-	// 	},
-	// 	dualBarChart: {
-	// 		data: [
-	// 			{ month: 'January', sim: 120, nao: 66 },
-	// 			{ month: 'February', sim: 180, nao: 125 },
-	// 			{ month: 'March', sim: 140, nao: 97 },
-	// 			{ month: 'April', sim: 40, nao: 33 },
-	// 			{ month: 'May', sim: 160, nao: 49 },
-	// 			{ month: 'June', sim: 170, nao: 44 },
-	// 		],
-	// 		config: {
-	// 			sim: {
-	// 				label: 'Sim',
-	// 				color: '#34d399', // Verde
-	// 			},
-	// 			nao: {
-	// 				label: 'Não',
-	// 				color: '#f87171', // Vermelho
-	// 			},
-	// 		},
-	// 	},
-	// }
-	const { data, isLoading } = useQuery<DashboardResponse>({queryKey:['searchDashboard']})
+	const dataTeste = {
+closedDeals48hPercent: 50,
+		closedDeals48hOverTime: [
+				{ month: 'January', alertas: 186 },
+				{ month: 'February', alertas: 305 },
+				{ month: 'March', alertas: 237 },
+				{ month: 'April', alertas: 73 },
+				{ month: 'May', alertas: 209 },
+				{ month: 'June', alertas: 214 },
+			],
+		dualBarChart: {
+			data: [
+				{ month: 'January', sim: 120, nao: 66 },
+				{ month: 'February', sim: 180, nao: 125 },
+				{ month: 'March', sim: 140, nao: 97 },
+				{ month: 'April', sim: 40, nao: 33 },
+				{ month: 'May', sim: 160, nao: 49 },
+				{ month: 'June', sim: 170, nao: 44 },
+			],
+			config: {
+				sim: {
+					label: 'Sim',
+					color: '#34d399', // Verde
+				},
+				nao: {
+					label: 'Não',
+					color: '#f87171', // Vermelho
+				},
+			},
+		},
+	}
+	//const { data, isLoading } = useQuery<DashboardResponse>({queryKey:['searchDashboard']})
 
 	// if(error){
 	// 	return (
@@ -65,7 +58,7 @@ export default function Index() {
 	// 	)
 	// }
 
-	if (isLoading){
+	/* if (isLoading){
 		return (
 			<BaseTemplate>
 				<FilterSearchBar />
@@ -74,7 +67,7 @@ export default function Index() {
 				</main>
 			</BaseTemplate>
 		)
-	}
+	} */
 
 	return (
 		<BaseTemplate>
@@ -83,12 +76,12 @@ export default function Index() {
 				<div className="flex flex-row gap-4 w-full">
 					<div className="w-full md:w-1/2 bg-white flex flex-col rounded-md -[8px] p-4">
 						<p className="text-sm text-[#333946]">% de alertas fechados em 48 horas:</p>
-						<RadialChart value={data?.closedDeals48hPercent as number} />
+						<RadialChart value={dataTeste?.closedDeals48hPercent as number} />
 					</div>
 					<div className="w-full md:w-1/2 bg-white flex flex-col rounded-md -[8px] p-4">
 						<p className="text-sm text-[#333946]">% de alertas fechados em 48 horas ao longo do tempo:</p>
 						<LineChartComponent
-							data={data?.closedDeals48hOverTime as []}
+							data={dataTeste?.closedDeals48hOverTime as []}
 							config={{
 								alertas: {
 									label: 'Negocios',
@@ -100,11 +93,11 @@ export default function Index() {
 				</div>
 				<div className="w-full flex flex-col gap-5 bg-white rounded-md -[8px] p-4">
 					<p className="text-sm text-[#333946]">Tabela de alertas:</p>
-					{/* <AlertsTable header={data?.dealsTable?.header as []} rows={data?.dealsTable?.rows as []} /> */}
+					{/* <AlertsTable header={dataTeste?.dealsTable?.header as []} rows={dataTeste?.dealsTable?.rows as []} /> */}
 				</div>
 				<div className="w-full flex flex-col gap-5 bg-white rounded-md -[8px] p-4">
 					<p className="text-sm text-[#333946]">Performance por gerente de qualidade:</p>
-					{/* <PerformanceTable data={data?.qualityManagerPerformance as []} /> */}
+					{/* <PerformanceTable data={dataTeste?.qualityManagerPerformance as []} /> */}
 				</div>
 				<div className="w-full flex flex-col gap-5 bg-white rounded-md -[8px] p-4">
 					<p>Acompanhamento dos motivos:</p>
@@ -126,7 +119,7 @@ export default function Index() {
 				</div>
 				<div className="w-full flex flex-col gap-5 bg-white rounded-md -xl p-4">
 					<p className="text-sm text-[#333946]">Percentual de Clientes satisfeitos após o contato:</p>
-					{/* <DualBarChart data={data?.satisfactionAfterContact as DataPoint[]} /> */}
+					{/* <DualBarChart data={dataTeste?.satisfactionAfterContact as DataPoint[]} /> */}
 				</div>
 			</main>
 		</BaseTemplate>
