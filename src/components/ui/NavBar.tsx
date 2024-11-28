@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import React from 'react'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import Logo from '@/assets/Logo.svg'
@@ -40,15 +40,16 @@ interface ButtonType {
 }
 
 const Button: React.FC<ButtonType> = ({ route, label }) => {
+	const path = useLocation()
+	console.log(path)
 	return (
 		<>
 			<li>
-				<a
-					href={route}
+				<Link to={route}
 					className="relative flex w-full h-full p-4 items-center justify-center text-gray-800 hover:text-blue-600 transition duration-300 ease-in-out after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-0.5 after:bg-transparent hover:after:bg-blue-600 after:transition-all after:duration-300 after:ease-in-out"
 					aria-current="page">
 					{label}
-				</a>
+				</Link>
 			</li>
 		</>
 	)
@@ -75,7 +76,7 @@ const Dropdown: React.FC<DropdownType> = ({ labelGroup, routesGroup }) => {
 					<DropdownMenuContent>
 						{routesGroup.map((route, index) => {
 							return (
-								<a key={index} href={route.path} className="text-black md:bg-transparent block pl-3 pr-4 py-2 md:text-black md:p-0 rounded focus:outline-none" aria-current="page">
+								<a key={index} href={`/administrative/${route.path}`} className="text-black md:bg-transparent block pl-3 pr-4 py-2 md:text-black md:p-0 rounded focus:outline-none" aria-current="page">
 									<DropdownMenuItem>{route.label}</DropdownMenuItem>
 								</a>
 							)

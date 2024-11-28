@@ -163,7 +163,7 @@ const Index: React.FC = () => {
 	const pageSize = 7
 
 	const { data: result } = useQuery({
-		queryKey: ['clients', pageNumber, pageSize, clientName, clientCia, assistanceId, dateFrom, dateTo ],
+		queryKey: ['pending-clients', pageNumber, pageSize, clientName, clientCia, assistanceId, dateFrom, dateTo ],
 		queryFn: () => getPendingSearch({pageNumber, pageSize, clientName, clientCia, assistanceId, dateFrom: date.dateFrom , dateTo: date.dateTo }),
 	})
 

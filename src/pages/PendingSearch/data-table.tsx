@@ -105,6 +105,7 @@ export function DataTable<TableCellata extends IPedingSearch>({ columns, result,
 										</Button>
 									</TableCell>
 								</TableRow>
+						))
 							// 	<TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
 							// 		{row.getVisibleCells().map((cell) => {
 							// 			const cellValue = cell.getValue()
@@ -128,7 +129,6 @@ export function DataTable<TableCellata extends IPedingSearch>({ columns, result,
 							// 			)
 							// 		})}
 							// 	</TableRow>
-							 ))
 						) : (
 							<TableRow>
 								<TableCell colSpan={columns.length} className="h-24 text-center">
