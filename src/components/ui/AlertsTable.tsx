@@ -1,4 +1,4 @@
-import { DealsTable } from "@/models/dashboardResponse"
+import { DealsTable } from '@/models/dashboardResponse'
 
 // const data = {
 // 	header: [
@@ -19,7 +19,7 @@ import { DealsTable } from "@/models/dashboardResponse"
 const AlertTable = (data: DealsTable) => {
 	return (
 		<div
-			className="rounded-md 
+			className="rounded-md
 -md overflow-x-auto">
 			<table className="min-w-full border-collapse border">
 				{/* Cabeçalho */}
@@ -28,13 +28,17 @@ const AlertTable = (data: DealsTable) => {
 						<th className="border p-2">Tipo de alerta</th>
 						{data.header.map((item, idx) => (
 							<th key={idx} className="border p-2">
-								<div className="flex items-center justify-start ">
-									<span
-										className={`w-2 h-9 rounded-md 
+								{
+									<div className="flex items-start justify-start ">
+										<span
+											className={`w-2 h-9 rounded-md
 -full ${item.color} mr-1`}></span>
-									<span className="font-bold">{item.count}</span>
-								</div>
-								<div className="text-xs">{item.type}</div>
+										<div className='flex flex-col justify-start items-start pl-2'>
+											<span className="font-bold">{item.count}</span>
+										<div className="text-xs">{item.type}</div>
+										</div>
+									</div>
+								}
 							</th>
 						))}
 					</tr>

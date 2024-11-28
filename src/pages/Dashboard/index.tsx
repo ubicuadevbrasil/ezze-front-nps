@@ -9,21 +9,24 @@ import { MacroMicroTable } from '@/components/ui/MacroMicroTable'
 import { AlertProcedureTable } from '@/components/ui/AlertProcedureTable'
 import { BaseTemplate } from '../layouts/BaseTemplate'
 import { FilterSearchBar } from '@/components/ui/FilterBarDashboard'
-import { DashboardResponse } from '@/models/dashboardResponse'
+/* import { DashboardResponse } from '@/models/dashboardResponse'
 import { useQuery } from '@tanstack/react-query'
-import { Spinner } from '@/components/ui/Spinner'
+import { Spinner } from '@/components/ui/Spinner' */
+import { PerformanceTable } from '@/components/ui/PerformanceTable'
+import AlertsTable from '@/components/ui/AlertsTable'
+import { DashboardResponse } from '@/models/dashboardResponse'
 
 export default function Index() {
-	const dataTeste = {
-closedDeals48hPercent: 50,
+	const dataTeste: DashboardResponse = {
+		closedDeals48hPercent: 50,
 		closedDeals48hOverTime: [
-				{ month: 'January', alertas: 186 },
-				{ month: 'February', alertas: 305 },
-				{ month: 'March', alertas: 237 },
-				{ month: 'April', alertas: 73 },
-				{ month: 'May', alertas: 209 },
-				{ month: 'June', alertas: 214 },
-			],
+			{ month: 'January', alertas: 186 },
+			{ month: 'February', alertas: 305 },
+			{ month: 'March', alertas: 237 },
+			{ month: 'April', alertas: 73 },
+			{ month: 'May', alertas: 209 },
+			{ month: 'June', alertas: 214 },
+		],
 		dualBarChart: {
 			data: [
 				{ month: 'January', sim: 120, nao: 66 },
@@ -44,6 +47,31 @@ closedDeals48hPercent: 50,
 				},
 			},
 		},
+		dealsTable: {
+			header: [
+ 		{ type: 'Novo', count: 3, color: 'bg-yellow-400' },
+ 		{ type: 'Vencido', count: 0, color: 'bg-orange-400' },
+ 		{ type: 'Escalado', count: 1, color: 'bg-green-700' },
+ 		{ type: 'Andamento', count: 0, color: 'bg-green-400' },
+ 		{ type: 'Concluído', count: 0, color: 'bg-blue-400' },
+ 		{ type: 'Total', count: 71, color: 'bg-red-900' },
+ 	],
+ 	rows: [
+		{ category: 'Promotor', new: 3, overdue: 0, escalated: 0, ongoing: 0, closed: 0, total: 55 },
+ 		{ category: 'Neutro', new: 0, overdue: 0, escalated: 0, ongoing: 0, closed: 4, total: 4 },
+ 		{ category: 'Detrator', new: 0, overdue: 0, escalated: 1, ongoing: 0, closed: 0, total: 12 },
+ 	]},
+		qualityManagerPerformance: [
+			{
+				alertCount: 10,
+				avgClosingTime: '10',
+				closedIn48hPercent: '10',
+				closedPercent: '10',
+				delayedPercent: '10',
+				escalatedPercent: '10',
+				name: 'teste',
+			},
+		],
 	}
 	//const { data, isLoading } = useQuery<DashboardResponse>({queryKey:['searchDashboard']})
 
@@ -93,11 +121,11 @@ closedDeals48hPercent: 50,
 				</div>
 				<div className="w-full flex flex-col gap-5 bg-white rounded-md -[8px] p-4">
 					<p className="text-sm text-[#333946]">Tabela de alertas:</p>
-					{/* <AlertsTable header={dataTeste?.dealsTable?.header as []} rows={dataTeste?.dealsTable?.rows as []} /> */}
+					<AlertsTable header={dataTeste?.dealsTable?.header as []} rows={dataTeste?.dealsTable?.rows as []} />
 				</div>
 				<div className="w-full flex flex-col gap-5 bg-white rounded-md -[8px] p-4">
 					<p className="text-sm text-[#333946]">Performance por gerente de qualidade:</p>
-					{/* <PerformanceTable data={dataTeste?.qualityManagerPerformance as []} /> */}
+					<PerformanceTable data={dataTeste?.qualityManagerPerformance as []} />
 				</div>
 				<div className="w-full flex flex-col gap-5 bg-white rounded-md -[8px] p-4">
 					<p>Acompanhamento dos motivos:</p>
@@ -125,6 +153,3 @@ closedDeals48hPercent: 50,
 		</BaseTemplate>
 	)
 }
-
-
-
