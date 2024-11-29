@@ -4,6 +4,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { CaretDown } from '@phosphor-icons/react'
 import { Checkbox } from '@/components/ui/checkbox'
 import { FilterProps } from '@/components/ui/FilterSearchBarPendingSearch'
+import { FilterFormSearchBar } from './index'
 
 const statusList = [
 	{
@@ -47,12 +48,12 @@ const SearchBar: React.FC<FilterProps> = ({register, handleSubmit, setSearchPara
 	// const [IdAssistencia, setIdAssistencia] = useState<string>('')
 	// const [NomeCliente, setNomeCliente] = useState<string>('')
 	// const [CiaCliente, setCiaCliente] = useState<string>('')
-	// const [statusOpen, setStatusOpen] = React.useState(false)
-	// const [statusValue, setStatusValue] = React.useState('')
-	// const [alertaOpen, setAlertaOpen] = React.useState(false)
-	// const [alertaValue, setAlertaValue] = React.useState('')
+	const [statusOpen, setStatusOpen] = useState(false)
+	const [statusValue, setStatusValue] = useState('')
+	const [alertaOpen, setAlertaOpen] = useState(false)
+	const [alertaValue, setAlertaValue] = useState('')
 
-	const handleFilter = (data: FilterForm) => {
+	const handleFilter = (data: FilterFormSearchBar) => {
 		setSearchParams(state => {
 			if(data.clientName) {
 				state.set('clientName', data.clientName)
@@ -88,24 +89,24 @@ const SearchBar: React.FC<FilterProps> = ({register, handleSubmit, setSearchPara
 	}
 
 	return (
-		<div className="px-5 py-3 flex items-center justify-between">
+		<form onSubmit={handleSubmit(handleFilter)} className="px-5 py-3 flex items-center justify-between">
 			<div className="flex gap-2">
 				{/* <DatePickerWithRange  className="border-slate-400" /> */}
 				<div className="flex flex-col w-32 text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md bg-white">
 					<label htmlFor="assignment" className=''>Atribuição</label>
-					<input id='assignment' {...register('assignment')} className="w-full outline-none" placeholder="---" value={IdAssistencia} onChange={(e) => setIdAssistencia(e.target.value)} />
+					<input id='assignment' {...register('assignment')} className="w-full outline-none" placeholder="---" />
 				</div>
 				<div className="flex flex-col w-32 text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md bg-white">
 					<label htmlFor="assistanceId" className=''>Id da assistência</label>
-					<input id='assistanceId' {...register('assistanceId')} className="w-full outline-none" placeholder="---" value={IdAssistencia} onChange={(e) => setIdAssistencia(e.target.value)} />
+					<input id='assistanceId' {...register('assistanceId')} className="w-full outline-none" placeholder="---" />
 				</div>
 				<div className="flex flex-col w-32 text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md bg-white">
 					<label htmlFor="clientCia" className=''>CIA Cliente</label>
-					<input id='clientCia' {...register('clientCia')} className="w-full outline-none" placeholder="---" value={CiaCliente} onChange={(e) => setCiaCliente(e.target.value)} />
+					<input id='clientCia' {...register('clientCia')} className="w-full outline-none" placeholder="---" />
 				</div>
 				<div className="flex flex-col w-32 text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md bg-white">
 					<label htmlFor="clientName" className=''>Nome do cliente</label>
-					<input id='clientName' {...register('clientName')} className="w-full outline-none" placeholder="---" value={NomeCliente} onChange={(e) => setNomeCliente(e.target.value)} />
+					<input id='clientName' {...register('clientName')} className="w-full outline-none" placeholder="---" />
 				</div>
 				{/* Status */}
 				<Popover open={statusOpen} onOpenChange={setStatusOpen}>
@@ -176,7 +177,7 @@ const SearchBar: React.FC<FilterProps> = ({register, handleSubmit, setSearchPara
 				</Popover>
 			</div>
 			<Button className="text-lg bg-[#104b94] h-10 px-3">Buscar</Button>
-		</div>
+		</form>
 	)
 }
 

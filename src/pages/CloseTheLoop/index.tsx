@@ -109,7 +109,7 @@ const filterForm = z.object({
 	assignment: z.string().optional(),
 })
 
-export type FilterForm = z.infer<typeof filterForm>
+export type FilterFormSearchBar = z.infer<typeof filterForm>
 
 export interface DateProps {
 	dateFrom: string | null
@@ -123,6 +123,7 @@ const Index: React.FC = () => {
 	const clientName = searchParams.get('clientName')
 	const clientCia = searchParams.get('clientCia')
 	const assistanceId = searchParams.get('assistanceId')
+	const assignment = searchParams.get('assignment')
 	const dateFrom = date.dateFrom
 	const dateTo = date.dateTo
 
@@ -130,12 +131,13 @@ const Index: React.FC = () => {
 	const {
 		register,
 		handleSubmit,
-	} = useForm<FilterForm>({
+	} = useForm<FilterFormSearchBar>({
 		resolver: zodResolver(filterForm),
 		defaultValues: {
 			clientName: clientName ?? '',
 			clientCia: clientCia ?? '',
 			assistanceId: assistanceId ?? '',
+			assignment: assignment ?? '',
 		}
 	})
 
