@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { BaseTemplate } from '../layouts/BaseTemplate'
 import SearchBar from './SearchBar'
 import { DataTable } from './dataTable'
-import { columns, ICloseTheLoop } from './columns'
+import { columns } from './columns'
 import OpenConversations from '@/components/ui/OpenConversations'
 import { z } from 'zod'
 import { useSearchParams } from 'react-router-dom'
@@ -144,7 +144,7 @@ const Index: React.FC = () => {
 	const pageNumber = z.coerce.number().parse(searchParams.get('page') ?? 1)
 	const pageSize = 7
 
-	const { data: result, isLoading } = useQuery({
+	const { data: result } = useQuery({
 		queryKey: ['closetheloop-clients', pageNumber, pageSize, clientName, clientCia, assistanceId, dateFrom, dateTo ],
 		queryFn: () => getCloseTheLoop({pageNumber, pageSize, clientName, clientCia, assistanceId, dateFrom: date.dateFrom , dateTo: date.dateTo }),
 	})

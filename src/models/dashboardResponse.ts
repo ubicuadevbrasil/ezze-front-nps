@@ -8,6 +8,21 @@ export interface DashboardResponse {
 	solutionIndicator?: SolutionIndicator[]
 	dealOrigin?: DealOrigin[]
 	satisfactionAfterContact?: DataPoint[]
+	dualBarChart: DualBarChart
+}
+
+interface DualBarChart {
+	data: DataPoint[]
+	config: {
+		sim: {
+			label: string
+			color: string
+		}
+		nao: {
+			label: string
+			color: string
+		}
+	}
 }
 
 export interface ClosedDeals48hOverTime {

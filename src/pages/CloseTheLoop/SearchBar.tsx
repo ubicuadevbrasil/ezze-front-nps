@@ -3,8 +3,9 @@ import { Button } from '@/components/ui/button'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { CaretDown } from '@phosphor-icons/react'
 import { Checkbox } from '@/components/ui/checkbox'
-import { FilterProps } from '@/components/ui/FilterSearchBarPendingSearch'
-import { FilterFormSearchBar } from './index'
+import { DateProps, FilterFormSearchBar } from './index'
+import { SetURLSearchParams } from 'react-router-dom'
+import { UseFormHandleSubmit, UseFormRegister } from 'react-hook-form'
 
 const statusList = [
 	{
@@ -43,6 +44,13 @@ const alertaList = [
 		label: 'Detrator',
 	},
 ]
+
+export interface FilterProps {
+	register: UseFormRegister<FilterFormSearchBar>
+	handleSubmit: UseFormHandleSubmit<FilterFormSearchBar, undefined>
+	setSearchParams: SetURLSearchParams
+	setDate: React.Dispatch<React.SetStateAction<DateProps>>
+}
 
 const SearchBar: React.FC<FilterProps> = ({register, handleSubmit, setSearchParams, setDate}) => {
 	// const [IdAssistencia, setIdAssistencia] = useState<string>('')

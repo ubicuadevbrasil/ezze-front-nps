@@ -20,12 +20,12 @@ export default function Index() {
 	const dataTeste: DashboardResponse = {
 		closedDeals48hPercent: 50,
 		closedDeals48hOverTime: [
-			{ month: 'January', alertas: 186 },
-			{ month: 'February', alertas: 305 },
-			{ month: 'March', alertas: 237 },
-			{ month: 'April', alertas: 73 },
-			{ month: 'May', alertas: 209 },
-			{ month: 'June', alertas: 214 },
+			{ month: 'January', alerts: 186 },
+			{ month: 'February', alerts: 305 },
+			{ month: 'March', alerts: 237 },
+			{ month: 'April', alerts: 73 },
+			{ month: 'May', alerts: 209 },
+			{ month: 'June', alerts: 214 },
 		],
 		dualBarChart: {
 			data: [
