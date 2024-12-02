@@ -10,7 +10,7 @@ const MainReason: React.FC<MainReasonProps> = ({ selectedStep }) => {
 	return (
 		<div className="flex gap-3">
 			{steps.map((step) => (
-				<button key={step} className={`border px-3 py-2 rounded-sm text-sm ${selectedStep === step ? 'border-blue-500 bg-blue-50' : 'border-gray-300'}`}>
+				<button key={step} className={`border px-3 py-2 rounded-md -sm text-sm ${selectedStep === step ? 'border-blue-500 bg-blue-50' : 'border-gray-300'}`}>
 					{step}
 				</button>
 			))}

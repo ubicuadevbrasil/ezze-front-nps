@@ -62,7 +62,7 @@ export default function Index() {
 			</nav>
 
 			<main className="flex flex-col items-center gap-10 m-5 py-10 flex-grow h-full">
-				<div className="flex gap-16 justify-between h-full">
+				<div className="flex flex-wrap gap-16 justify-center lg:h-full">
 					<Card className="relative shadow-lg flex items-center overflow-hidden bg-[#ffefe5] border-2 border-[#ffd0b2] h-32 w-64">
 						<div className="px-2 pb-1 pt-1 flex flex-col h-full w-full justify-between">
 							<CardDescription>Aguardando na fila</CardDescription>
@@ -153,11 +153,11 @@ export default function Index() {
 					</Card>
 				</div>
 
-				<div className="bg-white pb-4 w-full border rounded-3xl border-slate-400">
-					<div className="bg-[#203863] w-full rounded-t-2xl border-slate-400">
+				<div className="bg-white pb-4 w-full border rounded-md -3xl border-slate-400">
+					<div className="bg-[#203863] w-full rounded-md -t-2xl border-slate-400">
 						<h1 className="p-4 text-white ">Atendentes online</h1>
 					</div>
-					<Table className="rounded-b-xl pb-3">
+					<Table className="rounded-md -b-xl pb-3">
 						<TableHeader>
 							<TableRow className="bg-white">
 								<TableHead className="w-[100px]">#</TableHead>

@@ -24,7 +24,7 @@ const reasonsData = [
 export function ReasonsTable() {
 	return (
 		<Table>
-			<TableHeader className="bg-yellow-300 text-black rounded-2xl">
+			<TableHeader className="bg-yellow-300 text-black rounded-md -2xl">
 				<TableRow>
 					<TableHead>Motivo principal I</TableHead>
 					<TableHead>Motivo principal II</TableHead>

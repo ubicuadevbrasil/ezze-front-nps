@@ -49,7 +49,7 @@ export function DataTable<TData extends ICloseTheLoop>({ columns, result, setSea
 
 	return (
 		<div>
-			<div className="border rounded-md border-slate-400">
+			<div className="border rounded-md -md border-slate-400">
 				<Table>
 					<TableHeader>
 					<TableRow>

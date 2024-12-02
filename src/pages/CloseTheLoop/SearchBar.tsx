@@ -111,7 +111,7 @@ const SearchBar: React.FC<FilterProps> = ({register, handleSubmit, setSearchPara
 				{/* Status */}
 				<Popover open={statusOpen} onOpenChange={setStatusOpen}>
 					<PopoverTrigger asChild className="border border-slate-400">
-						<div className='flex w-32 h-10 items-center px-3 border border-slate-400 rounded-md bg-white'>
+						<div className="flex w-32 h-10 items-center px-3 border border-slate-400 rounded-md -md bg-white">
 							<div className="flex flex-col w-full text-[10px] leading-3  justify-center ">
 								<span className="text-[10px] leading-3">Status</span>
 								<div className="">{statusValue ? statusList.find((status) => status.value === statusValue)?.label : '---'}</div>
@@ -145,7 +145,7 @@ const SearchBar: React.FC<FilterProps> = ({register, handleSubmit, setSearchPara
 				{/* Alerta */}
 				<Popover open={alertaOpen} onOpenChange={setAlertaOpen}>
 					<PopoverTrigger asChild className="border border-slate-400">
-						<div className='flex w-32 h-10 items-center px-3 border border-slate-400 rounded-md bg-white'>
+						<div className="flex w-32 h-10 items-center px-3 border border-slate-400 rounded-md -md bg-white">
 							<div className="flex flex-col w-full text-[10px] leading-3  justify-center ">
 								<span className="text-[10px] leading-3">Alerta</span>
 								<div className="">{alertaValue ? alertaList.find((alerta) => alerta.value === alertaValue)?.label : '---'}</div>

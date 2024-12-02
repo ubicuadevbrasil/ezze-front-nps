@@ -84,7 +84,7 @@ const alertData = [
 export function AlertProcedureTable() {
 	return (
 		<Table>
-			<TableHeader className="bg-yellow-300 text-black rounded-2xl">
+			<TableHeader className="bg-yellow-300 text-black rounded-md -md">
 				<TableRow>
 					<TableHead></TableHead>
 					{alertData.map((data, index) => (

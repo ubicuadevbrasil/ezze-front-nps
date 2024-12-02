@@ -186,7 +186,7 @@ export default function Index() {
 			<div className="flex justify-between">
 				<div className="grid grid-cols-1 custom-scrollbar sm:grid-cols-2 lg:grid-cols-4 gap-5 px-5 py-2 items-center">
 					{/* <DatePickerWithRange className="border-slate-400" /> */}
-					<div className="flex flex-col text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md bg-white">
+					<div className="flex flex-col text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md -md bg-white">
 						<label htmlFor="assignment" className="">
 							Id da assistencia
 						</label>
@@ -197,13 +197,13 @@ export default function Index() {
 
 					<Dropdown items={optionsTab} selectedItems={selectedTab} onSelect={handleSelectTab} title="Tabulação" />
 
-					<div className="flex flex-col text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md bg-white">
+					<div className="flex flex-col text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md -md bg-white">
 						<label htmlFor="assignment" className="">
 							Nome do Cliente
 						</label>
 						<input id="assignment" className="w-full outline-none" placeholder="---" value={NomeCliente} onChange={(e) => setNomeCliente(e.target.value)} />
 					</div>
-					<div className="flex flex-col text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md bg-white">
+					<div className="flex flex-col text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md -md bg-white">
 						<label htmlFor="assignment" className="">
 							Telefone
 						</label>
@@ -224,15 +224,15 @@ export default function Index() {
 
 			<main className="flex flex-col items-center gap-10 m-5 flex-grow">
 				<div className="w-full">
-					<div className="bg-white pb-6 w-full border rounded-3xl border-slate-400">
-						<div className="bg-[#365da5] w-full rounded-t-2xl border-slate-400">
+					<div className="bg-white pb-6 w-full border rounded-md -3xl border-slate-400">
+						<div className="bg-[#365da5] w-full rounded-md -t-2xl border-slate-400">
 							<h1 className="p-4 text-white">Resultados</h1>
 						</div>
 						{datas ? (
 							<div className="custom-scrollbar overflow-x-auto">
 								{' '}
 								{/* Scroll horizontal com estilo */}
-								<Table className="rounded-b-xl pb-3 min-w-max">
+								<Table className="rounded-md -b-xl pb-3 min-w-max">
 									<TableHeader>
 										<TableRow className="bg-white">
 											<TableHead className="whitespace-nowrap">Nome</TableHead>
@@ -252,7 +252,7 @@ export default function Index() {
 											<TableHead className="whitespace-nowrap">Histórico</TableHead>
 										</TableRow>
 									</TableHeader>
-									<TableBody className="rounded-b-xl bg-white rounded-2xl">
+									<TableBody className="rounded-md -b-xl bg-white rounded-md -2xl">
 										{datas.map((data) => (
 											<TableRow key={data.protocol}>
 												<TableCell className="font-medium text-slate-700 whitespace-nowrap">{data.name}</TableCell>

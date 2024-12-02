@@ -11,7 +11,7 @@ const reasonsData = [
 export function SolutionsTable() {
 	return (
 		<Table>
-			<TableHeader className="bg-yellow-300 text-black rounded-2xl">
+			<TableHeader className="bg-yellow-300 text-black rounded-md -2xl">
 				<TableRow>
 					<TableHead>Solução aceita</TableHead>
 					<TableHead>Quantidade</TableHead>

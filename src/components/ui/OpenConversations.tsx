@@ -24,20 +24,20 @@ const Index: React.FC = () => {
 	return (
 		<div className={`fixed z-10 bottom-0 right-5 w-80 ${isExpanded ? 'h-96' : 'h-10'} transition-all duration-300 ease-in-out`}>
 			{showBar && (
-				<div className="bg-slate-100 border-slate-400 border text-slate-950 px-3 py-2 cursor-pointer rounded-t-2xl flex flex-row justify-between items-center" onClick={toggleExpansion}>
+				<div className="bg-slate-100 border-slate-400 border text-slate-950 px-3 py-2 cursor-pointer rounded-md -t-2xl flex flex-row justify-between items-center" onClick={toggleExpansion}>
 					Conversas abertas
 					<CaretUp size={20} />
 				</div>
 			)}
-			<div className={`bg-white border border-slate-400 rounded-2xl shadow-lg overflow-hidden h-full ${isExpanded ? 'block' : 'hidden'}`}>
+			<div className={`bg-white border border-slate-400 rounded-md -2xl shadow-lg overflow-hidden h-full ${isExpanded ? 'block' : 'hidden'}`}>
 				<div className="bg-slate-100 text-slate-950 p-3 flex justify-between items-center">
 					<span>Support Chat</span>
-					
+
 					<Button variant={'ghost'} className="text-slate-950" onClick={toggleExpansion}>
 						<CaretDown size={20} />
 					</Button>
 				</div>
-				<div className="p-3 flex justify-center items-center h-full">{loading ? <Spinner /> : error ? <div>{error}</div> : conversations ? conversations?.map((conversation, index) => <Button id={index.toString()} >{conversation.name}</Button>) : (<p>Sem Conversas em aberto</p>)}</div>
+				<div className="p-3 flex justify-center items-center h-full">{loading ? <Spinner /> : error ? <div>{error}</div> : conversations ? conversations?.map((conversation, index) => <Button id={index.toString()}>{conversation.name}</Button>) : <p>Sem Conversas em aberto</p>}</div>
 			</div>
 		</div>
 	)

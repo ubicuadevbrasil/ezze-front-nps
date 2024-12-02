@@ -57,7 +57,7 @@ function Detractor() {
 
 	return (
 		<TemplatePage>
-			<div className="flex flex-col justify-center text-center text-sm bg-white shadow-lg p-5 gap-5 rounded-lg">
+			<div className="flex flex-col justify-center text-center text-sm bg-white shadow-lg p-5 gap-5 rounded-md -lg">
 				<div className="flex flex-col gap-4">
 					<p>Lamentamos saber que sua experiência não foi satisfatória. Você gostaria de falar com um atendente para informar o que houve?</p>
 					<RatingYesOrNo onSelect={setRatingYesOrNoSelected} selected={RatingYesOrNoSelected as string} />

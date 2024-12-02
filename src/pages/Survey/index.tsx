@@ -74,22 +74,22 @@ function Survey() {
 		return (
 			<TemplatePage>
 				<div className="flex justify-center">
-					<img src={ImageSurvey} alt="Illustration of a living room with a sofa and shelves" className="rounded-lg" />
+					<img src={ImageSurvey} alt="Illustration of a living room with a sofa and shelves" className="rounded-md -lg" />
 				</div>
-				<div className="bg-white shadow-lg p-4 rounded-lg">
+				<div className="bg-white shadow-lg p-4 rounded-md -lg">
 					<p className="text-center text-xs font-semibold">Olá {surveyData?.client.nome}, tudo bem?</p>
 					<p className="text-center text-xs mb-2">Sou {surveyData?.attendant} da Ezze Seguros. Gostaria de saber a sua opinião sobre o atendimento que acabou de receber em nossa central.</p>
 					<p className="text-center text-xs">Você poderia nos ajudar respondendo a uma breve pesquisa? Sua opinião é muito importante para nós e nos ajuda a melhorar cada vez mais. 😊</p>
 				</div>
-				<div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md flex flex-col gap-4 items-center">
+				<div className="bg-white rounded-md -lg shadow-lg p-6 w-full max-w-md flex flex-col gap-4 items-center">
 					<RatingScale onSelect={setRatingScaleSelected} selected={RatingScaleSelected} />
 					<Button
 						disabled={!RatingScaleSelected}
 						onClick={() => {
-							if ((RatingScaleSelected as number) <= 3) navigate('detractor', {state: surveyData})
-							else navigate('promoter', {state: surveyData})
+							if ((RatingScaleSelected as number) <= 3) navigate('detractor', { state: surveyData })
+							else navigate('promoter', { state: surveyData })
 						}}
-						className="bg-[#365da5] text-white py-2 w-72 px-4 rounded-sm">
+						className="bg-[#365da5] text-white py-2 w-72 px-4 rounded-md -sm">
 						Próxima página
 					</Button>
 				</div>
@@ -117,7 +117,7 @@ export const RatingScale = ({ onSelect, selected }: RatingScaleProps) => {
 			<p className="text-center text-xs mb-4">Por favor, em uma escala de 1 a 10, qual a probabilidade de você recomendar a Ezze Seguros para um amigo ou colega?</p>
 			<div className="grid grid-cols-5 gap-2 w-60">
 				{[...Array(10).keys()].map((num) => (
-					<Button variant={'ghost'} key={num + 1} onClick={() => onSelect(num + 1)} className={`border w-10 border-gray-300 rounded-lg py-2 text-center text-lg font-semibold ${selected === num + 1 ? `${getColor(num + 1)} hover:${getColor(num + 1)}` : 'bg-white'}`}>
+					<Button variant={'ghost'} key={num + 1} onClick={() => onSelect(num + 1)} className={`border w-10 border-gray-300 rounded-md -lg py-2 text-center text-lg font-semibold ${selected === num + 1 ? `${getColor(num + 1)} hover:${getColor(num + 1)}` : 'bg-white'}`}>
 						{num + 1}
 					</Button>
 				))}

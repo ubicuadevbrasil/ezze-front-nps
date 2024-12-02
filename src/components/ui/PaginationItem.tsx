@@ -12,7 +12,6 @@ export default function PaginationComponent({ currentPage, totalPages, onPageCha
 			<PaginationContent>
 				<PaginationItem>
 					<PaginationPrevious
-						
 						onClick={(e) => {
 							if (currentPage > 1) {
 								onPageChange(currentPage - 1)
@@ -27,7 +26,7 @@ export default function PaginationComponent({ currentPage, totalPages, onPageCha
 				{/* Renderiza os números das páginas */}
 				{Array.from({ length: totalPages }, (_, index) => (
 					<PaginationItem key={index + 1}>
-						<PaginationLink className={`rounded px-4 py-2 text-sm ${currentPage === index + 1 ? 'bg-[#1b335e] text-white' : ''}`} onClick={() => onPageChange(index + 1)}>
+						<PaginationLink className={`rounded-md  px-4 py-2 text-sm ${currentPage === index + 1 ? 'bg-[#1b335e] text-white' : ''}`} onClick={() => onPageChange(index + 1)}>
 							{index + 1}
 						</PaginationLink>
 					</PaginationItem>
