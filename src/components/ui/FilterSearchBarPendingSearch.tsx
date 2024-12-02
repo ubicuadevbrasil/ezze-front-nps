@@ -13,8 +13,6 @@ interface FilterProps {
 }
 
 const FilterSearchBarPendingSearch: React.FC<FilterProps> = ({register, handleSubmit, setSearchParams, setDate}) => {
-
-
 	const handleFilter = (data: FilterForm) => {
 		setSearchParams(state => {
 			if(data.clientName) {
@@ -52,7 +50,7 @@ const FilterSearchBarPendingSearch: React.FC<FilterProps> = ({register, handleSu
 	}
 
 	return (
-		<form onSubmit={handleSubmit(handleFilter)} className="px-5 py-3 w-full gap-2 flex flex-row items-center justify-end">
+		<form onSubmit={handleSubmit(handleFilter)} className="px-5 py-3 w-full gap-2 flex flex-row items-center justify-end bg-[#F1F3FE]">
 			<DatePickerWithRange setSearchParams={setSearchParams} className="border-slate-400" />
 			<div className="flex flex-col w-32 text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md -md bg-white">
 				<label htmlFor="assistanceId" className="">

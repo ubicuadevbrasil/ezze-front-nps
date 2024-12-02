@@ -218,21 +218,21 @@ export default function Index() {
 					<Button className="bg-[#d9dde5] text-lg py-2 px-3 border border-[#c0c7d4] text-[#333946] font-bold">Bloqueios</Button>
 					<Button className="bg-[#d9dde5] text-lg py-2 px-3 border border-[#c0c7d4] text-[#333946] font-bold">Logins</Button>
 					<Button className="py-2 px-3 text-lg bg-[#00852c]">Exportar</Button>
-					<Button className="py-2 px-3 text-lg bg-[#203863]">Buscar</Button>
+					<Button className="py-2 px-3 text-lg bg-[#365da5]">Buscar</Button>
 				</div>
 			</div>
 
 			<main className="flex flex-col items-center gap-10 m-5 flex-grow">
 				<div className="w-full">
-					<div className="bg-white pb-6 w-full border rounded-md -3xl border-slate-400">
-						<div className="bg-[#365da5] w-full rounded-md -t-2xl border-slate-400">
+					<div className="bg-white pb-6 w-full border rounded-md border-slate-400">
+						<div className="bg-[#365da5] w-full rounded-t-md border-slate-400">
 							<h1 className="p-4 text-white">Resultados</h1>
 						</div>
 						{datas ? (
 							<div className="custom-scrollbar overflow-x-auto">
 								{' '}
 								{/* Scroll horizontal com estilo */}
-								<Table className="rounded-md -b-xl pb-3 min-w-max">
+								<Table className="rounded-md pb-3 min-w-max">
 									<TableHeader>
 										<TableRow className="bg-white">
 											<TableHead className="whitespace-nowrap">Nome</TableHead>
@@ -252,7 +252,7 @@ export default function Index() {
 											<TableHead className="whitespace-nowrap">Histórico</TableHead>
 										</TableRow>
 									</TableHeader>
-									<TableBody className="rounded-md -b-xl bg-white rounded-md -2xl">
+									<TableBody className=" bg-white rounded-md">
 										{datas.map((data) => (
 											<TableRow key={data.protocol}>
 												<TableCell className="font-medium text-slate-700 whitespace-nowrap">{data.name}</TableCell>
@@ -270,7 +270,7 @@ export default function Index() {
 												<TableCell className="font-medium text-slate-700 whitespace-nowrap">{data.mailing}</TableCell>
 												<TableCell className="font-medium text-slate-700 whitespace-nowrap">{data.finalizer}</TableCell>
 												<TableCell className="font-medium text-slate-700 whitespace-nowrap">
-													<Button className="p-2 bg-[#203863]">Histórico</Button>
+													<Button className="p-2 bg-[#365da5]">Histórico</Button>
 												</TableCell>
 											</TableRow>
 										))}

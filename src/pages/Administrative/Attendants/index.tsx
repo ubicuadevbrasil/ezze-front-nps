@@ -64,7 +64,7 @@ export default function Index() {
 					{/* Botão Novo agora abre o Dialog */}
 					<Dialog open={isOpen} onOpenChange={setIsOpen}>
 						<DialogTrigger asChild>
-							<Button className="bg-[#203863] px-5 text-lg flex gap-4">
+							<Button className="bg-[#365da5] px-5 text-lg flex gap-4">
 								<User size={25} />
 								<p className="px-5">Novo</p>
 							</Button>
@@ -87,11 +87,11 @@ export default function Index() {
 			</nav>
 
 			<main className="flex flex-col items-center gap-10 m-5 flex-grow">
-				<div className="bg-white pb-4 w-full border rounded-md -3xl border-slate-400">
-					<div className="bg-[#203863] w-full rounded-md -t-2xl border-slate-400">
+				<div className="bg-white pb-4 w-full border rounded-md border-slate-400">
+					<div className="bg-[#365da5] w-full rounded-t-md border-slate-400">
 						<h1 className="p-4 text-white ">Atendentes online</h1>
 					</div>
-					<Table className="rounded-md -b-xl pb-3">
+					<Table className="rounded-b-md pb-3">
 						<TableHeader>
 							<TableRow className="bg-white">
 								<TableHead>#</TableHead>

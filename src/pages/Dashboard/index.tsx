@@ -100,7 +100,7 @@ export default function Index() {
 	return (
 		<BaseTemplate>
 			<FilterSearchBar />
-			<main className="flex flex-col items-center gap-4 mt-2 mb-6 w-full py-4 px-10">
+			<main className="flex flex-col items-center gap-4 mb-6 w-full py-4 px-10 bg-[#F1F3FE]">
 				<div className="flex flex-row gap-4 w-full">
 					<div className="w-full md:w-1/2 bg-white flex flex-col rounded-md -[8px] p-4">
 						<p className="text-sm text-[#333946]">% de alertas fechados em 48 horas:</p>

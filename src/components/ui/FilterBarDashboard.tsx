@@ -77,7 +77,7 @@ export const FilterSearchBar: React.FC = () => {
 	// )
 
 	return (
-		<div className="px-5 py-3 w-full gap-2 flex flex-row items-center justify-end">
+		<div className="px-5 py-3 w-full gap-2 flex flex-row items-center justify-end bg-[#F1F3FE]">
 			{/* <DatePickerWithRange className="border-slate-400" setEnd={setDataEnd} setStart={setDataStart} /> */}
 			{/* Cia */}
 			<Popover open={ciaOpen} onOpenChange={setCiaOpen}>

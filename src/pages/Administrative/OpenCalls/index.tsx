@@ -81,89 +81,87 @@ export default function Index() {
 			</nav>
 
 			<main className="flex flex-col items-center gap-10 m-5 flex-grow">
-				<div>
-					<div className="bg-white pb-4 w-full border rounded-md -3xl border-slate-400">
-						<div className="bg-[#203863] w-full rounded-md -t-2xl border-slate-400">
-							<h1 className="p-4 text-white">Atendimentos</h1>
-						</div>
-						<Table className="rounded-md -b-xl pb-3">
-							<TableHeader>
-								<TableRow className="bg-white">
-									<TableHead>Nome Cliente</TableHead>
-									<TableHead>Número Cliente</TableHead>
-									<TableHead>Data de atendimento</TableHead>
-									<TableHead>Nome Operador</TableHead>
-									<TableHead>Supervisor</TableHead>
-									<TableHead>Protocolo</TableHead>
-									<TableHead>Encerrar</TableHead>
-									<TableHead>Histórico</TableHead>
-									<TableHead>Transferir</TableHead>
+				<div className="bg-white pb-4 w-full border rounded-md border-slate-400">
+					<div className="bg-[#365da5] w-full rounded-t-md border-slate-400">
+						<h1 className="p-4 text-white">Atendimentos</h1>
+					</div>
+					<Table className="rounded-md -b-xl pb-3">
+						<TableHeader>
+							<TableRow className="bg-white">
+								<TableHead>Nome Cliente</TableHead>
+								<TableHead>Número Cliente</TableHead>
+								<TableHead>Data de atendimento</TableHead>
+								<TableHead>Nome Operador</TableHead>
+								<TableHead>Supervisor</TableHead>
+								<TableHead>Protocolo</TableHead>
+								<TableHead>Encerrar</TableHead>
+								<TableHead>Histórico</TableHead>
+								<TableHead>Transferir</TableHead>
+							</TableRow>
+						</TableHeader>
+						<TableBody className="bg-white rounded-md">
+							{datas.map((data) => (
+								<TableRow key={data.protocol}>
+									<TableCell className="font-medium text-slate-700">{data.clientName}</TableCell>
+									<TableCell className="font-medium text-slate-700">{formatPhoneNumber(data.clientNumber)}</TableCell>
+									<TableCell className="font-medium text-slate-700">{formatDate(data.dateOfService)}</TableCell>
+									<TableCell className="font-medium text-slate-700">{data.operatorName}</TableCell>
+									<TableCell className="font-medium text-slate-700">{data.supervisorName}</TableCell>
+									<TableCell className="font-medium text-slate-700">{data.protocol}</TableCell>
+									<TableCell>
+										<Dialog open={isOpenClosure} onOpenChange={setIsOpenClosure}>
+											<DialogTrigger asChild>
+												<Button className="bg-[#d92d1f] p-1 w-full">Encerrar</Button>
+											</DialogTrigger>
+											<DialogContent>
+												<DialogHeader>
+													<DialogTitle>Encerrar atendimento</DialogTitle>
+													<Separator />
+													<DialogDescription className="py-2 flex gap-2 text-slate-900">Cadastrar status de atendimento</DialogDescription>
+													<Separator />
+												</DialogHeader>
+												<ClosureForm onSubmit={handleFormSubmit} onCancel={() => setIsOpenClosure(false)} />
+											</DialogContent>
+										</Dialog>
+									</TableCell>
+									<TableCell>
+										<Dialog open={isOpenHistory} onOpenChange={setIsOpenHistory}>
+											<DialogTrigger asChild>
+												<Button className="bg-[#365da5] p-1 w-full">Histórico</Button>
+											</DialogTrigger>
+											<DialogContent>
+												<DialogHeader>
+													<div className="flex justify-start items-center gap-2">
+														<DialogTitle>Histórico de interação</DialogTitle>
+														<Printer size={25} className="border border-slate-400 p-1 rounded-md -lg" />
+													</div>
+													<Separator />
+												</DialogHeader>
+											</DialogContent>
+										</Dialog>
+									</TableCell>
+									<TableCell>
+										<Dialog open={isOpenTransfer} onOpenChange={setIsOpenTransfer}>
+											<DialogTrigger asChild>
+												<Button className="bg-[#00852c] p-1 w-full">Transferir</Button>
+											</DialogTrigger>
+											<DialogContent>
+												<DialogHeader>
+													<DialogTitle>Transferir Cliente</DialogTitle>
+													<Separator />
+												</DialogHeader>
+												<TransferForm onSubmit={handleFormSubmit} onCancel={() => setIsOpenTransfer(false)} />
+											</DialogContent>
+										</Dialog>
+									</TableCell>
 								</TableRow>
-							</TableHeader>
-							<TableBody className="rounded-md -b-xl bg-white rounded-md -2xl">
-								{datas.map((data) => (
-									<TableRow key={data.protocol}>
-										<TableCell className="font-medium text-slate-700">{data.clientName}</TableCell>
-										<TableCell className="font-medium text-slate-700">{formatPhoneNumber(data.clientNumber)}</TableCell>
-										<TableCell className="font-medium text-slate-700">{formatDate(data.dateOfService)}</TableCell>
-										<TableCell className="font-medium text-slate-700">{data.operatorName}</TableCell>
-										<TableCell className="font-medium text-slate-700">{data.supervisorName}</TableCell>
-										<TableCell className="font-medium text-slate-700">{data.protocol}</TableCell>
-										<TableCell>
-											<Dialog open={isOpenClosure} onOpenChange={setIsOpenClosure}>
-												<DialogTrigger asChild>
-													<Button className="bg-[#d92d1f] p-1">Encerrar</Button>
-												</DialogTrigger>
-												<DialogContent>
-													<DialogHeader>
-														<DialogTitle>Encerrar atendimento</DialogTitle>
-														<Separator />
-														<DialogDescription className="py-2 flex gap-2 text-slate-900">Cadastrar status de atendimento</DialogDescription>
-														<Separator />
-													</DialogHeader>
-													<ClosureForm onSubmit={handleFormSubmit} onCancel={() => setIsOpenClosure(false)} />
-												</DialogContent>
-											</Dialog>
-										</TableCell>
-										<TableCell>
-											<Dialog open={isOpenHistory} onOpenChange={setIsOpenHistory}>
-												<DialogTrigger asChild>
-													<Button className="bg-[#365da5] p-1">Histórico</Button>
-												</DialogTrigger>
-												<DialogContent>
-													<DialogHeader>
-														<div className="flex justify-start items-center gap-2">
-															<DialogTitle>Histórico de interação</DialogTitle>
-															<Printer size={25} className="border border-slate-400 p-1 rounded-md -lg" />
-														</div>
-														<Separator />
-													</DialogHeader>
-												</DialogContent>
-											</Dialog>
-										</TableCell>
-										<TableCell>
-											<Dialog open={isOpenTransfer} onOpenChange={setIsOpenTransfer}>
-												<DialogTrigger asChild>
-													<Button className="bg-[#00852c] p-1">Transferir</Button>
-												</DialogTrigger>
-												<DialogContent>
-													<DialogHeader>
-														<DialogTitle>Transferir Cliente</DialogTitle>
-														<Separator />
-													</DialogHeader>
-													<TransferForm onSubmit={handleFormSubmit} onCancel={() => setIsOpenTransfer(false)} />
-												</DialogContent>
-											</Dialog>
-										</TableCell>
-									</TableRow>
-								))}
-							</TableBody>
-						</Table>
-					</div>
-					<div className="flex justify-around items-center p-4">
-						<div className="text-sm text-gray-600 ">Total de alertas: {9}</div>
-						<Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
-					</div>
+							))}
+						</TableBody>
+					</Table>
+				</div>
+				<div className="flex justify-between w-full items-center p-4">
+					<div className="text-sm text-gray-600 ">Total de alertas: {9}</div>
+					<Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
 				</div>
 			</main>
 			<footer className="flex w-full justify-center py-2 bg-[#D9DDE5] mt-auto text-[10px]">{new Date().getFullYear()} - Powered by Ubicua ©</footer>

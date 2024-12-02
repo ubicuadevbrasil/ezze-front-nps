@@ -23,7 +23,6 @@ export default function Index() {
 	const [selectedMotivo, setSelectedMotivo] = useState<string | null>(null)
 	const [selectedSubmotivo, setSelectedSubmotivo] = useState<string | null>(null)
 
-
 	const [isOpen, setIsOpen] = useState(false) // Estado que controla o modal
 	const [formSubmitted, setFormSubmitted] = useState(false) // Estado que controla o envio do formulário
 
@@ -60,7 +59,7 @@ export default function Index() {
 					{/* Botão Novo agora abre o Dialog */}
 					<Dialog open={isOpen} onOpenChange={setIsOpen}>
 						<DialogTrigger asChild>
-							<Button className="bg-[#203863] px-3 text-lg flex gap-4">
+							<Button className="bg-[#365da5] px-3 text-lg flex gap-4">
 								<Plus size={25} />
 								<p className="px-5">Novo</p>
 							</Button>
@@ -82,8 +81,8 @@ export default function Index() {
 			</nav>
 
 			<main className="flex flex-col items-center gap-10 m-5  flex-grow">
-				<div className="bg-white pb-4 w-full border rounded-md -3xl border-slate-400">
-					<div className="bg-[#203863] w-full rounded-md -t-2xl border-slate-400">
+				<div className="bg-white pb-4 w-full border rounded-md border-slate-400">
+					<div className="bg-[#365da5] w-full rounded-t-md border-slate-400">
 						<h1 className="p-4 text-white ">Status</h1>
 					</div>
 					<Table className="rounded-md -b-xl pb-3">
@@ -166,7 +165,7 @@ function ProfileForm({ onSubmit, onCancel }: { onSubmit: () => void; onCancel: (
 				<Button className="p-2" variant="outline" type="button" onClick={onCancel}>
 					Cancelar
 				</Button>
-				<Button type="submit" className="bg-[#203863] p-2">
+				<Button type="submit" className="bg-[#365da5] p-2">
 					Salvar
 				</Button>
 			</div>
