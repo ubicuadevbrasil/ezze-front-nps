@@ -4,6 +4,7 @@ export interface Client {
   id: string
   clientName: string
   clientCIA: string
+  clientEmail: string
   phoneNumber: string
   assistanceNumber: string
   date: Date
@@ -34,6 +35,21 @@ export interface GetClientsQuery {
 
 export async function getPendingSearch({pageNumber, pageSize, clientName, clientCia, assistanceId, dateFrom, dateTo}: GetClientsQuery) {
   const response = await apiClient.get<GetClientsResponse>('/get-pending-search', {
+    params: {
+      pageNumber,
+      pageSize,
+      clientName,
+      clientCia,
+      assistanceId,
+      dateFrom,
+      dateTo,
+    }
+  })
+
+  return response.data
+}
+export async function getCloseTheLoop({pageNumber, pageSize, clientName, clientCia, assistanceId, dateFrom, dateTo}: GetClientsQuery) {
+  const response = await apiClient.get<GetClientsResponse>('/get-close-the-loop', {
     params: {
       pageNumber,
       pageSize,

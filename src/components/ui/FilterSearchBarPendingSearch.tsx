@@ -5,7 +5,7 @@ import { UseFormHandleSubmit, UseFormRegister } from 'react-hook-form'
 import { SetURLSearchParams } from 'react-router-dom'
 import { DateProps, FilterForm } from '@/pages/PendingSearch'
 
-interface FilterProps {
+export interface FilterProps {
 	register: UseFormRegister<FilterForm>
 	handleSubmit: UseFormHandleSubmit<FilterForm, undefined>
 	setSearchParams: SetURLSearchParams

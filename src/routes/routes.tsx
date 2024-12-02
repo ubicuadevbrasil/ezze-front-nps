@@ -93,7 +93,7 @@ export const routes: CustomRoute[] = [
 		]
 	},
 	{
-		path: '/',
+		path: '/administrative/',
 		label: 'Administrativo',
 		children: [
 			{ path: 'summaryServices', element: <SummaryServices />, label: 'Resumo de atendimentos', isShowed: true },
