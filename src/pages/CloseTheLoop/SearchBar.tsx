@@ -97,7 +97,7 @@ const SearchBar: React.FC<FilterProps> = ({register, handleSubmit, setSearchPara
 	}
 
 	return (
-		<form onSubmit={handleSubmit(handleFilter)} className="px-5 py-3 flex items-center justify-between">
+		<form onSubmit={handleSubmit(handleFilter)} className="px-5 py-3 w-full gap-2 flex flex-row items-center justify-between bg-[#F1F3FE]">
 			<div className="flex gap-2">
 				{/* <DatePickerWithRange  className="border-slate-400" /> */}
 				<div className="flex flex-col w-32 text-[10px] leading-3 h-10 justify-center px-3 border border-slate-400 rounded-md bg-white">
