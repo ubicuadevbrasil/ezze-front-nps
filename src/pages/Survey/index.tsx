@@ -62,15 +62,15 @@ function Survey() {
 		}
 	}, [searchParams])
 
-	if (!surveyData) {return(
+	/* if (!surveyData) {return(
 		<TemplatePage>
 			<div className="flex flex-col items-center justify-center w-full">
 				<Spinner/>
 			</div>
 		</TemplatePage>
-	)}
+	)} */
 
-	if (location.pathname === '/survey') {
+	if (/* location.pathname === '/survey' */ true) {
 		return (
 			<TemplatePage>
 				<div className="flex justify-center">
