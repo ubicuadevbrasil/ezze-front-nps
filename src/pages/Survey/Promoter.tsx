@@ -28,7 +28,32 @@ function Promoter
 () {
 	const location = useLocation()
 	const navigate = useNavigate()
-	const surveyData = location.state as IStateNavigation
+	const surveyData = {
+  client: {
+    idAssistencia: "123456",
+    nome: "João Silva",
+    ciaCliente: "Empresa XYZ",
+    telefone: 11987654321,
+    numeroAssistencia: 654321,
+    dataPrimeroDisparo: new Date("2024-12-01T10:30:00Z"),
+    tipoServico: "Manutenção",
+    formato: "E-mail",
+    submit: "Sim",
+    tentativaContato: {
+      dataTentativa: "2024-12-01",
+      sucesso: false,
+    },
+    conversa: {
+      mensagens: [
+        { autor: "cliente", mensagem: "Qual o prazo de atendimento?" },
+        { autor: "atendente", mensagem: "O prazo é de 3 dias úteis." },
+      ],
+    },
+  },
+  attendant: "Maria Oliveira",
+  ratting: 4.5,
+};
+
 	const [RatingCenterServiceSelected, setRatingCenterServiceSelected] = useState<number>()
 	const [RattingAttendantsSelected, setRattingAttendantsSelected] = useState<number>()
 	const [RattingTimeToBeServedSelected, setRattingTimeToBeServedSelected] = useState<number>()

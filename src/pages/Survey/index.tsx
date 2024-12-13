@@ -35,6 +35,7 @@ function Survey() {
 	const [surveyData, setSurveyData] = useState<SurveyData | null>(null)
 
 	useEffect(() => {
+		console.log(location.pathname)
 		// Pega o ID da URL
 		const surveyId = searchParams.get('id')
 
@@ -70,9 +71,10 @@ function Survey() {
 		</TemplatePage>
 	)} */
 
-	if (/* location.pathname === '/survey' */ true) {
+	if (location.pathname === '/survey') {
 		return (
 			<TemplatePage>
+				<Outlet/>
 				<div className="flex justify-center">
 					<img src={ImageSurvey} alt="Illustration of a living room with a sofa and shelves" className="rounded-md -lg" />
 				</div>
@@ -86,8 +88,8 @@ function Survey() {
 					<Button
 						disabled={!RatingScaleSelected}
 						onClick={() => {
-							if ((RatingScaleSelected as number) <= 3) navigate('detractor', { state: surveyData })
-							else navigate('promoter', { state: surveyData })
+							if ((RatingScaleSelected as number) <= 3) navigate('detractor'/* , { state: surveyData } */)
+							else navigate('promoter'/* , { state: surveyData } */)
 						}}
 						className="bg-[#365da5] text-white py-2 w-72 px-4 rounded-md -sm">
 						Próxima página

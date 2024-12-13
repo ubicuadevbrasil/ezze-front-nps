@@ -10,7 +10,6 @@ const apiClient = axios.create({
 	},
 })
 
-// Interceptor para tratamento de requisições (opcional)
 apiClient.interceptors.request.use(
 	(config) => {
 		// Aqui você pode adicionar tokens de autenticação ou manipular requisições antes de enviá-las
@@ -26,7 +25,6 @@ apiClient.interceptors.request.use(
 	}
 )
 
-// Interceptor para tratamento de respostas (opcional)
 apiClient.interceptors.response.use(
 	(response) => {
 		// Manipule a resposta da API se necessário

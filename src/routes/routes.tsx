@@ -82,13 +82,13 @@ export const routes: CustomRoute[] = [
 		isShowed: false,
 		children: [
 			{
-				path: 'detractor', element: <Detractor/>
+				path: 'detractor', element: <Detractor/>, label: 'Detractor'
 			},
 			{
-				path: 'promoter', element: <Promoter/>
+				path: 'promoter', element: <Promoter/>, label: 'Promoter'
 			},
 			{
-				path: 'final', element: <Final/>
+				path: 'final', element: <Final/>, label: 'Final'
 			}
 		]
 	},

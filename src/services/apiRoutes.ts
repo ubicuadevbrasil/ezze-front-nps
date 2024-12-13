@@ -12,6 +12,11 @@ export const AUTHENTICATION_API = {
 	REVOKE: `${env.VITE_API_URL}/api/user/revoke`
 }
 
+export const ADMINISTRATE_API = {
+	BASE: `${env.VITE_API_URL}/api/admin`,
+	getCardsResumeSummaryServices: `${env.VITE_API_URL}/api/card-resume-services`,
+}
+
 export const CLIENTDETAILS_API = {
 	BASE: `${env.VITE_API_URL}/clientdetailss`,
 	GET_ALL: `${env.VITE_API_URL}/clientdetailss`,
