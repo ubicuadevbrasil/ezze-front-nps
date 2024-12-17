@@ -12,7 +12,6 @@ const RoutesPage: React.FC = () => {
         dispatch(loadUserFromStorage());
     }, [dispatch]);
 
-	console.log('Routes are rendering')
 	return (
 		<Routes>
 			{routeObjects.map((route, index) => (

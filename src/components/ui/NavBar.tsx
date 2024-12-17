@@ -41,7 +41,6 @@ interface ButtonType {
 
 const Button: React.FC<ButtonType> = ({ route, label }) => {
 	const path = useLocation()
-	console.log(path)
 	return (
 		<>
 			<li>
