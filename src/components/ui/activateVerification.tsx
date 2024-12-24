@@ -23,13 +23,8 @@ export const ActivityProvider: React.FC<ActivityProviderProps> = ({ children, ap
 
 	const sendActivitySignal = useCallback(async () => {
 		try {
-			// Obter token
 			const token = localStorage.getItem('token')
-
-			// Se não tiver token, não enviar
-			//if (!token) return
-
-			// Enviar requisição com token no header
+			if (!token) return
 			await axios.post(
 				apiUrl,
 				{},

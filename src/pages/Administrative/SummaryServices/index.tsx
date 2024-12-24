@@ -3,53 +3,46 @@ import { ChartBar, SignOut } from '@phosphor-icons/react'
 import { Button } from '@/components/ui/button'
 import { TableBody, TableCell, TableHead, TableHeader, TableRow, Table } from '@/components/ui/table'
 import CardsSummarySerices from '@/components/ui/CardsSummarySerices'
+import { useEffect, useState } from 'react'
+import { ADMINISTRATE_API } from '@/services/apiRoutes'
+import { Employees } from '@/models/administrate'
+
+interface bodyRequire {
+	pageNumber: number
+	pageSize: number
+}
 
 export default function Index() {
+	const [Employees, setEmployees] = useState<Employees[]>()
 
-	const invoices = [
-		{
-			invoice: '#',
-			paymentStatus: 'Paid',
-			totalAmount: '$250.00',
-			paymentMethod: 'Credit Card',
-		},
-		{
-			invoice: '#',
-			paymentStatus: 'Pending',
-			totalAmount: '$150.00',
-			paymentMethod: 'PayPal',
-		},
-		{
-			invoice: '#',
-			paymentStatus: 'Unpaid',
-			totalAmount: '$350.00',
-			paymentMethod: 'Bank Transfer',
-		},
-		{
-			invoice: '#',
-			paymentStatus: 'Paid',
-			totalAmount: '$450.00',
-			paymentMethod: 'Credit Card',
-		},
-		{
-			invoice: '#',
-			paymentStatus: 'Paid',
-			totalAmount: '$550.00',
-			paymentMethod: 'PayPal',
-		},
-		{
-			invoice: '#',
-			paymentStatus: 'Pending',
-			totalAmount: '$200.00',
-			paymentMethod: 'Bank Transfer',
-		},
-		{
-			invoice: '#',
-			paymentStatus: 'Unpaid',
-			totalAmount: '$300.00',
-			paymentMethod: 'Credit Card',
-		},
-	]
+	async function fetchData(url: string, body: bodyRequire): Promise<any> {
+		try {
+			const response = await fetch(url, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(body)
+			})
+
+			if (!response.ok) {
+				throw new Error(`HTTP error! Status: ${response.status}`)
+			}
+
+			const data = await response.json()
+			return data
+		} catch (error) {
+			console.error('Error fetching data:', error)
+			throw error
+		}
+	}
+
+	useEffect(() => {
+		fetchData(ADMINISTRATE_API.getEmployeesPagination, { pageNumber: 1, pageSize: 13 })
+			.then((data: Employees[]) => setEmployees(data))
+			.catch((error) => console.error(error))
+	}, [])
+
 	return (
 		<div className="flex flex-col min-h-screen bg-[#F1F3FE]">
 			<NavBar />
@@ -62,35 +55,37 @@ export default function Index() {
 			</nav>
 
 			<main className="flex flex-col items-center gap-10 m-5 py-10 flex-grow h-full">
-				<CardsSummarySerices/>
+				<CardsSummarySerices />
 
-				<div className="bg-white pb-4 w-full border rounded-md border-slate-400">
-					<div className="bg-[#365da5] w-full rounded-t-md border-slate-400">
+				<div className="bg-white w-full border rounded-md border-slate-400">
+					<div className="bg-[#365da5] w-full rounded-t-sm border-slate-400">
 						<h1 className="p-4 text-white ">Atendentes online</h1>
 					</div>
-					<Table className="rounded-md -b-xl pb-3">
+					<Table>
 						<TableHeader>
-							<TableRow className="bg-white">
+							<TableRow>
 								<TableHead className="w-[100px]">#</TableHead>
 								<TableHead>Nome do usuário</TableHead>
 								<TableHead>Supervisor</TableHead>
-								<TableHead className="text-right">Logado</TableHead>
-								<TableHead className="text-right">Em atendimento</TableHead>
-								<TableHead className="text-right">Encerramento </TableHead>
-								<TableHead className="text-right">Deslogar </TableHead>
+								<TableHead className="text-left">Logado</TableHead>
+								<TableHead className="text-left">Em atendimento</TableHead>
+								<TableHead className="text-left">Encerramento </TableHead>
+								<TableHead className="text-center">Deslogar </TableHead>
 							</TableRow>
 						</TableHeader>
-						<TableBody className="bg-white">
-							{invoices.map((invoice) => (
-								<TableRow key={invoice.invoice}>
-									<TableCell className="font-medium">{invoice.invoice}</TableCell>
-									<TableCell>{invoice.paymentStatus}</TableCell>
-									<TableCell>{invoice.paymentMethod}</TableCell>
-									<TableCell className="text-right">{invoice.totalAmount}</TableCell>
-									<TableCell className="text-right">{invoice.totalAmount}</TableCell>
-									<TableCell className="text-right">{invoice.totalAmount}</TableCell>
-									<TableCell className="flex justify-end">
-										<SignOut size={32} />
+						<TableBody>
+							{Employees?.map((invoice, index) => (
+								<TableRow key={index}>
+									<TableCell className="text-left">#</TableCell>
+									<TableCell className="font-medium">{invoice.user.name}</TableCell>
+									<TableCell>{invoice.user.supervisor}</TableCell>
+									<TableCell>{invoice.isOnline}</TableCell>
+									<TableCell className="text-left">{invoice.user.alerts?.filter((item) => !item.closed).length}</TableCell>
+									<TableCell className="text-left">{invoice.user.alerts?.filter((item) => item.closed).length}</TableCell>
+									<TableCell>
+										<div className="w-full flex justify-center">
+											<SignOut color="#D92D1F" className="my-1" size={20} />
+										</div>
 									</TableCell>
 								</TableRow>
 							))}

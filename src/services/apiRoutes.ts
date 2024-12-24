@@ -15,6 +15,7 @@ export const AUTHENTICATION_API = {
 export const ADMINISTRATE_API = {
 	BASE: `${env.VITE_API_URL}/api/admin`,
 	getCardsResumeSummaryServices: `${env.VITE_API_URL}/api/card-resume-services`,
+	getEmployeesPagination: `${API_BASE_URL}/api/employees/pagination`,
 }
 
 export const CLIENTDETAILS_API = {
